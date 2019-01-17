@@ -9,10 +9,12 @@ namespace desktopapplication
     class Class1
     {
         string a;
+        string b;
 
-        public Class1(string a)
+        public Class1(string a, string b)
         {
             this.a = a;
+            this.b = b;
         }
     }
 }
