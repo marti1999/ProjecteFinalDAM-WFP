@@ -4,9 +4,76 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:desktopapplication"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1080" Foreground="White" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF5C99D6">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
+            </Grid.Effect>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
+                    <StackPanel Width="150">
+                        <Button Content="Test1"/>
+                        <Button Content="Test2"/>
+                        <Separator/>
+                        <Button Content="Exit"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18">some text</TextBlock>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#FF31577E">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
+            </Grid.Effect>
+            <StackPanel >
+                <Grid Height="150" Background="White" RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    
+
+                    <Image Height="80" VerticalAlignment="Bottom"/>
+                </Grid>
+                <ListView x:Name="ListViewMenu" Foreground="#FF5C99D6" Background="#FF31577E" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListViewItem x:Name="empyItem" Height="60" >
+                        
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemHome" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemCreate" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Create" VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Ticket" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Tickets" VerticalAlignment="Center"  Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Messages" VerticalAlignment="Center"  Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
