@@ -29,5 +29,8 @@ namespace desktopapplication.ViewModel
         {
             //TODO inits y tal
         }
+
+        
+
     }
 }
