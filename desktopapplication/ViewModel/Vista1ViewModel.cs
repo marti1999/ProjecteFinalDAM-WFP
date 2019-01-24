@@ -30,6 +30,17 @@ namespace desktopapplication.ViewModel
             //TODO inits y tal
         }
 
+        private bool _buttonOpenMenu;
+        public bool ButtonOpenMenu
+        {
+            get { return _buttonOpenMenu; }
+            set
+            {
+                _buttonOpenMenu = value;
+                NotifyPropertyChanged("ButtonOpenMenu");
+
+            }
+        }
         
 
     }
