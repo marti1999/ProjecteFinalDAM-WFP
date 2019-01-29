@@ -14,7 +14,7 @@ namespace desktopapplication.Model
         public static List<Administrator> getAllAdministrators()
         {
             List<Administrator> lc = new List<Administrator>();
-           // lc = (List<Administrator>)MakeRequest(string.Concat(ws1, "administratorsTot/"), null, "GET", "application/json", typeof(List<Administrator>));
+          //  lc = (List<Administrator>)MakeRequest(string.Concat(ws1, "administratorsTot/"), null, "GET", "application/json", typeof(List<Administrator>));
             return lc;
         }
 
@@ -52,7 +52,7 @@ namespace desktopapplication.Model
                     string strsb = sr.ReadToEnd();
                     object objResponse = null;
 
-                    //objResponse = JsonConvert.DeserializeObject(strsb, JSONResponseType);
+                   // objResponse = JsonConvert.DeserializeObject(strsb, JSONResponseType);
                     return objResponse;
                 }
             }

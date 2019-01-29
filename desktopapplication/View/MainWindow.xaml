@@ -43,7 +43,25 @@
 
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
-                        <Button Content="Test1"/>
+                        <Button Width="150" >
+                            <StackPanel>
+                                <Image Width="auto" Source="pack://siteoforigin:,,,/Resources/britishFlag.png" />
+
+                               
+                            </StackPanel>
+                        </Button>
+                        <Button Width="auto" >
+                            <StackPanel>
+                                <Image Source="pack://siteoforigin:,,,/Resources/carlistFlag.png" />
+
+                            </StackPanel>
+                        </Button>
+                        <Button Width="auto" >
+                            <StackPanel>
+                                <Image Source="pack://siteoforigin:,,,/Resources/catFlag.png" />
+
+                            </StackPanel>
+                        </Button>
                         <Button Content="Test2"/>
                         <Separator/>
                         <Button Content="Exit"/>

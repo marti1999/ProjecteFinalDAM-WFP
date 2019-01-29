@@ -66,9 +66,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\logIn.xaml.cs">
+      <DependentUpon>logIn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcClothes.xaml.cs">
       <DependentUpon>UcClothes.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\logIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -140,6 +147,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\engFlag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\espFlag.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\catFlag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ukFlag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\britishFlag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carlistFlag.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

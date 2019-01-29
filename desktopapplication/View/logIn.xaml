@@ -1,0 +1,43 @@
+﻿<Window x:Class="desktopapplication.View.logIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:desktopapplication.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="logIn" Height="448.454" Width="534.021">
+    <Grid>
+        <Grid Height="60" VerticalAlignment="Top" Background="#596673">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
+            </Grid.Effect>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label HorizontalAlignment="Center"  VerticalAlignment="Center"  Content="Language"></Label>
+
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="3,10,10,10" >
+
+                    <StackPanel Background="#596673" Width="150">
+                        <Button Width="auto" >
+                            <StackPanel>
+                                <Image Source="pack://siteoforigin:,,,/Resources/britishFlag.png" />
+                                
+                            </StackPanel>
+                        </Button>
+                        <Button Content="Test2" Width="auto"/>
+                        <Button Content="Test3" Width="auto"/>
+                        <Separator/>
+                        <Button Content="Exit" Width="auto"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+                
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="18"><Run Foreground="White" Text="Welcome"/></TextBlock>
+            
+        </Grid>
+        <Grid>
+            
+        </Grid>
+
+    </Grid>
+</Window>
