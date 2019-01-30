@@ -25,18 +25,18 @@ namespace desktopapplication.Model
         public bool active { get; set; }
         public int ClothesRequest_Id { get; set; }
         public int Warehouse_Id { get; set; }
-        public int Type_Id { get; set; }
         public int Size_Id { get; set; }
         public int Color_Id { get; set; }
         public int Gender_Id { get; set; }
+        public int Classification_Id { get; set; }
     
+        public virtual Classification Classification { get; set; }
         public virtual ClothesRequest ClothesRequest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
         public virtual Color Color { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Size Size { get; set; }
-        public virtual Type Type { get; set; }
         public virtual Warehouse Warehouse { get; set; }
     }
 }

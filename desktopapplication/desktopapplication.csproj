@@ -66,6 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\objects\Classification.cs" />
+    <Compile Include="ViewModel\loginViewModel.cs" />
     <Compile Include="View\logIn.xaml.cs">
       <DependentUpon>logIn.xaml</DependentUpon>
     </Compile>
@@ -85,28 +87,27 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="Model\Administrator.cs" />
-    <Compile Include="Model\Announcement.cs" />
-    <Compile Include="Model\Cloth.cs" />
-    <Compile Include="Model\ClothesRequest.cs" />
-    <Compile Include="Model\Color.cs" />
-    <Compile Include="Model\Donor.cs" />
-    <Compile Include="Model\Gender.cs" />
-    <Compile Include="Model\Language.cs" />
-    <Compile Include="Model\MathOperation.cs" />
-    <Compile Include="Model\MaxClaim.cs" />
-    <Compile Include="Model\Name.cs" />
-    <Compile Include="Model\Order.cs" />
-    <Compile Include="Model\OrderLine.cs" />
-    <Compile Include="Model\Recipient.cs" />
+    <Compile Include="Model\objects\Administrator.cs" />
+    <Compile Include="Model\objects\Announcement.cs" />
+    <Compile Include="Model\objects\Cloth.cs" />
+    <Compile Include="Model\objects\ClothesRequest.cs" />
+    <Compile Include="Model\objects\Color.cs" />
+    <Compile Include="Model\objects\Donor.cs" />
+    <Compile Include="Model\objects\Gender.cs" />
+    <Compile Include="Model\objects\Language.cs" />
+    <Compile Include="Model\objects\MathOperation.cs" />
+    <Compile Include="Model\objects\MaxClaim.cs" />
+    <Compile Include="Model\objects\Name.cs" />
+    <Compile Include="Model\objects\Order.cs" />
+    <Compile Include="Model\objects\OrderLine.cs" />
+    <Compile Include="Model\objects\Recipient.cs" />
     <Compile Include="Model\Repository.cs" />
-    <Compile Include="Model\Requestor.cs" />
-    <Compile Include="Model\Reward.cs" />
-    <Compile Include="Model\RewardInfoLang.cs" />
-    <Compile Include="Model\Size.cs" />
-    <Compile Include="Model\Status.cs" />
-    <Compile Include="Model\Type.cs" />
-    <Compile Include="Model\Warehouse.cs" />
+    <Compile Include="Model\objects\Requestor.cs" />
+    <Compile Include="Model\objects\Reward.cs" />
+    <Compile Include="Model\objects\RewardInfoLang.cs" />
+    <Compile Include="Model\objects\Size.cs" />
+    <Compile Include="Model\objects\Status.cs" />
+    <Compile Include="Model\objects\Warehouse.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Vista1ViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

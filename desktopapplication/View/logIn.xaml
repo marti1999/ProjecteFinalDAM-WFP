@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:desktopapplication.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:ViewModel="clr-namespace:desktopapplication.ViewModel"
         mc:Ignorable="d"
         Title="logIn" Height="448.454" Width="534.021">
+    <Window.DataContext>
+        <ViewModel:loginViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#596673">
             <Grid.Effect>
@@ -21,7 +25,7 @@
                         <Button Width="auto" >
                             <StackPanel>
                                 <Image Source="pack://siteoforigin:,,,/Resources/britishFlag.png" />
-                                
+
                             </StackPanel>
                         </Button>
                         <Button Content="Test2" Width="auto"/>
@@ -30,13 +34,16 @@
                         <Button Content="Exit" Width="auto"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
-                
+
             </StackPanel>
             <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="18"><Run Foreground="White" Text="Welcome"/></TextBlock>
-            
+
         </Grid>
-        <Grid>
-            
+        <Grid Margin="0,60,0,0">
+            <TextBox HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" Text="{Binding AdminUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="158" Margin="184,112,184,219"/>
+            <TextBox HorizontalAlignment="Center" Height="26" TextWrapping="Wrap"  Text="{Binding AdminPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" Width="158" Margin="0,70,0,0"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="184,256,0,0" VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}"/>
+
         </Grid>
 
     </Grid>

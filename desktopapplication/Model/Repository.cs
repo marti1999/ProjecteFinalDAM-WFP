@@ -10,12 +10,19 @@ namespace desktopapplication.Model
 {
     public class Repository
     {
-        private static string ws1 = "http://localhost:12345/api/";
+        private static string ws1 = "http://172.16.12.3:51057/api/";
         public static List<Administrator> getAllAdministrators()
         {
             List<Administrator> lc = new List<Administrator>();
-          //  lc = (List<Administrator>)MakeRequest(string.Concat(ws1, "administratorsTot/"), null, "GET", "application/json", typeof(List<Administrator>));
+            lc = (List<Administrator>)MakeRequest(string.Concat(ws1, "administratorsTot"), null, "GET", "application/json", typeof(List<Administrator>));
             return lc;
+        }
+
+        public static bool loginAdministrator(Administrator a)
+        {
+            bool login;
+            login = (bool)MakeRequest(String.Concat(ws1, "administrator/login"), a, "POST", "application/json", typeof(bool));
+            return login;
         }
 
        
@@ -52,7 +59,7 @@ namespace desktopapplication.Model
                     string strsb = sr.ReadToEnd();
                     object objResponse = null;
 
-                   // objResponse = JsonConvert.DeserializeObject(strsb, JSONResponseType);
+                    objResponse = JsonConvert.DeserializeObject(strsb, JSONResponseType);
                     return objResponse;
                 }
             }

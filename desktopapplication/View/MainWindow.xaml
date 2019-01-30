@@ -31,10 +31,7 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid>
-        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="509" Width="1015">
-            <View:UcClothes HorizontalAlignment="Stretch" Margin="136,72,182,127" VerticalAlignment="Stretch" />
-
-        </Grid>
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="509" Width="1015"/>
         <Grid Height="60" VerticalAlignment="Top" Background="#596673">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
