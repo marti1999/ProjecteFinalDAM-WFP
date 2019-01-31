@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:desktopapplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:View="clr-namespace:desktopapplication.View" x:Class="desktopapplication.MainWindow"
+        xmlns:View="clr-namespace:desktopapplication.View" xmlns:ViewModel="clr-namespace:desktopapplication.ViewModel" x:Class="desktopapplication.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1080" Foreground="White" WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -21,6 +21,8 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="57"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
@@ -30,8 +32,30 @@
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
+
+    <Window.DataContext>
+        <ViewModel:Vista1ViewModel/>
+    </Window.DataContext>
+    
+
     <Grid>
-        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="509" Width="1015"/>
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="509" Width="1015">
+            <TabControl  TabStripPlacement="Left" SelectedIndex="{Binding SelectedTab}"  >
+                <TabItem Header="TabItem" >
+                    <Grid Background="#FFE5E5E5"  >
+                    </Grid>
+                </TabItem>
+                <TabItem Header="TabItem" >
+                    <Grid Background="#FFE5E5E5"  >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="13*"/>
+                            <RowDefinition Height="239*"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid HorizontalAlignment="Left" Height="100" Margin="434,161.5,0,0" VerticalAlignment="Top" Width="100" Grid.Row="1"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#596673">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
@@ -44,7 +68,7 @@
                             <StackPanel>
                                 <Image Width="auto" Source="pack://siteoforigin:,,,/Resources/britishFlag.png" />
 
-                               
+
                             </StackPanel>
                         </Button>
                         <Button Width="auto" >
@@ -81,36 +105,42 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Grid.RenderTransform>
-
                     <Button x:Name="ButtonOpenMenu" Height="60" Width="50" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="AntiqueWhite" Click="ButtonOpenMenu_Click"
                             >
-
                         <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
                     </Button>
-
                     <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="50" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="AntiqueWhite" Click="ButtonCloseMenu_Click">
                         <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
                     </Button>
 
-
                 </Grid>
                 <ListView x:Name="ListViewMenu" Foreground="AntiqueWhite" Background="SlateGray" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" Margin="0,25,0,0">
                     <ListViewItem x:Name="itemUsers" Height="60" >
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="User" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Users" VerticalAlignment="Center" Margin="20 10"/>
+                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding userClickCommand}" >
+                            
+                        
+                        <StackPanel Orientation="Horizontal"  >
+                            
+                                <materialDesign:PackIcon Kind="User" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Users" VerticalAlignment="Center" Margin="20 10"/>
+                            
+                            
                         </StackPanel>
+                        </Button>
                     </ListViewItem>
                     <ListViewItem x:Name="itemWarehouses" Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="House" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Warehouses" VerticalAlignment="Center" Margin="20 10"/>
-                        </StackPanel>
+                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding homeClickCommand}" >
+                            
+                            <StackPanel Orientation="Horizontal"  >
+                                <materialDesign:PackIcon Kind="House" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Warehouses" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </Button>
                     </ListViewItem>
-                    <ListViewItem x:Name="itemClothes" Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="TshirtV" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Clothes" VerticalAlignment="Center"  Margin="20 10"/>
+                    <ListViewItem x:Name="itemClothes" Height="60"  >
+                        <StackPanel Orientation="Horizontal"  >
+                            <materialDesign:PackIcon  Kind="TshirtV" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Clothes"  VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem x:Name="itemNotifications" Height="60">

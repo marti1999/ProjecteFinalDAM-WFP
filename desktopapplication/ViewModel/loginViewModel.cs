@@ -7,13 +7,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using desktopapplication.View;
 
 namespace desktopapplication.ViewModel
 {
     class loginViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
+       // public logIn loginWindow = new logIn();
         public ICommand loginCommand { get; set; }
 
         private string _adminUsername;
@@ -60,6 +61,11 @@ namespace desktopapplication.ViewModel
             if (Repository.loginAdministrator(a))
             {
                 Console.WriteLine("Login OK");
+                MainWindow main = new MainWindow();
+                main.ShowDialog();
+//                loginWindow.Hide();
+
+
             } else
             {
                 Console.WriteLine("Incorrect email/password");

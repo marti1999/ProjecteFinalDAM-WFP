@@ -10,7 +10,7 @@ namespace desktopapplication.Model
 {
     public class Repository
     {
-        private static string ws1 = "http://172.16.12.3:51057/api/";
+        private static string ws1 = "http://localhost:51057/api/";
         public static List<Administrator> getAllAdministrators()
         {
             List<Administrator> lc = new List<Administrator>();

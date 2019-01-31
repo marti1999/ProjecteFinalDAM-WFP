@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace desktopapplication.ViewModel
@@ -13,8 +14,8 @@ namespace desktopapplication.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand openMenuCommand { get; set; }
-        public ICommand CloseMenuCommand { get; set; }
+        public ICommand homeClickCommand { get; set; }
+        public ICommand usersClickCommand { get; set; }
 
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -24,22 +25,68 @@ namespace desktopapplication.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
+        
         public Vista1ViewModel()
         {
-            //TODO inits y tal
+            
+           
+            homeClickCommand = new RelayCommand(x => selectHome());
+            usersClickCommand = new RelayCommand(x => selectUsers());
+
+
+           
+
         }
 
-        private bool _buttonOpenMenu;
-        public bool ButtonOpenMenu
+        private Visibility _homeSelected;
+        public Visibility HomeSelected
         {
-            get { return _buttonOpenMenu; }
+            get { return _homeSelected; }
             set
             {
-                _buttonOpenMenu = value;
-                NotifyPropertyChanged("ButtonOpenMenu");
+                _homeSelected = value;
+                NotifyPropertyChanged("Visibility");
 
             }
+        }
+
+        private Visibility _usersSelected;
+        public Visibility UsersSelected
+        {
+            get { return _usersSelected; }
+            set
+            {
+                _usersSelected = value;
+                NotifyPropertyChanged("Visibility");
+
+            }
+        }
+
+        private int _selectedTab;
+        public int SelectedTab
+        {
+            get { return _selectedTab; }
+            set
+            {
+                _selectedTab = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void selectHome()
+        {
+            SelectedTab = 1;
+            //HomeSelected = Visibility.Visible;
+           //  UsersSelected = Visibility.Hidden;
+            Console.WriteLine("HOME SELECTED");
+        }
+
+        private void selectUsers()
+        {
+            SelectedTab = 0;
+            // UsersSelected = Visibility.Visible;
+            // HomeSelected = Visibility.Hidden;
+            Console.WriteLine("users selected");
         }
         
 
