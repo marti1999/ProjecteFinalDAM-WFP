@@ -1,4 +1,5 @@
-﻿using System;
+﻿using desktopapplication.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -25,16 +26,16 @@ namespace desktopapplication.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        
+
         public Vista1ViewModel()
         {
-            
-           
+
+
             homeClickCommand = new RelayCommand(x => selectHome());
             usersClickCommand = new RelayCommand(x => selectUsers());
 
+            populateUsers();
 
-           
 
         }
 
@@ -73,11 +74,25 @@ namespace desktopapplication.ViewModel
             }
         }
 
+        private List<Donor> _users;
+        public List<Donor> Users
+        {
+            get { return _users; }
+            set { _users = value; NotifyPropertyChanged(); }
+        }
+
+        private void populateUsers()
+        {
+            Users = new List<Donor>();
+            Users = donorRepository.getAllDonors();
+        }
+
+
         private void selectHome()
         {
             SelectedTab = 1;
             //HomeSelected = Visibility.Visible;
-           //  UsersSelected = Visibility.Hidden;
+            //  UsersSelected = Visibility.Hidden;
             Console.WriteLine("HOME SELECTED");
         }
 
@@ -88,7 +103,7 @@ namespace desktopapplication.ViewModel
             // HomeSelected = Visibility.Hidden;
             Console.WriteLine("users selected");
         }
-        
+
 
     }
 }
