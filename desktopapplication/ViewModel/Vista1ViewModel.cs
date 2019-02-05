@@ -36,9 +36,9 @@ namespace desktopapplication.ViewModel
 
             populateUsers();
 
-
+            populateRequestors();
         }
-
+        //Tab Donors
         private Visibility _homeSelected;
         public Visibility HomeSelected
         {
@@ -104,6 +104,18 @@ namespace desktopapplication.ViewModel
             Console.WriteLine("users selected");
         }
 
+        //Tab Requestors
+        public void populateRequestors()
+        {
+            Requestors = requestorRepository.getAllRequestors().ToList();
+        }
+
+        private List<Requestor> _requestors;
+        public List<Requestor> Requestors
+        {
+            get { return _requestors; }
+            set { _requestors = value; NotifyPropertyChanged(); }
+        }
 
     }
 }
