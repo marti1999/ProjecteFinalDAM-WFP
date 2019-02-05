@@ -10,7 +10,7 @@ namespace desktopapplication.Model
 {
     public class Repository
     {
-        private static string ws1 = "http://localhost:51057/api/";
+        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
         public static List<Administrator> getAllAdministrators()
         {
             List<Administrator> lc = new List<Administrator>();

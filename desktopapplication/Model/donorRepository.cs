@@ -9,7 +9,7 @@ namespace desktopapplication.Model
 {
     class donorRepository
     {
-        private static string ws1 = "http://localhost:51057/api/";
+        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
 
         public static List<Donor> getAllDonors()
         {
