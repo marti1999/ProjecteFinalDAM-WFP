@@ -5,27 +5,22 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Windows;
-
 namespace desktopapplication.Model
 {
-    public class Repository
+    class donorRepository
     {
         private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
-        public static List<Administrator> getAllAdministrators()
-        {
-            List<Administrator> lc = new List<Administrator>();
-            lc = (List<Administrator>)MakeRequest(string.Concat(ws1, "administratorsTot"), null, "GET", "application/json", typeof(List<Administrator>));
-            return lc;
-        }
 
-        public static bool loginAdministrator(Administrator a)
+        public static List<Donor> getAllDonors()
         {
-            bool login;
-            login = (bool)MakeRequest(String.Concat(ws1, "administrator/login"), a, "POST", "application/json", typeof(bool));
-            return login;
+            List<Donor> lu = new List<Donor>();
+            lu = (List<Donor>)MakeRequest(string.Concat(ws1, "donorsTot"), null, "GET", "application/json", typeof(List<Donor>));
+            return lu;
         }
 
        
+
+
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
         //  requestUrl: Url completa del Web Service, amb l'opció sol·licitada
