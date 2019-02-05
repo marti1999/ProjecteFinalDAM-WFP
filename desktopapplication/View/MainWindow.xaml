@@ -119,7 +119,7 @@
                         <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding userClickCommand}" >
                             
                         
-                        <StackPanel Orientation="Horizontal"  >
+                        <StackPanel Orientation="Horizontal">
                             
                                 <materialDesign:PackIcon Kind="User" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Users" VerticalAlignment="Center" Margin="20 10"/>
