@@ -1,4 +1,5 @@
 ﻿using desktopapplication.Model;
+using desktopapplication.Model.objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,7 @@ namespace desktopapplication.ViewModel
             populateUsers();
 
             populateRequestors();
+            populateAnnouncements();
         }
         //Tab Donors
         private Visibility _homeSelected;
@@ -46,7 +48,7 @@ namespace desktopapplication.ViewModel
             set
             {
                 _homeSelected = value;
-                NotifyPropertyChanged("Visibility");
+                NotifyPropertyChanged();
 
             }
         }
@@ -58,7 +60,7 @@ namespace desktopapplication.ViewModel
             set
             {
                 _usersSelected = value;
-                NotifyPropertyChanged("Visibility");
+                NotifyPropertyChanged();
 
             }
         }
@@ -74,17 +76,31 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        private List<Donor> _users;
-        public List<Donor> Users
+        private List<Donor> _donors;
+        public List<Donor> Donors
         {
-            get { return _users; }
-            set { _users = value; NotifyPropertyChanged(); }
+            get { return _donors; }
+            set { _donors = value; NotifyPropertyChanged(); }
+        }
+
+        private List<Announcement> _announcements;
+        public List<Announcement> Announcements
+        {
+            get { return _announcements; }
+            set { _announcements = value; NotifyPropertyChanged(); }
         }
 
         private void populateUsers()
         {
-            Users = new List<Donor>();
-            Users = donorRepository.getAllDonors();
+            Donors = new List<Donor>();
+            Donors = donorRepository.getAllDonors();
+        }
+
+        private void populateAnnouncements()
+        {
+            Announcements = new List<Announcement>();
+            Announcements = announcementRepository.getAllAnnouncements();
+
         }
 
 
