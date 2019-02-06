@@ -62,9 +62,9 @@
                             </DataGrid>
                         </Grid>
                         <Grid Grid.Column="1" >
-                            
+
                         </Grid>
-                        
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="Requestor">
@@ -78,6 +78,20 @@
                 </TabItem>
                 <TabItem Header="Clothes" >
                     <Grid Background="#FFE5E5E5"  >
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Announcements" >
+                    <Grid Background="#FFE5E5E5"  >
+                        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,0,0" VerticalAlignment="Top" Width="404" ItemsSource="{Binding Announcements}">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Binding="{Binding title}" ClipboardContentBinding="{x:Null}" Header="Title" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding message}" ClipboardContentBinding="{x:Null}" Header="Message" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding dateCreated.Date.Date, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Date" Width="*"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
                     </Grid>
                 </TabItem>
             </TabControl>

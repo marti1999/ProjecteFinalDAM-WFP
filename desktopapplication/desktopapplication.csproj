@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\announcementRepository.cs" />
     <Compile Include="Model\requestorRepository.cs" />
     <Compile Include="Model\donorRepository.cs" />
     <Compile Include="Model\objects\Classification.cs" />
