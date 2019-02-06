@@ -9,12 +9,11 @@ namespace desktopapplication.Model
 {
     class donorRepository
     {
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
 
         public static List<Donor> getAllDonors()
         {
             List<Donor> lu = new List<Donor>();
-            lu = (List<Donor>)MakeRequest(string.Concat(ws1, "donorsTot"), null, "GET", "application/json", typeof(List<Donor>));
+            lu = (List<Donor>)MakeRequest(string.Concat(Utils.ws, "donorsTot"), null, "GET", "application/json", typeof(List<Donor>));
             return lu;
         }
 

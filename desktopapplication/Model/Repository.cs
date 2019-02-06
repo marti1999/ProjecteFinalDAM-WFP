@@ -6,22 +6,23 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Windows;
 
+
 namespace desktopapplication.Model
 {
     public class Repository
     {
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
+        
         public static List<Administrator> getAllAdministrators()
         {
             List<Administrator> lc = new List<Administrator>();
-            lc = (List<Administrator>)MakeRequest(string.Concat(ws1, "administratorsTot"), null, "GET", "application/json", typeof(List<Administrator>));
+            lc = (List<Administrator>)MakeRequest(string.Concat(Utils.ws, "administratorsTot"), null, "GET", "application/json", typeof(List<Administrator>));
             return lc;
         }
 
         public static bool loginAdministrator(Administrator a)
         {
             bool login;
-            login = (bool)MakeRequest(String.Concat(ws1, "administrator/login"), a, "POST", "application/json", typeof(bool));
+            login = (bool)MakeRequest(String.Concat(Utils.ws, "administrator/login"), a, "POST", "application/json", typeof(bool));
             return login;
         }
 

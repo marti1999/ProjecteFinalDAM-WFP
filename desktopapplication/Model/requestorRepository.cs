@@ -9,18 +9,13 @@ namespace desktopapplication.Model
 {
     class requestorRepository
     {
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
 
         public static List<Requestor> getAllRequestors()
         {
             List<Requestor> lu = new List<Requestor>();
-            lu = (List<Requestor>)MakeRequest(string.Concat(ws1, "requestorsTot"), null, "GET", "application/json", typeof(List<Requestor>));
+            lu = (List<Requestor>)MakeRequest(string.Concat(Utils.ws, "requestorsTot"), null, "GET", "application/json", typeof(List<Requestor>));
             return lu;
         }
-
-       
-
-
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
         //  requestUrl: Url completa del Web Service, amb l'opció sol·licitada
