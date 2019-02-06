@@ -19,7 +19,7 @@ namespace desktopapplication.Model
         {
             this.Rewards = new HashSet<Reward>();
         }
-    
+
         public int Id { get; set; }
         public string name { get; set; }
         public string lastName { get; set; }
@@ -35,7 +35,7 @@ namespace desktopapplication.Model
         public Nullable<int> ammountGiven { get; set; }
         public string dni { get; set; }
         public int Language_Id { get; set; }
-    
+
         public virtual Language Language { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reward> Rewards { get; set; }
