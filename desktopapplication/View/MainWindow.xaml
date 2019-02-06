@@ -76,7 +76,7 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="TabItem" >
+                <TabItem Header="Clothes" >
                     <Grid Background="#FFE5E5E5"  >
                     </Grid>
                 </TabItem>
