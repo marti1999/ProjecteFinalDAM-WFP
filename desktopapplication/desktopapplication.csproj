@@ -70,6 +70,7 @@
     <Compile Include="Model\requestorRepository.cs" />
     <Compile Include="Model\donorRepository.cs" />
     <Compile Include="Model\objects\Classification.cs" />
+    <Compile Include="Model\Utils.cs" />
     <Compile Include="ViewModel\loginViewModel.cs" />
     <Compile Include="View\logIn.xaml.cs">
       <DependentUpon>logIn.xaml</DependentUpon>

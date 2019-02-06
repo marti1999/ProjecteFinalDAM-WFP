@@ -20,13 +20,13 @@ namespace desktopapplication.Model
             this.ClothesRequests = new HashSet<ClothesRequest>();
             this.Orders = new HashSet<Order>();
         }
-    
+
         public string dni { get; set; }
         public string name { get; set; }
         public string lastName { get; set; }
         public System.DateTime birthDate { get; set; }
         public string gender { get; set; }
-        public string passwrod { get; set; }
+        public string password { get; set; }
         public string email { get; set; }
         public string securityAnswer { get; set; }
         public string securityQuestion { get; set; }
@@ -39,7 +39,7 @@ namespace desktopapplication.Model
         public int Language_Id { get; set; }
         public int MaxClaims_Id { get; set; }
         public int Status_Id { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClothesRequest> ClothesRequests { get; set; }
         public virtual Language Language { get; set; }

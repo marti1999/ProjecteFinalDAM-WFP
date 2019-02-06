@@ -19,7 +19,7 @@ namespace desktopapplication.Model
         {
             this.OrderLines = new HashSet<OrderLine>();
         }
-    
+
         public int Id { get; set; }
         public System.DateTime dateCreated { get; set; }
         public bool active { get; set; }
@@ -29,7 +29,7 @@ namespace desktopapplication.Model
         public int Color_Id { get; set; }
         public int Gender_Id { get; set; }
         public int Classification_Id { get; set; }
-    
+
         public virtual Classification Classification { get; set; }
         public virtual ClothesRequest ClothesRequest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
