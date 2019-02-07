@@ -41,6 +41,7 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1205, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.ResourceManager, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -78,6 +79,14 @@
     <Compile Include="View\UcClothes.xaml.cs">
       <DependentUpon>UcClothes.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomResources\ResourceDictionary.CA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomResources\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\logIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +148,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -152,22 +162,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\engFlag.png" />
+    <None Include="CustomResources\engFlag.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\espFlag.jpg" />
+    <None Include="CustomResources\espFlag.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\catFlag.png" />
+    <None Include="CustomResources\catFlag.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ukFlag.png" />
+    <None Include="CustomResources\ukFlag.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\britishFlag.png" />
+    <None Include="CustomResources\britishFlag.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\carlistFlag.png" />
+    <None Include="CustomResources\carlistFlag.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
