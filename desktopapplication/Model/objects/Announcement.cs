@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace desktopapplication.Model
+namespace desktopapplication.Models
 {
+    using desktopapplication.Model;
     using System;
     using System.Collections.Generic;
     
@@ -19,6 +20,7 @@ namespace desktopapplication.Model
         public string message { get; set; }
         public System.DateTime dateCreated { get; set; }
         public int Recipient_Id { get; set; }
+        public string language { get; set; }
     
         public virtual Recipient Recipient { get; set; }
     }

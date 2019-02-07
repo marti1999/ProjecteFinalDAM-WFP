@@ -91,6 +91,14 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="528,66,0,0" TextWrapping="Wrap" Text="{Binding AnnouncementTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="528,150,0,0" TextWrapping="Wrap" Text="{Binding AnnouncementMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="94" Width="299"/>
+                        <Button Content="Button" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding AnnouncementLanguage}">
+                            <ComboBoxItem Content="ENG" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="CAT" HorizontalAlignment="Left" Width="118"/>
+                        </ComboBox>
 
                     </Grid>
                 </TabItem>

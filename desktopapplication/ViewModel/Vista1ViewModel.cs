@@ -1,7 +1,9 @@
 ﻿using desktopapplication.Model;
 using desktopapplication.Model.objects;
+using desktopapplication.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -18,6 +20,7 @@ namespace desktopapplication.ViewModel
 
         public ICommand homeClickCommand { get; set; }
         public ICommand usersClickCommand { get; set; }
+        public ICommand createAnnouncementCommand { get; set; }
 
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -40,7 +43,8 @@ namespace desktopapplication.ViewModel
             populateRequestors();
             populateAnnouncements();
         }
-        //Tab Donors
+
+        //tab Not used
         private Visibility _homeSelected;
         public Visibility HomeSelected
         {
@@ -53,18 +57,87 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        private Visibility _usersSelected;
-        public Visibility UsersSelected
-        {
-            get { return _usersSelected; }
-            set
-            {
-                _usersSelected = value;
-                NotifyPropertyChanged();
 
-            }
+
+
+
+        //tab Donors
+        private List<Donor> _donors;
+        public List<Donor> Donors
+        {
+            get { return _donors; }
+            set { _donors = value; NotifyPropertyChanged(); }
         }
 
+        private void populateUsers()
+        {
+            Donors = new List<Donor>();
+            Donors = donorRepository.getAllDonors();
+        }
+
+
+        //tab Recipient
+
+        private ObservableCollection<Recipient> _recipients;
+
+        public ObservableCollection<Recipient> Recipients
+        {
+            get { return _recipients; }
+            set { _recipients = value; NotifyPropertyChanged(); }
+        }
+
+
+        //tab Announcements
+        private List<Announcement> _announcements;
+        public List<Announcement> Announcements
+        {
+            get { return _announcements; }
+            set { _announcements = value; NotifyPropertyChanged(); }
+        }
+
+        private string _announcementTitle;
+        public string AnnouncementTitle
+        {
+            get { return _announcementTitle; }
+            set { _announcementTitle = value; NotifyPropertyChanged(); }
+        }
+
+        private string _announcementMessage;
+        public string AnnouncementMessage
+        {
+            get { return _announcementMessage; }
+            set { _announcementMessage = value; NotifyPropertyChanged(); }
+        }
+
+        private string _announcementLanguage;
+        public string AnnouncementLanguage
+        {
+            get { return _announcementLanguage; }
+            set { _announcementLanguage = value; NotifyPropertyChanged(); }
+        }
+
+        private Recipient _announcementRecipient;
+        public Recipient AnnouncementRecipient
+        {
+            get { return _announcementRecipient; }
+            set { _announcementRecipient = value; NotifyPropertyChanged(); }
+        }
+
+
+
+        private void populateAnnouncements()
+        {
+            Announcements = new List<Announcement>();
+            Announcements = announcementRepository.getAllAnnouncements();
+
+        }
+        private void createAnnouncement()
+        {
+
+        }
+
+
+        //Tab tabItems
         private int _selectedTab;
         public int SelectedTab
         {
@@ -75,35 +148,6 @@ namespace desktopapplication.ViewModel
                 NotifyPropertyChanged();
             }
         }
-
-        private List<Donor> _donors;
-        public List<Donor> Donors
-        {
-            get { return _donors; }
-            set { _donors = value; NotifyPropertyChanged(); }
-        }
-
-        private List<Announcement> _announcements;
-        public List<Announcement> Announcements
-        {
-            get { return _announcements; }
-            set { _announcements = value; NotifyPropertyChanged(); }
-        }
-
-        private void populateUsers()
-        {
-            Donors = new List<Donor>();
-            Donors = donorRepository.getAllDonors();
-        }
-
-        private void populateAnnouncements()
-        {
-            Announcements = new List<Announcement>();
-            Announcements = announcementRepository.getAllAnnouncements();
-
-        }
-
-
         private void selectHome()
         {
             SelectedTab = 1;
@@ -119,6 +163,7 @@ namespace desktopapplication.ViewModel
             // HomeSelected = Visibility.Hidden;
             Console.WriteLine("users selected");
         }
+
 
         //Tab Requestors
         public void populateRequestors()

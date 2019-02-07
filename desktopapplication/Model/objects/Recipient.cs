@@ -9,6 +9,7 @@
 
 namespace desktopapplication.Model
 {
+    using desktopapplication.Models;
     using System;
     using System.Collections.Generic;
     
