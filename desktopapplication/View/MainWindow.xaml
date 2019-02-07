@@ -69,10 +69,11 @@
                 </TabItem>
                 <TabItem Header="Requestor">
                     <Grid Background="#FFE5E5E5"  >
-                        <DataGrid HorizontalAlignment="Left" Height="329" Margin="90,60,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}"/>
-                        <TextBox HorizontalAlignment="Left" Height="56" Margin="709,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
-                        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="884,359,0,0" VerticalAlignment="Top"/>
-                        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="884,379,0,0" VerticalAlignment="Top"/>
+                        <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}"/>
+                        <TextBox HorizontalAlignment="Left" Height="56" Margin="687,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+                        <RadioButton Content="Deny" HorizontalAlignment="Left" Margin="862,338,0,0" VerticalAlignment="Top"/>
+                        <RadioButton Content="Accept" HorizontalAlignment="Left" Margin="862,353,0,0" VerticalAlignment="Top"/>
+                        <Button Content="Save" HorizontalAlignment="Left" Margin="687,398,0,0" VerticalAlignment="Top" Width="157" Height="42"/>
 
                     </Grid>
                 </TabItem>
