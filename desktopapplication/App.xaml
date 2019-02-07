@@ -5,5 +5,11 @@
              StartupUri="View/logIn.xaml">
     <Application.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <ResourceDictionary x:Key="CustomDictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CustomResources/ResourceDictionary.xaml" />
+                <ResourceDictionary Source="CustomResources/ResourceDictionary.CA.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

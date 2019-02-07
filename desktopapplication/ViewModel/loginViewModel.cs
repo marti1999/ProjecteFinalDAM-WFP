@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using desktopapplication.View;
 
@@ -16,6 +18,13 @@ namespace desktopapplication.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
        // public logIn loginWindow = new logIn();
         public ICommand loginCommand { get; set; }
+
+        public loginViewModel()
+        {
+            loginCommand = new RelayCommand(o => logIn());
+            //App.SelectCulture("CA");
+            //String s = Application.Current.Resources["Login"].ToString();
+        }
 
         private string _adminUsername;
 
@@ -39,10 +48,6 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        public loginViewModel()
-        {
-            loginCommand = new RelayCommand(o => logIn());
-        }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -70,8 +75,10 @@ namespace desktopapplication.ViewModel
             {
                 Console.WriteLine("Incorrect email/password");
             }
-       //     System.Windows.Forms.Application.Exit();
-
+            //     System.Windows.Forms.Application.Exit();
         }
+
+
+
     }
 }

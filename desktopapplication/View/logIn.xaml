@@ -24,7 +24,7 @@
                     <StackPanel Background="#596673" Width="150">
                         <Button Width="auto" >
                             <StackPanel>
-                                <Image Source="pack://siteoforigin:,,,/Resources/britishFlag.png" />
+                                <Image Source="pack://siteoforigin:,,,/CustomResources/britishFlag.png" />
 
                             </StackPanel>
                         </Button>
@@ -42,8 +42,8 @@
         <Grid Margin="0,60,0,0">
             <TextBox HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" Text="{Binding AdminUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="158" Margin="0,0,0,100"/>
             <TextBox HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" Text="{Binding AdminPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="158" Margin="0,70,0,0"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="184,256,0,0" VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}"/>
-
+            <Button Content="" HorizontalAlignment="Left" Margin="184,256,0,0" VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}"/>
+            <!--{StaticResource CustomDictionary}-->
         </Grid>
 
     </Grid>
