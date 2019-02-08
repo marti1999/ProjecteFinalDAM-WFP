@@ -37,6 +37,7 @@ namespace desktopapplication.ViewModel
 
             homeClickCommand = new RelayCommand(x => selectHome());
             usersClickCommand = new RelayCommand(x => selectUsers());
+            createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
 
             populateUsers();
 
@@ -78,9 +79,9 @@ namespace desktopapplication.ViewModel
 
         //tab Recipient
 
-        private ObservableCollection<Recipient> _recipients;
+        private ObservableCollection<string> _recipients;
 
-        public ObservableCollection<Recipient> Recipients
+        public ObservableCollection<string> Recipients
         {
             get { return _recipients; }
             set { _recipients = value; NotifyPropertyChanged(); }
@@ -88,15 +89,20 @@ namespace desktopapplication.ViewModel
 
         private void populateRecipient()
         {
-            Recipients = new ObservableCollection<Recipient>();
+            Recipients = new ObservableCollection<string>();
             // TODO en el webservice falta fer el repository i controller de recipient
-            Recipients = announcementRepository.getRecipients();
+            // Recipients = announcementRepository.getRecipients();
+
+            Recipients.Add("Everyone");
+            Recipients.Add("Donors");
+            Recipients.Add("Requestors");
+
 
 
         }
 
-        private Recipient _selectedRecipient;
-        public Recipient SelectedRecipient
+        private string _selectedRecipient;
+        public string SelectedRecipient
         {
             get { return _selectedRecipient; }
             set { _selectedRecipient = value; NotifyPropertyChanged(); }
@@ -150,6 +156,29 @@ namespace desktopapplication.ViewModel
         }
         private void createAnnouncement()
         {
+            Announcement a = new Announcement();
+            a.dateCreated = DateTime.Now;
+            a.language = AnnouncementLanguage;
+            a.message = AnnouncementMessage;
+            a.title = AnnouncementTitle;
+            
+            if (SelectedRecipient.ToLower().Equals("Everyone".ToLower()) || SelectedRecipient.ToLower().Equals("Tothom".ToLower()))
+            {
+                a.recipient = "Everyone";
+            }
+            else if (SelectedRecipient.ToLower().Equals("Donors".ToLower()) || SelectedRecipient.ToLower().Equals("Donants".ToLower()))
+            {
+                a.recipient = "Donors";
+            } else
+            {
+                a.recipient = "Requestors";
+            }
+
+            announcementRepository.addAnnouncement(a);
+            Console.WriteLine("announcement added to db"); //todo per ara no s' afegeix a la base de dades, mirar WS
+
+            populateAnnouncements();
+
 
         }
 
