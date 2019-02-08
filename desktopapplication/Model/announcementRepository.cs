@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using desktopapplication.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -20,6 +22,13 @@ namespace desktopapplication.Model.objects
             List<Announcement> lu = new List<Announcement>();
             lu = (List<Announcement>)MakeRequest(string.Concat(ws1, "announcements"), null, "GET", "application/json", typeof(List<Announcement>));
             return lu;
+        }
+        
+        public static ObservableCollection<Recipient> getRecipients()
+        {
+            ObservableCollection<Recipient> r = new ObservableCollection<Recipient>();
+            r = (ObservableCollection<Recipient>)MakeRequest(string.Concat(ws1, "recipients"), null, "GET", "application/json", typeof(ObservableCollection<Recipient>));
+            return r;
         }
 
         public static void addAnnouncement(Announcement c) {

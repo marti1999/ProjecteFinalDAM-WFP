@@ -86,6 +86,23 @@ namespace desktopapplication.ViewModel
             set { _recipients = value; NotifyPropertyChanged(); }
         }
 
+        private void populateRecipient()
+        {
+            Recipients = new ObservableCollection<Recipient>();
+            // TODO en el webservice falta fer el repository i controller de recipient
+            Recipients = announcementRepository.getRecipients();
+
+
+        }
+
+        private Recipient _selectedRecipient;
+        public Recipient SelectedRecipient
+        {
+            get { return _selectedRecipient; }
+            set { _selectedRecipient = value; NotifyPropertyChanged(); }
+        }
+
+
 
         //tab Announcements
         private List<Announcement> _announcements;
