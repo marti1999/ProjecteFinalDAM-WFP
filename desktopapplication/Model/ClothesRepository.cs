@@ -13,28 +13,19 @@ using System.Windows;
 
 namespace desktopapplication.Model.objects
 {
-    class announcementRepository
+    class ClothesRepository
     {
         private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
 
-        public static List<Announcement> getAllAnnouncements()
+        public static List<Cloth> getClothes()
         {
-            List<Announcement> lu = new List<Announcement>();
-            lu = (List<Announcement>)MakeRequest(string.Concat(ws1, "announcements"), null, "GET", "application/json", typeof(List<Announcement>));
-            return lu;
-        }
-        
-        public static ObservableCollection<Recipient> getRecipients()
-        {
-            ObservableCollection<Recipient> r = new ObservableCollection<Recipient>();
-            r = (ObservableCollection<Recipient>)MakeRequest(string.Concat(ws1, "recipients"), null, "GET", "application/json", typeof(ObservableCollection<Recipient>));
-            return r;
+
+
+            List<Cloth> cl = new List<Cloth>();
+            cl = (List<Cloth>)MakeRequest(string.Concat(ws1, "clothes"), null, "GET", "application/json", typeof(List<Cloth>));
+            return cl;
         }
 
-        public static void addAnnouncement(Announcement c) {
-        Announcement a = (Announcement) MakeRequest(string.Concat(ws1, "announcement"), c, "POST", "application/json", typeof(Announcement));
-
-        }
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
         //  requestUrl: Url completa del Web Service, amb l'opció sol·licitada
@@ -79,4 +70,5 @@ namespace desktopapplication.Model.objects
             }
         }
     }
+
 }
