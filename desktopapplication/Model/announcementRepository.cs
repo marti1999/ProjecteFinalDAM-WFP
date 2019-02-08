@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using desktopapplication.Models;
 
 namespace desktopapplication.Model.objects
 {
