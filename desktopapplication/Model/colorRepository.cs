@@ -10,31 +10,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-
-namespace desktopapplication.Model.objects
+namespace desktopapplication.Model
 {
-    class announcementRepository
+    class colorRepository
     {
+
         private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
 
-        public static List<Announcement> getAllAnnouncements()
+        public static List<Color> getAllColors()
         {
-            List<Announcement> lu = new List<Announcement>();
-            lu = (List<Announcement>)MakeRequest(string.Concat(ws1, "announcements"), null, "GET", "application/json", typeof(List<Announcement>));
-            return lu;
-        }
-        
-        public static ObservableCollection<Recipient> getRecipients()
-        {
-            ObservableCollection<Recipient> r = new ObservableCollection<Recipient>();
-            r = (ObservableCollection<Recipient>)MakeRequest(string.Concat(ws1, "recipients"), null, "GET", "application/json", typeof(ObservableCollection<Recipient>));
-            return r;
-        }
-
-        public static void addAnnouncement(Announcement c) {
-            Console.WriteLine(c.ToString());
-        Announcement a = (Announcement) MakeRequest(string.Concat(ws1, "announcement"), c, "POST", "application/json", typeof(Announcement));
-
+            List<Color> lc = new List<Color>();
+            lc = (List<Color>)MakeRequest(string.Concat(ws1, "colors"), null, "GET", "application/json", typeof(List<Color>));
+            return lc;
         }
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
