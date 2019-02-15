@@ -114,7 +114,7 @@ namespace desktopapplication.ViewModel
                 System.Windows.Media.Color newColor = System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B);
 
                 /**
-                 * checkt this website for help
+                 * check this website for help
                  * http://jkshay.com/configuring-the-extended-wpf-toolkits-colorpicker-color-palette/
                  *
                  */

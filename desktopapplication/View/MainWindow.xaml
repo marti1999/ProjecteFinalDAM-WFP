@@ -120,7 +120,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="528,66,0,0" TextWrapping="Wrap" Text="{Binding AnnouncementTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120"  SelectedItem="{Binding SelectedRecipient}" DisplayMemberPath="{Binding /name}">
+                        <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120"  SelectedItem="{Binding SelectedRecipient}" >
                             <ComboBoxItem Content="Everyone" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Donors" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Requestors" HorizontalAlignment="Left" Width="118"/>

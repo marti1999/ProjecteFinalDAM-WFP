@@ -20,11 +20,12 @@ namespace desktopapplication.Model
         {
             this.Clothes = new HashSet<Cloth>();
         }
-    
+
         public int Id { get; set; }
         public string classificationType { get; set; }
         public bool active { get; set; }
-    
+        public int value { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cloth> Clothes { get; set; }
     }
