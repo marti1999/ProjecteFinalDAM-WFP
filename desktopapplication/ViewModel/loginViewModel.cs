@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
@@ -21,9 +22,11 @@ namespace desktopapplication.ViewModel
 
         public loginViewModel()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             loginCommand = new RelayCommand(o => logIn());
-            //App.SelectCulture("CA");
-            //String s = Application.Current.Resources["Login"].ToString();
+            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ca");
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ca");
         }
 
         private string _adminUsername;
@@ -67,8 +70,8 @@ namespace desktopapplication.ViewModel
             {
                 Console.WriteLine("Login OK");
                 MainWindow main = new MainWindow();
+                Application.Current.Windows[0].Close();
                 main.ShowDialog();
-//                loginWindow.Hide();
 
 
             } else

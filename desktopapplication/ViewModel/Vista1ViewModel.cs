@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -17,7 +18,7 @@ namespace desktopapplication.ViewModel
     class Vista1ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
+        
         public ICommand homeClickCommand { get; set; }
         public ICommand usersClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
@@ -33,8 +34,6 @@ namespace desktopapplication.ViewModel
 
         public Vista1ViewModel()
         {
-
-
             homeClickCommand = new RelayCommand(x => selectHome());
             usersClickCommand = new RelayCommand(x => selectUsers());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
@@ -42,6 +41,8 @@ namespace desktopapplication.ViewModel
             populateUsers();
 
             populateRequestors();
+            setDefaultOptionsRequestor();
+            initRequestorCommands();
             populateAnnouncements();
         }
 
@@ -196,6 +197,8 @@ namespace desktopapplication.ViewModel
         }
         private void selectHome()
         {
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ca");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ca");
             SelectedTab = 1;
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
@@ -212,9 +215,28 @@ namespace desktopapplication.ViewModel
 
 
         //Tab Requestors
+        public ICommand BtnSaveRequestorsCmd { get; set; }
+
+        public void initRequestorCommands()
+        {
+            BtnSaveRequestorsCmd = new RelayCommand(x => createAnnouncement());
+        }
+
         public void populateRequestors()
         {
-            Requestors = requestorRepository.getAllRequestors().ToList();
+            Requestors = requestorRepository.getAllRequestors().Where(x => !x.Status.status1.Equals("Active")).ToList();
+        }
+        public void setDefaultOptionsRequestor()
+        {
+            PendingRequestorChecked = true;
+        }
+
+
+        private Requestor _selectedRequestor;
+        public Requestor SelectedRequestor
+        {
+            get { return _selectedRequestor; }
+            set { _selectedRequestor = value; NotifyPropertyChanged(); }
         }
 
         private List<Requestor> _requestors;
@@ -223,6 +245,27 @@ namespace desktopapplication.ViewModel
             get { return _requestors; }
             set { _requestors = value; NotifyPropertyChanged(); }
         }
+        
 
+        private bool _denyRequestorChecked;
+        public bool DenyRequestorChecked
+        {
+            get { return _denyRequestorChecked; }
+            set { _denyRequestorChecked = value; NotifyPropertyChanged(); }
+        }
+        private bool _acceptRequestorChecked;
+        public bool AcceptRequestorChecked
+        {
+            get { return _acceptRequestorChecked; }
+            set { _acceptRequestorChecked = value; NotifyPropertyChanged(); }
+        }
+
+        private bool _pendingRequestorChecked;
+        public bool PendingRequestorChecked
+        {
+            get { return _pendingRequestorChecked; }
+            set { _pendingRequestorChecked = value; NotifyPropertyChanged(); }
+        }
+        
     }
 }
