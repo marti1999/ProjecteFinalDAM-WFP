@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,6 +13,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+
+using Xceed.Wpf.Toolkit;
 
 namespace desktopapplication.ViewModel
 {
@@ -86,6 +89,41 @@ namespace desktopapplication.ViewModel
         {
             get { return _recipients; }
             set { _recipients = value; NotifyPropertyChanged(); }
+        }
+
+        private ObservableCollection<Xceed.Wpf.Toolkit.ColorItem> _colorList;
+
+        public ObservableCollection<Xceed.Wpf.Toolkit.ColorItem> ColorList
+        {
+            get { return _colorList; }
+            set { _colorList = value; NotifyPropertyChanged(); }
+        }
+
+        private void populareColorList()
+        {
+            ColorList = new ObservableCollection<Xceed.Wpf.Toolkit.ColorItem>();
+            List<Model.Color> lc = colorRepository.getAllColors();
+            foreach (Model.Color item in lc)
+            {
+                System.Drawing.Color c = new System.Drawing.Color();
+                c = ColorTranslator.FromHtml(item.codiColor);
+                //int r = Convert.ToInt16(c.R);
+                //int g = Convert.ToInt16(c.G);
+                //int b = Convert.ToInt16(c.B);
+
+                //System.Windows.Media.Color c2 = new System.Windows.Media.Color.FromAR
+                System.Windows.Media.Color newColor = System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B);
+
+                /**
+                 * checkt this website for help
+                 * http://jkshay.com/configuring-the-extended-wpf-toolkits-colorpicker-color-palette/
+                 *
+                 */
+
+                
+
+                ColorList.Add(new ColorItem(newColor, item.name));
+            }
         }
 
         private void populateRecipient()
@@ -176,7 +214,7 @@ namespace desktopapplication.ViewModel
             }
 
             announcementRepository.addAnnouncement(a);
-            Console.WriteLine("announcement added to db"); //todo per ara no s' afegeix a la base de dades, mirar WS
+            Console.WriteLine("announcement added to db"); //TODO: per ara no s' afegeix a la base de dades, mirar WS
 
             populateAnnouncements();
 

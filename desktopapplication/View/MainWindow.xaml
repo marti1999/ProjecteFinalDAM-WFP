@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:desktopapplication"
+       
+    
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:View="clr-namespace:desktopapplication.View" xmlns:ViewModel="clr-namespace:desktopapplication.ViewModel"
     xmlns:p="clr-namespace:desktopapplication.Properties"
@@ -92,6 +94,30 @@
                 </TabItem>
                 <TabItem Header="Clothes" >
                     <Grid Background="#FFE5E5E5"  >
+                        <ComboBox HorizontalAlignment="Left" Margin="556,76,0,0" VerticalAlignment="Top" Width="120"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="712,76,0,0" VerticalAlignment="Top" Width="120"/>
+                        <Button  HorizontalAlignment="Left" Margin="580,137,0,0" VerticalAlignment="Top" Width="43" Height="41">
+                            <StackPanel Orientation="Horizontal"  >
+                                <materialDesign:PackIcon Kind="GenderFemale" Height="25" Width="25" Margin="0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button  HorizontalAlignment="Left" Margin="644,137,0,0" VerticalAlignment="Top" Width="43" Height="41">
+                            <StackPanel Orientation="Horizontal"  >
+                                <materialDesign:PackIcon Kind="GenderMale" Height="25" Width="25" Margin="0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button  HorizontalAlignment="Left" Margin="712,137,0,0" VerticalAlignment="Top" Width="43" Height="41">
+                            <StackPanel Orientation="Horizontal"  >
+                                <materialDesign:PackIcon Kind="GenderMaleFemale" Height="25" Width="25" Margin="0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="True" 
+                   Margin="583,211,254,239" />
+                        <Label Content="Donor" HorizontalAlignment="Left" Margin="583,286,0,0" VerticalAlignment="Top"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="662,290,0,0" VerticalAlignment="Top" Width="120"/>
+
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="Announcements" >
