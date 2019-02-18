@@ -21,7 +21,7 @@ namespace desktopapplication.Model
         }
     
         public int Id { get; set; }
-        public string codiColor { get; set; }
+        public string colorCode { get; set; }
         public string name { get; set; }
         public bool active { get; set; }
     

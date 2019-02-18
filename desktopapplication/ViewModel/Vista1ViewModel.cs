@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Input;
 
 using Xceed.Wpf.Toolkit;
+using Color = System.Drawing.Color;
 
 namespace desktopapplication.ViewModel
 {
@@ -43,7 +44,7 @@ namespace desktopapplication.ViewModel
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
 
             populateUsers();
-
+            populareColorList();
             populateRequestors();
             populateAnnouncements();
         }
@@ -98,6 +99,27 @@ namespace desktopapplication.ViewModel
             set { _colorList = value; NotifyPropertyChanged(); }
         }
 
+        private System.Windows.Media.Color _selectedColorRaw;
+            
+        public System.Windows.Media.Color SelectedColorRaw
+        {
+            get { return _selectedColorRaw; }
+            set { _selectedColorRaw = value; NotifyPropertyChanged(); }
+        }
+
+        private Model.Color _selectedColor;
+
+        public Model.Color SelectetColor
+        {
+            get { return _selectedColor; }
+            set { _selectedColor = value; NotifyPropertyChanged(); }
+        }
+
+        private Color getColorByCode()
+        {
+
+        }
+
         private void populareColorList()
         {
             ColorList = new ObservableCollection<Xceed.Wpf.Toolkit.ColorItem>();
@@ -105,7 +127,7 @@ namespace desktopapplication.ViewModel
             foreach (Model.Color item in lc)
             {
                 System.Drawing.Color c = new System.Drawing.Color();
-                c = ColorTranslator.FromHtml(item.codiColor);
+                c = ColorTranslator.FromHtml(item.colorCode);
                 //int r = Convert.ToInt16(c.R);
                 //int g = Convert.ToInt16(c.G);
                 //int b = Convert.ToInt16(c.B);
@@ -138,6 +160,8 @@ namespace desktopapplication.ViewModel
 
 
         }
+
+
 
         private string _selectedRecipient;
         public string SelectedRecipient
