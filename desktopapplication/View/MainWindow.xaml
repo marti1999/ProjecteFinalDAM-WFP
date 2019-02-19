@@ -11,6 +11,7 @@
         xmlns:p="clr-namespace:desktopapplication.Properties"
         x:Class="desktopapplication.MainWindow"
         mc:Ignorable="d"
+
         Title="MainWindow" Height="600" Width="1080" Foreground="White" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
@@ -141,7 +142,12 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="528,66,0,0" TextWrapping="Wrap" Text="{Binding AnnouncementTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Floating Hint" Text="{Binding AnnouncementTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="528,50,348,392" />
+                       
+
                         <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120"  SelectedItem="{Binding SelectedRecipient}" >
                             <ComboBoxItem Content="Everyone" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Donors" HorizontalAlignment="Left" Width="118"/>
@@ -153,6 +159,7 @@
                             <ComboBoxItem Content="CAT" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
                         <TextBox HorizontalAlignment="Left" Height="93" Margin="528,161,0,0" TextWrapping="Wrap" Text="{Binding AnnouncementMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" VerticalAlignment="Top" Width="299"/>
+
 
                     </Grid>
                 </TabItem>
