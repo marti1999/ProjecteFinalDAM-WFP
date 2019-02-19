@@ -25,8 +25,8 @@ namespace desktopapplication.ViewModel
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             loginCommand = new RelayCommand(o => logIn());
-            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ca");
-            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ca");
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ca");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ca");
         }
 
         private string _adminUsername;

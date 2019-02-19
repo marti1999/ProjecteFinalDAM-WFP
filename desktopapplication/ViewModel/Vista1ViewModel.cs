@@ -24,6 +24,8 @@ namespace desktopapplication.ViewModel
 
         public ICommand homeClickCommand { get; set; }
         public ICommand usersClickCommand { get; set; }
+        public ICommand clothesClickCommand { get; set; }
+        public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
         public ICommand createClothCommand { get; set; }
 
@@ -41,6 +43,8 @@ namespace desktopapplication.ViewModel
         {
             homeClickCommand = new RelayCommand(x => selectHome());
             usersClickCommand = new RelayCommand(x => selectUsers());
+            clothesClickCommand = new RelayCommand(x => selectClothes());
+            announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
 
@@ -319,8 +323,6 @@ namespace desktopapplication.ViewModel
 
         private void selectHome()
         {
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ca");
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ca");
             SelectedTab = 1;
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
@@ -333,6 +335,22 @@ namespace desktopapplication.ViewModel
             // UsersSelected = Visibility.Visible;
             // HomeSelected = Visibility.Hidden;
             Console.WriteLine("users selected");
+        }
+
+        private void selectClothes()
+        {
+            SelectedTab = 2;
+            //HomeSelected = Visibility.Visible;
+            //  UsersSelected = Visibility.Hidden;
+            Console.WriteLine("CLOTHES SELECTED");
+        }
+
+        private void selectAnnouncements()
+        {
+            SelectedTab = 3;
+            //HomeSelected = Visibility.Visible;
+            //  UsersSelected = Visibility.Hidden;
+            Console.WriteLine("ANNOUNCEMENTS SELECTED");
         }
 
 

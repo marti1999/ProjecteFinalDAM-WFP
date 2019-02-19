@@ -216,10 +216,8 @@
 
                 </Grid>
                 <ListView x:Name="ListViewMenu" Foreground="AntiqueWhite" Background="SlateGray" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" Margin="0,25,0,0">
-                    <ListViewItem x:Name="itemUsers" Height="60" >
-                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding userClickCommand}" >
-
-
+                    <ListViewItem x:Name="itemWarehouses" Height="60">
+                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding homeClickCommand}" >
                             <StackPanel Orientation="Horizontal"  >
 
                                 <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
@@ -229,26 +227,30 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
-                    <ListViewItem x:Name="itemWarehouses" Height="60">
-                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding homeClickCommand}" >
-
+                    <ListViewItem x:Name="itemUsers" Height="60" >
+                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding usersClickCommand}" >
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Warehouses" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
+
                     <ListViewItem x:Name="itemClothes" Height="60"  >
-                        <StackPanel Orientation="Horizontal"  >
-                            <materialDesign:PackIcon  Kind="Tshirtcrew"  Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Clothes"  VerticalAlignment="Center"  Margin="20 10"/>
-                        </StackPanel>
+                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding clothesClickCommand}" >
+                            <StackPanel Orientation="Horizontal"  >
+                                <materialDesign:PackIcon  Kind="Tshirtcrew" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Clothes"  VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+                        </Button>
                     </ListViewItem>
                     <ListViewItem x:Name="itemNotifications" Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Notifications" VerticalAlignment="Center"  Margin="20 10"/>
-                        </StackPanel>
+                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding announcementsClickCommand}" >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Notifications" VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+                        </Button>
                     </ListViewItem>
                 </ListView>
             </StackPanel>
