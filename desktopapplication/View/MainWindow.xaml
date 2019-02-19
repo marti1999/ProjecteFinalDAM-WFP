@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:desktopapplication"
-       
-    
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:View="clr-namespace:desktopapplication.View" xmlns:ViewModel="clr-namespace:desktopapplication.ViewModel"
-    xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="desktopapplication.MainWindow"
+        xmlns:View="clr-namespace:desktopapplication.View" 
+        xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:ViewModel="clr-namespace:desktopapplication.ViewModel"
+        xmlns:p="clr-namespace:desktopapplication.Properties"
+        x:Class="desktopapplication.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1080" Foreground="White" WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -72,11 +73,22 @@
                 </TabItem>
                 <TabItem Header="Requestor">
                     <Grid Background="#FFE5E5E5"  >
-                        <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True"/>
-                        <TextBox HorizontalAlignment="Left" Height="56" Margin="687,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
-                        <RadioButton Content="Deny" HorizontalAlignment="Left" Margin="862,338,0,0" VerticalAlignment="Top"/>
-                        <RadioButton Content="Accept" HorizontalAlignment="Left" Margin="862,353,0,0" VerticalAlignment="Top"/>
-                        <Button Content="Save" HorizontalAlignment="Left" Margin="687,398,0,0" VerticalAlignment="Top" Width="157" Height="42"/>
+                        <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id"/>
+                                <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="Name" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding lastName}" ClipboardContentBinding="{x:Null}" Header="LastName" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="Active" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding email}" ClipboardContentBinding="{x:Null}" Header="Email" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding MaxClaim.value}" ClipboardContentBinding="{x:Null}" Header="MaxClaims"/>
+                                <DataGridTextColumn Binding="{Binding dateCreated}" ClipboardContentBinding="{x:Null}" Header="DateCreated" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <RadioButton Content="Deny" HorizontalAlignment="Left" Margin="692,326,0,0" VerticalAlignment="Top" IsChecked="{Binding DenyRequestorChecked}"/>
+                        <RadioButton Content="Pending" HorizontalAlignment="Left" Margin="692,347,0,0" VerticalAlignment="Top" IsChecked="{Binding PendingRequestorChecked}"/>
+                        <RadioButton Content="Accept" HorizontalAlignment="Left" Margin="692,367,0,0" VerticalAlignment="Top" IsChecked="{Binding AcceptRequestorChecked}"/>
+                        <Button Content="Save" HorizontalAlignment="Left" Margin="687,398,0,0" VerticalAlignment="Top" Width="157" Height="42" Command="{Binding BtnSaveRequestorsCmd}"/>
 
                     </Grid>
                 </TabItem>
@@ -91,7 +103,7 @@
                         </Button>
                         <Button  HorizontalAlignment="Left" Margin="644,137,0,0" VerticalAlignment="Top" Width="43" Height="41">
                             <StackPanel Orientation="Horizontal"  >
-                                <materialDesign:PackIcon Kind="GenderMale" Height="25" Width="25" Margin="0"/>
+                                <materialDesign:PackIcon Kind="GenderMale" Height="25" Width="25" Margin="0"></materialDesign:PackIcon>
                             </StackPanel>
                         </Button>
                         <Button  HorizontalAlignment="Left" Margin="712,137,0,0" VerticalAlignment="Top" Width="43" Height="41">
@@ -138,27 +150,27 @@
 
 
         <DockPanel Name="panelTop" VerticalAlignment="Top" LastChildFill="False" Background="#596673" Margin="57,0,0,0" Height="60">
-            <TextBlock HorizontalAlignment="Center" FontSize="18"  Width="956" FlowDirection="RightToLeft" TextAlignment="Center" Margin="0,18"><Run Text="some text"/></TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="18"  Width="956" FlowDirection="RightToLeft" TextAlignment="Center" Margin="0,18"><Run Text="{x:Static p:Resources.RobaSegonaMa}"/></TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" FlowDirection="RightToLeft" Width="55" >
 
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
                         <Button Width="150" >
                             <StackPanel>
-                                <Image Width="auto" Source="pack://siteoforigin:,,,/Resources/britishFlag.png" />
+                                <Image Width="auto" Source="pack://siteoforigin:,,,/CustomResources/britishFlag.png" />
 
 
                             </StackPanel>
                         </Button>
                         <Button Width="auto" >
                             <StackPanel>
-                                <Image Source="pack://siteoforigin:,,,/Resources/carlistFlag.png" />
+                                <Image Source="pack://siteoforigin:,,,/CustomResources/carlistFlag.png" />
 
                             </StackPanel>
                         </Button>
                         <Button Width="auto" >
                             <StackPanel>
-                                <Image Source="pack://siteoforigin:,,,/Resources/catFlag.png" />
+                                <Image Source="pack://siteoforigin:,,,/CustomResources/catFlag.png" />
 
                             </StackPanel>
                         </Button>

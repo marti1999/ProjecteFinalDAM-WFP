@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.IO;
+using System.Net.Http;
 using Newtonsoft.Json;
 using System.Windows;
 namespace desktopapplication.Model
@@ -15,6 +16,12 @@ namespace desktopapplication.Model
             List<Requestor> lu = new List<Requestor>();
             lu = (List<Requestor>)MakeRequest(string.Concat(Utils.ws, "requestorsTot"), null, "GET", "application/json", typeof(List<Requestor>));
             return lu;
+        }
+        
+        public static Requestor setRequestors(int id, Requestor re)
+        {
+            Requestor r = (Requestor)MakeRequest(string.Concat(Utils.ws, "requestor/"+id), re, "PUT", "application/json", typeof(Requestor));
+            return r;
         }
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
