@@ -161,7 +161,7 @@ namespace desktopapplication.ViewModel
 
             List<Model.Color> lc = colorRepository.getAllColors();
             System.Windows.Media.Color c = SelectedColorRaw;
-            string code = string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}", c.A, c.R, c.G, c.B);
+            string code = string.Format("#{0:X2}{1:X2}{2:X2}",c.R, c.G, c.B);
             Console.WriteLine(code);
             Model.Color c2 = lc.Where(x => x.colorCode.Equals(code)).FirstOrDefault();
 
