@@ -211,7 +211,7 @@
 
                             <StackPanel Orientation="Horizontal"  >
 
-                                <materialDesign:PackIcon Kind="User" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Users" VerticalAlignment="Center" Margin="20 10"/>
 
 
@@ -222,7 +222,7 @@
                         <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding homeClickCommand}" >
 
                             <StackPanel Orientation="Horizontal"  >
-                                <materialDesign:PackIcon Kind="House" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Warehouses" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </Button>
