@@ -72,7 +72,9 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Requestor">
+
                     <Grid Background="#FFE5E5E5"  >
+
                         <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id"/>
@@ -112,9 +114,12 @@
                             </StackPanel>
                         </Button>
 
-                        <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="583,211,254,239"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader=""/>
+                        <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="583,211,254,239"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
                         <Label Content="Donor" HorizontalAlignment="Left" Margin="583,286,0,0" VerticalAlignment="Top"/>
                         <ComboBox HorizontalAlignment="Left" Margin="662,290,0,0" VerticalAlignment="Top" Width="120"/>
+                        <Button HorizontalAlignment="Left" Margin="606,353,0,0" VerticalAlignment="Top" Width="75">
+                            <Button Content="Button" Width="75"  Command="{Binding createClothCommand}"/>
+                        </Button>
 
 
                     </Grid>
@@ -124,9 +129,9 @@
                         <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,0,0" VerticalAlignment="Top" Width="404" ItemsSource="{Binding Announcements}">
                             <DataGrid.Columns>
 
-                                <DataGridTextColumn Binding="{Binding title}" ClipboardContentBinding="{x:Null}" Header="Title" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding message}" ClipboardContentBinding="{x:Null}" Header="Message" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding dateCreated.Date.Date, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Date" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding title}"  Header="Title" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding message}" Header="Message" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding dateCreated.Date.Date}"  Header="Date" Width="*"/>
 
                             </DataGrid.Columns>
                         </DataGrid>
@@ -208,16 +213,19 @@
                     <ListViewItem x:Name="itemWarehouses" Height="60">
                         <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding homeClickCommand}" >
                             <StackPanel Orientation="Horizontal"  >
-                                <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Warehouses" VerticalAlignment="Center" Margin="20 10"/>
+
+                                <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Users" VerticalAlignment="Center" Margin="20 10"/>
+
+
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem x:Name="itemUsers" Height="60" >
                         <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding usersClickCommand}" >
                             <StackPanel Orientation="Horizontal"  >
-                                <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Users" VerticalAlignment="Center" Margin="20 10"/>
+                                <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Warehouses" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </Button>
                     </ListViewItem>
@@ -225,7 +233,7 @@
                     <ListViewItem x:Name="itemClothes" Height="60"  >
                         <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding clothesClickCommand}" >
                             <StackPanel Orientation="Horizontal"  >
-                                <materialDesign:PackIcon  Kind="TshirtV" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon  Kind="Tshirtcrew" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Clothes"  VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
                         </Button>

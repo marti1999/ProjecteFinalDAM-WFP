@@ -27,6 +27,8 @@ namespace desktopapplication.ViewModel
         public ICommand clothesClickCommand { get; set; }
         public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
+        public ICommand createClothCommand { get; set; }
+
 
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -44,6 +46,7 @@ namespace desktopapplication.ViewModel
             clothesClickCommand = new RelayCommand(x => selectClothes());
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
+            createClothCommand = new RelayCommand(x => createCloth());
 
             populateUsers();
             populareColorList();
@@ -101,6 +104,34 @@ namespace desktopapplication.ViewModel
             }
         }
 
+
+        private void populateRecipient()
+        {
+            Recipients = new ObservableCollection<string>();
+            //TODO: en el webservice falta fer el repository i controller de recipient
+            // Recipients = announcementRepository.getRecipients();
+
+            Recipients.Add("Everyone");
+            Recipients.Add("Donors");
+            Recipients.Add("Requestors");
+        }
+
+
+
+        private string _selectedRecipient;
+
+        public string SelectedRecipient
+        {
+            get { return _selectedRecipient; }
+            set
+            {
+                _selectedRecipient = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        //tab Colors
+
         private ObservableCollection<Xceed.Wpf.Toolkit.ColorItem> _colorList;
 
         public ObservableCollection<Xceed.Wpf.Toolkit.ColorItem> ColorList
@@ -129,6 +160,18 @@ namespace desktopapplication.ViewModel
             set { _selectedColor = value; NotifyPropertyChanged(); }
         }
 
+        private void getColorByCode()
+        {
+
+            List<Model.Color> lc = colorRepository.getAllColors();
+            System.Windows.Media.Color c = SelectedColorRaw;
+            string code = string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}", c.A, c.R, c.G, c.B);
+            Console.WriteLine(code);
+            Model.Color c2 = lc.Where(x => x.colorCode.Equals(code)).FirstOrDefault();
+
+
+        }
+
         private void populareColorList()
         {
             ColorList = new ObservableCollection<Xceed.Wpf.Toolkit.ColorItem>();
@@ -155,30 +198,16 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        private void populateRecipient()
+        //tab clothes
+        private void createCloth()
         {
-            Recipients = new ObservableCollection<string>();
-            //TODO: en el webservice falta fer el repository i controller de recipient
-            // Recipients = announcementRepository.getRecipients();
+            //TODO: fer-ho tot;
 
-            Recipients.Add("Everyone");
-            Recipients.Add("Donors");
-            Recipients.Add("Requestors");
+            getColorByCode();
+
         }
 
 
-
-        private string _selectedRecipient;
-
-        public string SelectedRecipient
-        {
-            get { return _selectedRecipient; }
-            set
-            {
-                _selectedRecipient = value;
-                NotifyPropertyChanged();
-            }
-        }
 
 
         //tab Announcements
