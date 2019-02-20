@@ -22,7 +22,7 @@ namespace desktopapplication.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand homeClickCommand { get; set; }
+        public ICommand requestorReqClickCommand { get; set; }
         public ICommand usersClickCommand { get; set; }
         public ICommand clothesClickCommand { get; set; }
         public ICommand announcementsClickCommand { get; set; }
@@ -41,20 +41,31 @@ namespace desktopapplication.ViewModel
 
         public Vista1ViewModel()
         {
-            homeClickCommand = new RelayCommand(x => selectHome());
+            initCommandsMenu();
+            populateUsers();
+            populareColorList();
+
+            requestorThings();
+            populateAnnouncements();
+        }
+
+        private void requestorThings()
+        {
+            populateRequestors();
+            setDefaultOptionsRequestor();
+            initRequestorCommands();
+        }
+
+        private void initCommandsMenu()
+        {
+            requestorReqClickCommand = new RelayCommand(x => selectHome());
             usersClickCommand = new RelayCommand(x => selectUsers());
             clothesClickCommand = new RelayCommand(x => selectClothes());
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
-
-            populateUsers();
-            populareColorList();
-            populateRequestors();
-            setDefaultOptionsRequestor();
-            initRequestorCommands();
-            populateAnnouncements();
         }
+
 
         //tab Not used
         private Visibility _homeSelected;
@@ -374,7 +385,8 @@ namespace desktopapplication.ViewModel
         {
             Requestors = requestorRepository.getAllRequestors()
                 .Where(x => !x.Status.status1.Equals("Pending"))
-                .Take(15).OrderBy(x=> x.dateCreated).ToList();
+                .Take(15)
+                .OrderByDescending(x=> x.dateCreated).ToList();
         }
 
         public void setDefaultOptionsRequestor()

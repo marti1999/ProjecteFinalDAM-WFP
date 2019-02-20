@@ -211,20 +211,17 @@
                 </Grid>
                 <ListView x:Name="ListViewMenu" Foreground="AntiqueWhite" Background="SlateGray" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" Margin="0,25,0,0">
                     <ListViewItem x:Name="itemWarehouses" Height="60">
-                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding homeClickCommand}" >
+                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding requestorReqClickCommand}" >
                             <StackPanel Orientation="Horizontal"  >
-
                                 <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Users" VerticalAlignment="Center" Margin="20 10"/>
-
-
                             </StackPanel>
                         </Button>
                     </ListViewItem>
                     <ListViewItem x:Name="itemUsers" Height="60" >
                         <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding usersClickCommand}" >
                             <StackPanel Orientation="Horizontal"  >
-                                <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Warehouses" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </Button>
