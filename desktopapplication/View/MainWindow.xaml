@@ -125,7 +125,7 @@
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                         <Button HorizontalAlignment="Left" Margin="563,350,0,0" VerticalAlignment="Top" Width="243" Command="{Binding createClothCommand}" Height="39"
                                 Content="Register cloth"
-                                Background="#596673" BorderBrush="#596673">
+                                Background="#596673" BorderBrush="#596673"> 
                      
                         </Button>
 
