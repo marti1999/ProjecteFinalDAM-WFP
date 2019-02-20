@@ -11,6 +11,7 @@
         xmlns:p="clr-namespace:desktopapplication.Properties"
         x:Class="desktopapplication.MainWindow"
         mc:Ignorable="d"
+
         Title="MainWindow" Height="600" Width="1080" Foreground="White" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
@@ -113,6 +114,16 @@
                                 <materialDesign:PackIcon Kind="GenderMaleFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
                         </Button>
+                        <Button
+                           
+                            HorizontalAlignment="Left"
+                            ToolTip="MaterialDesignFloatingActionMiniButton" Margin="794,137,0,312">
+                            <materialDesign:PackIcon
+                                Kind="Alarm"
+                                Height="24"
+                                Width="24" />
+                        </Button>
+
 
                         <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="583,211,254,239"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
                         <Label Content="Donor" HorizontalAlignment="Left" Margin="583,286,0,0" VerticalAlignment="Top"/>
@@ -126,7 +137,13 @@
                 </TabItem>
                 <TabItem Header="Announcements" >
                     <Grid Background="#FFE5E5E5"  >
-                        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,0,0" VerticalAlignment="Top" Width="404" ItemsSource="{Binding Announcements}">
+
+
+                        
+                        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,0,0"
+                                  VerticalAlignment="Top" Width="404" ItemsSource="{Binding Announcements}"
+                                    materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+  materialDesign:DataGridAssist.ColumnHeaderPadding="8">
                             <DataGrid.Columns>
 
                                 <DataGridTextColumn Binding="{Binding title}"  Header="Title" Width="*"/>
@@ -135,7 +152,12 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="528,66,0,0" TextWrapping="Wrap" Text="{Binding AnnouncementTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Floating Hint" Text="{Binding AnnouncementTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="528,50,348,392" />
+                       
+
                         <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120"  SelectedItem="{Binding SelectedRecipient}" >
                             <ComboBoxItem Content="Everyone" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Donors" HorizontalAlignment="Left" Width="118"/>
@@ -147,6 +169,7 @@
                             <ComboBoxItem Content="CAT" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
                         <TextBox HorizontalAlignment="Left" Height="93" Margin="528,161,0,0" TextWrapping="Wrap" Text="{Binding AnnouncementMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" VerticalAlignment="Top" Width="299"/>
+
 
                     </Grid>
                 </TabItem>
@@ -241,6 +264,18 @@
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Notifications" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
+                        </Button>
+
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <Button
+                           HorizontalAlignment="Center"
+                            Width="55"
+                            ToolTip="MaterialDesignFloatingActionMiniButton" BorderThickness="0,1,1,1" Padding="4" Background="#00673AB7" BorderBrush="#00673AB7" >
+                            <materialDesign:PackIcon
+                                Kind="Alarm"
+                                Height="24"
+                                Width="24" />
                         </Button>
                     </ListViewItem>
                 </ListView>
