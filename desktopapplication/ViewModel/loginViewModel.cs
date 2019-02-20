@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using desktopapplication.View;
 
@@ -19,12 +20,12 @@ namespace desktopapplication.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
        // public logIn loginWindow = new logIn();
         public ICommand loginCommand { get; set; }
-
+        public ICommand PasswordCommand { get; set; }
         public loginViewModel()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            loginCommand = new RelayCommand(o => logIn());
+            loginCommand = new RelayCommand(o => logIn(o));
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ca");
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ca");
         }
@@ -60,10 +61,13 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        private void logIn()
+        private void logIn(object parameter)
         {
+            var passwordVar = parameter as PasswordBox;
+
             Administrator a = new Administrator();
             a.email = AdminUsername;
+            AdminPassword = passwordVar.Password;
             a.password = AdminPassword;
             
             if (Repository.loginAdministrator(a))
