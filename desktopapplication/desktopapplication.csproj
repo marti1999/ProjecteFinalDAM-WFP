@@ -86,6 +86,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\announcementRepository.cs" />
+    <Compile Include="Model\ClassificationRepository.cs" />
     <Compile Include="Model\ClothesRepository.cs" />
     <Compile Include="Model\colorRepository.cs" />
     <Compile Include="Model\genderRepository.cs" />

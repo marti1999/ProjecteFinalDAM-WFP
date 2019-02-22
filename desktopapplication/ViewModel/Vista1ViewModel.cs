@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Xceed.Wpf.Toolkit;
+using ClassificationRepository = desktopapplication.Model.ClassificationRepository;
 using Color = System.Drawing.Color;
 
 namespace desktopapplication.ViewModel
@@ -47,6 +48,8 @@ namespace desktopapplication.ViewModel
 
             requestorThings();
             populateAnnouncements();
+
+            populateClassification();
         }
 
         private void requestorThings()
@@ -156,7 +159,7 @@ namespace desktopapplication.ViewModel
         }
 
         private System.Windows.Media.Color _selectedColorRaw;
-            
+
         public System.Windows.Media.Color SelectedColorRaw
         {
             get { return _selectedColorRaw; }
@@ -176,7 +179,7 @@ namespace desktopapplication.ViewModel
 
             List<Model.Color> lc = colorRepository.getAllColors();
             System.Windows.Media.Color c = SelectedColorRaw;
-            string code = string.Format("#{0:X2}{1:X2}{2:X2}",c.R, c.G, c.B);
+            string code = string.Format("#{0:X2}{1:X2}{2:X2}", c.R, c.G, c.B);
             Console.WriteLine(code);
             Model.Color c2 = lc.Where(x => x.colorCode.Equals(code)).FirstOrDefault();
 
@@ -208,6 +211,50 @@ namespace desktopapplication.ViewModel
                 ColorList.Add(new ColorItem(newColor, item.name));
             }
         }
+
+        //tab classifications
+
+        private List<Classification> _clotheClassification;
+
+        public List<Classification> ClothesClassification
+        {
+            get { return _clotheClassification; }
+            set
+            {
+                _clotheClassification = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void populateClassification()
+        {
+            //TODO: canviar el if un cop estigui implementat el multi idioma
+            if (true)
+            {
+                ClothesClassification = ClassificationRepository.getAllClassificationsLang("ca");
+
+            }
+            else
+            {
+                ClothesClassification = ClassificationRepository.getAllClassificationsLang("ca");
+
+            }
+
+        }
+
+        private Classification _clothesClassificationSelected;
+
+        public Classification ClothesClassificationSelected
+        {
+            get { return _clothesClassificationSelected; }
+            set
+            {
+                _clothesClassificationSelected = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
 
         //tab clothes
         private void createCloth()
@@ -313,7 +360,7 @@ namespace desktopapplication.ViewModel
             }
 
             announcementRepository.addAnnouncement(a);
-            Console.WriteLine("announcement added to db"); //TODO: per ara no s' afegeix a la base de dades, mirar WS
+            Console.WriteLine("announcement added to db");
 
             populateAnnouncements();
         }
@@ -386,7 +433,7 @@ namespace desktopapplication.ViewModel
             Requestors = requestorRepository.getAllRequestors()
                 .Where(x => !x.Status.status1.Equals("Pending"))
                 .Take(15)
-                .OrderByDescending(x=> x.dateCreated).ToList();
+                .OrderByDescending(x => x.dateCreated).ToList();
         }
 
         public void setDefaultOptionsRequestor()

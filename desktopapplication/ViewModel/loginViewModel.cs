@@ -61,7 +61,7 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        private void logIn(object parameter)
+        private async void logIn(object parameter)
         {
             var passwordVar = parameter as PasswordBox;
 
