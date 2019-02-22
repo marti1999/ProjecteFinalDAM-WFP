@@ -76,7 +76,6 @@ namespace desktopapplication.ViewModel
 
         //tab Not used
         private Visibility _homeSelected;
-
         public Visibility HomeSelected
         {
             get { return _homeSelected; }
@@ -111,7 +110,6 @@ namespace desktopapplication.ViewModel
         //tab Recipient
 
         private ObservableCollection<string> _recipients;
-
         public ObservableCollection<string> Recipients
         {
             get { return _recipients; }
@@ -137,7 +135,6 @@ namespace desktopapplication.ViewModel
 
 
         private string _selectedRecipient;
-
         public string SelectedRecipient
         {
             get { return _selectedRecipient; }
@@ -149,9 +146,7 @@ namespace desktopapplication.ViewModel
         }
 
         //tab Colors
-
         private ObservableCollection<Xceed.Wpf.Toolkit.ColorItem> _colorList;
-
         public ObservableCollection<Xceed.Wpf.Toolkit.ColorItem> ColorList
         {
             get { return _colorList; }
@@ -163,7 +158,6 @@ namespace desktopapplication.ViewModel
         }
 
         private System.Windows.Media.Color _selectedColorRaw;
-            
         public System.Windows.Media.Color SelectedColorRaw
         {
             get { return _selectedColorRaw; }
@@ -171,7 +165,6 @@ namespace desktopapplication.ViewModel
         }
 
         private Model.Color _selectedColor;
-
         public Model.Color SelectetColor
         {
             get { return _selectedColor; }
@@ -226,11 +219,8 @@ namespace desktopapplication.ViewModel
         }
 
 
-
-
         //tab Announcements
         private List<Announcement> _announcements;
-
         public List<Announcement> Announcements
         {
             get { return _announcements; }
@@ -242,7 +232,6 @@ namespace desktopapplication.ViewModel
         }
 
         private string _announcementTitle;
-
         public string AnnouncementTitle
         {
             get { return _announcementTitle; }
@@ -254,7 +243,6 @@ namespace desktopapplication.ViewModel
         }
 
         private string _announcementMessage;
-
         public string AnnouncementMessage
         {
             get { return _announcementMessage; }
@@ -266,7 +254,6 @@ namespace desktopapplication.ViewModel
         }
 
         private string _announcementLanguage;
-
         public string AnnouncementLanguage
         {
             get { return _announcementLanguage; }
@@ -278,7 +265,6 @@ namespace desktopapplication.ViewModel
         }
 
         private Recipient _announcementRecipient;
-
         public Recipient AnnouncementRecipient
         {
             get { return _announcementRecipient; }
@@ -328,7 +314,6 @@ namespace desktopapplication.ViewModel
 
         //Tab tabItems
         private int _selectedTab;
-
         public int SelectedTab
         {
             get { return _selectedTab; }
@@ -374,7 +359,6 @@ namespace desktopapplication.ViewModel
 
         //Tab Requestors
         public ICommand BtnSaveRequestorsCmd { get; set; }
-
         public void initRequestorCommands()
         {
             BtnSaveRequestorsCmd = new RelayCommand(x => applyRequest());
@@ -414,7 +398,6 @@ namespace desktopapplication.ViewModel
         }
 
         private List<Requestor> _requestors;
-
         public List<Requestor> Requestors
         {
             get { return _requestors; }
@@ -427,7 +410,6 @@ namespace desktopapplication.ViewModel
 
 
         private bool _denyRequestorChecked;
-
         public bool DenyRequestorChecked
         {
             get { return _denyRequestorChecked; }
@@ -439,7 +421,6 @@ namespace desktopapplication.ViewModel
         }
 
         private bool _acceptRequestorChecked;
-
         public bool AcceptRequestorChecked
         {
             get { return _acceptRequestorChecked; }
@@ -451,7 +432,6 @@ namespace desktopapplication.ViewModel
         }
 
         private bool _pendingRequestorChecked;
-
         public bool PendingRequestorChecked
         {
             get { return _pendingRequestorChecked; }
