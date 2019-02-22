@@ -28,8 +28,14 @@ namespace desktopapplication.ViewModel
         public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
         public ICommand createClothCommand { get; set; }
+        public ICommand exportDataCommand { get; set; }
 
-
+        private void restartApp()
+        {
+            MainWindow main = new MainWindow();
+            Application.Current.Windows[0].Close();
+            main.ShowDialog();
+        }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -64,6 +70,7 @@ namespace desktopapplication.ViewModel
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
+            exportDataCommand = new RelayCommand(x => restartApp());
         }
 
 
