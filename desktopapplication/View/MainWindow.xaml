@@ -98,20 +98,20 @@
                     <Grid Background="#FFE5E5E5"  >
                         <ComboBox Name="classification" HorizontalAlignment="Left" Margin="556,76,0,0" VerticalAlignment="Top" Width="120"
                                   materialDesign:HintAssist.Hint="Classification"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
                         <ComboBox Name="size" HorizontalAlignment="Left" Margin="712,76,0,0" VerticalAlignment="Top" Width="94" materialDesign:HintAssist.Hint="Size"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
-                        <Button  HorizontalAlignment="Left" Margin="556,148,0,0" VerticalAlignment="Top" Height="34">
+                        <Button  HorizontalAlignment="Left" Margin="556,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
                         </Button>
-                        <Button  HorizontalAlignment="Left" Margin="662,148,0,0" VerticalAlignment="Top" Height="34">
+                        <Button  HorizontalAlignment="Left" Margin="654,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderMale" Height="25" Width="25" Margin="0"></materialDesign:PackIcon>
                             </StackPanel>
                         </Button>
-                        <Button  HorizontalAlignment="Left" Margin="749,148,0,0" VerticalAlignment="Top" Height="34">
+                        <Button  HorizontalAlignment="Left" Margin="749,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderMaleFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
@@ -121,11 +121,24 @@
                         <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="556,212,203,238"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
                         <ComboBox HorizontalAlignment="Left" Margin="561,275,0,0" VerticalAlignment="Top" Width="245"
                                   materialDesign:HintAssist.Hint="Donor:"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem>
+                                Android
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                iOS
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Linux
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Windows
+                            </ComboBoxItem>
+                        </ComboBox>
                         <Button HorizontalAlignment="Left" Margin="563,350,0,0" VerticalAlignment="Top" Width="243" Command="{Binding createClothCommand}" Height="39"
                                 Content="Register cloth"
-                                Background="#596673" BorderBrush="#596673"> 
-                     
+                                Background="#596673" BorderBrush="#596673">
+
                         </Button>
 
 
@@ -166,6 +179,16 @@
                         </ComboBox>
                         <TextBox HorizontalAlignment="Left" Height="93" Margin="528,161,0,0" TextWrapping="Wrap" Text="{Binding AnnouncementMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" VerticalAlignment="Top" Width="299"/>
 
+                        <TextBox
+                            Text="{Binding AnnouncementMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="528,336,242,0"
+                            VerticalAlignment="Top"
+                            Height="90"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto"
+                            materialDesign:HintAssist.Hint="Announcement title"
+                            />
 
                     </Grid>
                 </TabItem>
