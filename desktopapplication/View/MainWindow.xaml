@@ -289,14 +289,14 @@
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <Button
-                           HorizontalAlignment="Center"
-                            Width="57"
+                           HorizontalAlignment="Left"
+                            Width="170"
                            Height="60"
                             ToolTip="Test" BorderThickness="0,1,1,1" Padding="4" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Notifications" VerticalAlignment="Center"  Margin="20 10"/>
+                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
 
                         </Button>

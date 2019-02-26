@@ -232,7 +232,7 @@ namespace desktopapplication.ViewModel
             //TODO: canviar el if un cop estigui implementat el multi idioma
             if (true)
             {
-                ClothesClassification = ClassificationRepository.getAllClassificationsLang("ca");
+                ClothesClassification = ClassificationRepository.getAllClassifications();
 
             }
             else
