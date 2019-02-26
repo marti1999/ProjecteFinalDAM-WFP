@@ -76,8 +76,6 @@ namespace desktopapplication.ViewModel
                 MainWindow main = new MainWindow();
                 Application.Current.Windows[0].Close();
                 main.ShowDialog();
-
-
             } else
             {
                 Console.WriteLine("Incorrect email/password");

@@ -76,7 +76,7 @@
 
                     <Grid Background="#FFE5E5E5"  >
 
-                        <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}">
+                        <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestor}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id"/>
                                 <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
@@ -222,7 +222,7 @@
 
                             </StackPanel>
                         </Button>
-                        <Button Content="Test2"/>
+                        <Button Content="Export data" Command="{Binding exportDataCommand}"/>
                         <Separator/>
                         <Button Content="Exit"/>
                     </StackPanel>
