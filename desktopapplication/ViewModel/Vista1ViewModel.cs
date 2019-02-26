@@ -61,7 +61,6 @@ namespace desktopapplication.ViewModel
         private void requestorThings()
         {
             populateRequestors();
-            setDefaultOptionsRequestor();
             initRequestorCommands();
         }
 
@@ -407,10 +406,30 @@ namespace desktopapplication.ViewModel
 
         //Tab Requestors
         public ICommand BtnSaveRequestorsCmd { get; set; }
+        public ICommand DenyRequestorChecked { get; set; }
+        public ICommand AcceptRequestorChecked { get; set; }
         public void initRequestorCommands()
         {
             BtnSaveRequestorsCmd = new RelayCommand(x => applyRequest());
+            DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
+            AcceptRequestorChecked = new RelayCommand(x => denyRequestor(false));
+
         }
+
+        private void denyRequestor(bool denied)
+        {
+            Requestor r = SelectedRequestor;
+            if (denied)
+            {
+                r.Status_Id = 4;
+            }
+            else if (!denied)
+            {
+                r.Status_Id = 2;
+            }
+            requestorRepository.setRequestors(SelectedRequestor.Id, SelectedRequestor);
+        }
+
 
         private void applyRequest()
         {
@@ -425,14 +444,9 @@ namespace desktopapplication.ViewModel
             Requestors = requestorRepository.getAllRequestors()
                 .Where(x => !x.Status.status1.Equals("Pending"))
                 .Take(15)
-                .OrderByDescending(x => x.dateCreated).ToList();
+                .OrderByDescending(x=> x.dateCreated).ToList();
+            SelectedRequestorIndex = 0;
         }
-
-        public void setDefaultOptionsRequestor()
-        {
-            PendingRequestorChecked = true;
-        }
-
 
         private Requestor _selectedRequestor;
         public Requestor SelectedRequestor
@@ -441,6 +455,16 @@ namespace desktopapplication.ViewModel
             set
             {
                 _selectedRequestor = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private int _selectedRequestorIndex;
+        public int SelectedRequestorIndex
+        {
+            get { return _selectedRequestorIndex; }
+            set
+            {
+                _selectedRequestorIndex = value;
                 NotifyPropertyChanged();
             }
         }
@@ -457,37 +481,6 @@ namespace desktopapplication.ViewModel
         }
 
 
-        private bool _denyRequestorChecked;
-        public bool DenyRequestorChecked
-        {
-            get { return _denyRequestorChecked; }
-            set
-            {
-                _denyRequestorChecked = value;
-                NotifyPropertyChanged();
-            }
-        }
 
-        private bool _acceptRequestorChecked;
-        public bool AcceptRequestorChecked
-        {
-            get { return _acceptRequestorChecked; }
-            set
-            {
-                _acceptRequestorChecked = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private bool _pendingRequestorChecked;
-        public bool PendingRequestorChecked
-        {
-            get { return _pendingRequestorChecked; }
-            set
-            {
-                _pendingRequestorChecked = value;
-                NotifyPropertyChanged();
-            }
-        }
     }
 }

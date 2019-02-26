@@ -76,7 +76,7 @@
 
                     <Grid Background="#FFE5E5E5"  >
 
-                        <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestor}">
+                        <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id"/>
                                 <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
@@ -88,9 +88,8 @@
                                 <DataGridTextColumn Binding="{Binding dateCreated}" ClipboardContentBinding="{x:Null}" Header="DateCreated" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <RadioButton Content="Deny" HorizontalAlignment="Left" Margin="692,326,0,0" VerticalAlignment="Top" IsChecked="{Binding DenyRequestorChecked}"/>
-                        <RadioButton Content="Pending" HorizontalAlignment="Left" Margin="692,347,0,0" VerticalAlignment="Top" IsChecked="{Binding PendingRequestorChecked}"/>
-                        <RadioButton Content="Accept" HorizontalAlignment="Left" Margin="692,367,0,0" VerticalAlignment="Top" IsChecked="{Binding AcceptRequestorChecked}"/>
+                        <Button Content="Deny" HorizontalAlignment="Left" Margin="692,326,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}"/>
+                        <Button Content="Accept" HorizontalAlignment="Left" Margin="692,367,0,0" VerticalAlignment="Top" Command="{Binding AcceptRequestorChecked}"/>
                         <Button Content="Save" HorizontalAlignment="Left" Margin="687,398,0,0" VerticalAlignment="Top" Width="157" Height="42" Command="{Binding BtnSaveRequestorsCmd}"/>
 
                     </Grid>
