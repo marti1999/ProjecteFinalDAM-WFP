@@ -88,9 +88,14 @@
                                 <DataGridTextColumn Binding="{Binding dateCreated}" ClipboardContentBinding="{x:Null}" Header="DateCreated" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Content="Deny" HorizontalAlignment="Left" Margin="692,326,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}"/>
-                        <Button Content="Accept" HorizontalAlignment="Left" Margin="692,367,0,0" VerticalAlignment="Top" Command="{Binding AcceptRequestorChecked}"/>
-                        <Button Content="Save" HorizontalAlignment="Left" Margin="687,398,0,0" VerticalAlignment="Top" Width="157" Height="42" Command="{Binding BtnSaveRequestorsCmd}"/>
+                        <Button Content="Deny" HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="76"/>
+                        <Button HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="76">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Close" Height="25" Width="25" Margin="0"/>
+                                
+                            </StackPanel>
+                        </Button>
+                        <Button Content="Accept" HorizontalAlignment="Left" Margin="692,349,0,0" VerticalAlignment="Top" Command="{Binding AcceptRequestorChecked}"/>
 
                     </Grid>
                 </TabItem>
