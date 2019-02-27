@@ -16,7 +16,7 @@ namespace desktopapplication.Model
     {
         private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
 
-        public static List<Gender> getAllClassification()
+        public static List<Gender> getAllGenders()
         {
             List<Gender> lc = new List<Gender>();
             lc = (List<Gender>)MakeRequest(string.Concat(ws1, "genders"), null, "GET", "application/json", typeof(List<Gender>));

@@ -326,7 +326,17 @@ namespace desktopapplication.ViewModel
         private void ClothesSetMale()
         {
             ClothesGenderSelected = new Gender();
-           // ClothesGenderSelected.
+            List<Gender> lg = genderRepository.getAllGenders();
+            Gender g = lg.Where(x => x.gender1.ToLower().Equals("male")).FirstOrDefault();
+            ClothesGenderSelected = g;
+        }
+
+        private void ClothesSetFemale()
+        {
+            ClothesGenderSelected = new Gender();
+            List<Gender> lg = genderRepository.getAllGenders();
+            Gender g = lg.Where(x => x.gender1.ToLower().Equals("female")).FirstOrDefault();
+            ClothesGenderSelected = g;
         }
 
 
