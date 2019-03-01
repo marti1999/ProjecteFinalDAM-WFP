@@ -39,5 +39,10 @@ namespace desktopapplication.Model
         public virtual Language Language { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reward> Rewards { get; set; }
+
+        public override string ToString()
+        {
+            return this.name + " " + this.lastName + ", " + this.dni;
+        }
     }
 }

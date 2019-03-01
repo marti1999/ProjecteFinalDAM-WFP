@@ -16,6 +16,7 @@ using System.Windows.Input;
 using Xceed.Wpf.Toolkit;
 using ClassificationRepository = desktopapplication.Model.ClassificationRepository;
 using Color = System.Drawing.Color;
+using Size = desktopapplication.Model.Size;
 
 namespace desktopapplication.ViewModel
 {
@@ -49,13 +50,14 @@ namespace desktopapplication.ViewModel
         public Vista1ViewModel()
         {
             initCommandsMenu();
-            populateUsers();
+            populateDonors();
             populareColorList();
 
             requestorThings();
             populateAnnouncements();
 
             populateClassification();
+            populateSizes();
         }
 
         private void requestorThings()
@@ -90,6 +92,7 @@ namespace desktopapplication.ViewModel
 
 
         //tab Donors
+
         private List<Donor> _donors;
 
         public List<Donor> Donors
@@ -102,10 +105,30 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        private void populateUsers()
+        private List<Donor> _clothesDonors;
+
+        public List<Donor> ClothesDonors
         {
-            Donors = new List<Donor>();
-            Donors = donorRepository.getAllDonors();
+            get { return _clothesDonors; }
+            set
+            {
+                _clothesDonors = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void populateDonors()
+        {
+            ClothesDonors = new List<Donor>();
+            ClothesDonors = donorRepository.getAllDonors();
+        }
+
+        private Donor _clothesDonorSelected;
+
+        public Donor ClothnesDonorSelected
+        {
+            get { return _clothesDonorSelected; }
+            set { _clothesDonorSelected = value; NotifyPropertyChanged(); }
         }
 
 
@@ -174,7 +197,7 @@ namespace desktopapplication.ViewModel
             set { _selectedColor = value; NotifyPropertyChanged(); }
         }
 
-        private void getColorByCode()
+        private Model.Color getColorByCode()
         {
 
             List<Model.Color> lc = colorRepository.getAllColors();
@@ -182,6 +205,7 @@ namespace desktopapplication.ViewModel
             string code = string.Format("#{0:X2}{1:X2}{2:X2}", c.R, c.G, c.B);
             Console.WriteLine(code);
             Model.Color c2 = lc.Where(x => x.colorCode.Equals(code)).FirstOrDefault();
+            return c2;
 
 
         }
@@ -212,8 +236,29 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        //tab classifications
+        //tab sizes
 
+        private List<Size> _clothesSizes;
+
+        public List<Size> ClothesSizes
+        {
+            get { return _clothesSizes; }
+            set { _clothesSizes = value; NotifyPropertyChanged(); }
+        }
+
+        private void populateSizes()
+        {
+            ClothesSizes = sizeRepository.getAllSize();
+        }
+
+        private Size _clothesSizeSelected;
+
+        public Size ClothesSizeSelected
+        {
+            get { return _clothesSizeSelected; }
+            set { _clothesSizeSelected = value; NotifyPropertyChanged(); }
+        }
+        //tab classifications
         private List<Classification> _clotheClassification;
 
         public List<Classification> ClothesClassification
@@ -260,9 +305,38 @@ namespace desktopapplication.ViewModel
         private void createCloth()
         {
             //TODO: fer-ho tot;
+            Cloth c = new Cloth();
+            c.Size = ClothesSizeSelected;
+            c.Classification = ClothesClassificationSelected;
+            c.Color = getColorByCode();
+            //c.Gender = ;
 
-            getColorByCode();
+        }
 
+        //tab Gender;
+
+        private Gender _clothesGenderSelected;
+
+        public Gender ClothesGenderSelected
+        {
+            get { return _clothesGenderSelected; }
+            set { _clothesGenderSelected = value; NotifyPropertyChanged(); }
+        }
+
+        private void ClothesSetMale()
+        {
+            ClothesGenderSelected = new Gender();
+            List<Gender> lg = genderRepository.getAllGenders();
+            Gender g = lg.Where(x => x.gender1.ToLower().Equals("male")).FirstOrDefault();
+            ClothesGenderSelected = g;
+        }
+
+        private void ClothesSetFemale()
+        {
+            ClothesGenderSelected = new Gender();
+            List<Gender> lg = genderRepository.getAllGenders();
+            Gender g = lg.Where(x => x.gender1.ToLower().Equals("female")).FirstOrDefault();
+            ClothesGenderSelected = g;
         }
 
 
@@ -448,7 +522,7 @@ namespace desktopapplication.ViewModel
             Requestors = requestorRepository.getAllRequestors()
                 .Where(x => x.Status.status1.Equals("Pending"))
                 .Take(15)
-                .OrderByDescending(x=> x.dateCreated).ToList();
+                .OrderByDescending(x => x.dateCreated).ToList();
             SelectedRequestorIndex = 0;
         }
 

@@ -113,8 +113,8 @@
                                   materialDesign:HintAssist.Hint="Classification"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
                         <ComboBox Name="size" HorizontalAlignment="Left" Margin="712,76,0,0" VerticalAlignment="Top" Width="94" materialDesign:HintAssist.Hint="Size"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
-                        <Button  HorizontalAlignment="Left" Margin="556,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673">
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesSizes}" SelectedItem="{Binding ClothesSizeSelected}"/>
+                        <Button  HorizontalAlignment="Left" Margin="556,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray"  BorderBrush="#FF596673">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
@@ -134,19 +134,8 @@
                         <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="556,212,203,238"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
                         <ComboBox HorizontalAlignment="Left" Margin="561,275,0,0" VerticalAlignment="Top" Width="245"
                                   materialDesign:HintAssist.Hint="Donor:"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                            <ComboBoxItem>
-                                Android
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                iOS
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Linux
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Windows
-                            </ComboBoxItem>
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedItem="{Binding ClothnesDonorSelected}" ItemsSource="{Binding ClothesDonors}">
+                           
                         </ComboBox>
                         <Button HorizontalAlignment="Left" Margin="563,350,0,0" VerticalAlignment="Top" Width="243" Command="{Binding createClothCommand}" Height="39"
                                 Content="Register cloth"
@@ -266,36 +255,70 @@
                 </Grid>
                 <ListView x:Name="ListViewMenu" Foreground="AntiqueWhite" Background="SlateGray" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" Margin="0,25,0,0">
                     <ListViewItem x:Name="itemWarehouses" Height="60">
-                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding requestorReqClickCommand}" >
-                            <StackPanel Orientation="Horizontal"  >
+                        
+                        <Button
+                            Command="{Binding requestorReqClickCommand}"
+                            HorizontalAlignment="Left"
+                            Width="170"
+                            Height="60"
+                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+
+                            <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Users" VerticalAlignment="Center" Margin="20 10"/>
+                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
+
                         </Button>
+
                     </ListViewItem>
                     <ListViewItem x:Name="itemUsers" Height="60" >
-                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding usersClickCommand}" >
-                            <StackPanel Orientation="Horizontal"  >
-                                <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Warehouses" VerticalAlignment="Center" Margin="20 10"/>
+                        
+                        <Button
+                            Command="{Binding usersClickCommand}"
+                            HorizontalAlignment="Left"
+                            Width="170"
+                            Height="60"
+                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="AccessPoint" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
+
                         </Button>
                     </ListViewItem>
 
                     <ListViewItem x:Name="itemClothes" Height="60"  >
-                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding clothesClickCommand}" >
-                            <StackPanel Orientation="Horizontal"  >
-                                <materialDesign:PackIcon  Kind="Tshirtcrew" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Clothes"  VerticalAlignment="Center"  Margin="20 10"/>
+                       
+                      
+                        <Button
+                            Command="{Binding clothesClickCommand}"
+                            HorizontalAlignment="Left"
+                            Width="170"
+                            Height="60"
+                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="TshirtCrew"  Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
+
                         </Button>
                     </ListViewItem>
                     <ListViewItem x:Name="itemNotifications" Height="60">
-                        <Button Foreground="AntiqueWhite" Background="SlateGray" BorderBrush="Transparent" Command="{Binding announcementsClickCommand}" >
+                        
+                        <Button
+                            Command="{Binding announcementsClickCommand}"
+                            HorizontalAlignment="Left"
+                            Width="170"
+                            Height="60"
+                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Notifications" VerticalAlignment="Center"  Margin="20 10"/>
+                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
+
                         </Button>
 
                     </ListViewItem>
@@ -304,7 +327,7 @@
                            HorizontalAlignment="Left"
                             Width="170"
                            Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="4" Background="#00673AB7" BorderBrush="#00673AB7" >
+                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
