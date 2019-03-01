@@ -405,15 +405,20 @@ namespace desktopapplication.ViewModel
 
 
         //Tab Requestors
-        public ICommand BtnSaveRequestorsCmd { get; set; }
         public ICommand DenyRequestorChecked { get; set; }
         public ICommand AcceptRequestorChecked { get; set; }
+        //TODO: llista amb tots els status disponibles
+        
         public void initRequestorCommands()
         {
-            BtnSaveRequestorsCmd = new RelayCommand(x => applyRequest());
             DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
             AcceptRequestorChecked = new RelayCommand(x => denyRequestor(false));
+            populateStatus();
+        }
 
+        private void populateStatus()
+        {
+            StatusDisponibles = requestorRepository.getAllStatus().Where(x=> x.reason != "").ToList();
         }
 
         private void denyRequestor(bool denied)
@@ -421,28 +426,27 @@ namespace desktopapplication.ViewModel
             Requestor r = SelectedRequestor;
             if (denied)
             {
-                r.Status_Id = 4;
+                Status s = searchByReason(SelectedStatus.reason);
+                r.Status = s;
             }
             else if (!denied)
             {
                 r.Status_Id = 2;
             }
             requestorRepository.setRequestors(SelectedRequestor.Id, SelectedRequestor);
+            populateRequestors();
         }
 
-
-        private void applyRequest()
+        private Status searchByReason(string statusText)
         {
-            foreach (var req in Requestors)
-            {
-                requestorRepository.setRequestors(req.Id, req);
-            }
+            return StatusDisponibles.Where(x => x.status1.Equals(statusText)).FirstOrDefault();
         }
+
 
         public void populateRequestors()
         {
             Requestors = requestorRepository.getAllRequestors()
-                .Where(x => !x.Status.status1.Equals("Pending"))
+                .Where(x => x.Status.status1.Equals("Pending"))
                 .Take(15)
                 .OrderByDescending(x=> x.dateCreated).ToList();
             SelectedRequestorIndex = 0;
@@ -476,6 +480,27 @@ namespace desktopapplication.ViewModel
             set
             {
                 _requestors = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private List<Status> _statusDisponibles;
+        public List<Status> StatusDisponibles
+        {
+            get { return _statusDisponibles; }
+            set
+            {
+                _statusDisponibles = value;
+                NotifyPropertyChanged();
+            }
+        }
+        
+        private Status _selectedStatus;
+        public Status SelectedStatus
+        {
+            get { return _selectedStatus; }
+            set
+            {
+                _selectedStatus = value;
                 NotifyPropertyChanged();
             }
         }

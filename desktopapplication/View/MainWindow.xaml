@@ -74,7 +74,7 @@
                 </TabItem>
                 <TabItem Header="Requestor">
 
-                    <Grid Background="#FFE5E5E5"  >
+                    <Grid Background="#FFE5E5E5">
 
                         <DataGrid HorizontalAlignment="Left" Height="329" Margin="68,52,0,0" VerticalAlignment="Top" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}">
                             <DataGrid.Columns>
@@ -89,18 +89,26 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <Button Content="Deny" HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="76"/>
-                        <Button HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="76">
+                        <Button HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="141">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Close" Height="25" Width="25" Margin="0"/>
-                                
+                                <TextBlock Text="Deny" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
+
                             </StackPanel>
                         </Button>
-                        <Button Content="Accept" HorizontalAlignment="Left" Margin="692,349,0,0" VerticalAlignment="Top" Command="{Binding AcceptRequestorChecked}"/>
-
+                        <ComboBox DisplayMemberPath="{Binding /reason}" ItemsSource="{Binding StatusDisponibles}" SelectedItem="{Binding SelectedStatus}" Margin="692,252,150,201">
+                            
+                        </ComboBox>
+                        <Button HorizontalAlignment="Left" Margin="692,349,0,0" VerticalAlignment="Top" Command="{Binding AcceptRequestorChecked}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Check" Height="25" Width="25" Margin="0"/>
+                                <TextBlock Text="Accept"  Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+                        </Button>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Clothes" >
-                    <Grid Background="#FFE5E5E5"  >
+                    <Grid Background="#FFE5E5E5">
                         <ComboBox Name="classification" HorizontalAlignment="Left" Margin="556,76,0,0" VerticalAlignment="Top" Width="120"
                                   materialDesign:HintAssist.Hint="Classification"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
