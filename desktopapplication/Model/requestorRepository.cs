@@ -10,6 +10,12 @@ namespace desktopapplication.Model
 {
     class requestorRepository
     {
+        public static List<Status> getAllStatus()
+        {
+            List<Status> lu = new List<Status>();
+            lu = (List<Status>)MakeRequest(string.Concat(Utils.ws, "status"), null, "GET", "application/json", typeof(List<Status>));
+            return lu;
+        }
 
         public static List<Requestor> getAllRequestors()
         {
