@@ -63,7 +63,7 @@ namespace desktopapplication.ViewModel
         private void requestorThings()
         {
             populateRequestors();
-            initRequestorCommands();
+            initRequestorActions();
         }
 
         private void initCommandsMenu()
@@ -91,7 +91,7 @@ namespace desktopapplication.ViewModel
         }
 
 
-        //tab Donors
+        #region TabDonors
 
         private List<Donor> _donors;
 
@@ -131,8 +131,9 @@ namespace desktopapplication.ViewModel
             set { _clothesDonorSelected = value; NotifyPropertyChanged(); }
         }
 
+        #endregion
 
-        //tab Recipient
+        #region TabRecipient
 
         private ObservableCollection<string> _recipients;
         public ObservableCollection<string> Recipients
@@ -149,7 +150,7 @@ namespace desktopapplication.ViewModel
         private void populateRecipient()
         {
             Recipients = new ObservableCollection<string>();
-            //TODO: en el webservice falta fer el repository i controller de recipient
+            // TODO: en el webservice falta fer el repository i controller de recipient
             // Recipients = announcementRepository.getRecipients();
 
             Recipients.Add("Everyone");
@@ -170,9 +171,12 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        //tab Colors
-        private ObservableCollection<Xceed.Wpf.Toolkit.ColorItem> _colorList;
-        public ObservableCollection<Xceed.Wpf.Toolkit.ColorItem> ColorList
+        #endregion
+
+        #region TabColors
+
+        private ObservableCollection<ColorItem> _colorList;
+        public ObservableCollection<ColorItem> ColorList
         {
             get { return _colorList; }
             set
@@ -212,31 +216,34 @@ namespace desktopapplication.ViewModel
 
         private void populareColorList()
         {
-            ColorList = new ObservableCollection<Xceed.Wpf.Toolkit.ColorItem>();
+            ColorList = new ObservableCollection<ColorItem>();
             List<Model.Color> lc = colorRepository.getAllColors();
-            foreach (Model.Color item in lc)
-            {
-                System.Drawing.Color c = new System.Drawing.Color();
-                c = ColorTranslator.FromHtml(item.colorCode);
-                //int r = Convert.ToInt16(c.R);
-                //int g = Convert.ToInt16(c.G);
-                //int b = Convert.ToInt16(c.B);
+            if (lc != null)
+                foreach (Model.Color item in lc)
+                {
+                    Color c = new Color();
+                    c = ColorTranslator.FromHtml(item.colorCode);
+                    //int r = Convert.ToInt16(c.R);
+                    //int g = Convert.ToInt16(c.G);
+                    //int b = Convert.ToInt16(c.B);
 
-                //System.Windows.Media.Color c2 = new System.Windows.Media.Color.FromAR
-                System.Windows.Media.Color newColor = System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B);
+                    //System.Windows.Media.Color c2 = new System.Windows.Media.Color.FromAR
+                    System.Windows.Media.Color newColor = System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B);
 
-                /**
+                    /**
                  * check this website for help
                  * http://jkshay.com/configuring-the-extended-wpf-toolkits-colorpicker-color-palette/
                  *
                  */
 
 
-                ColorList.Add(new ColorItem(newColor, item.name));
-            }
+                    ColorList.Add(new ColorItem(newColor, item.name));
+                }
         }
 
-        //tab sizes
+        #endregion
+
+        #region TabSizes
 
         private List<Size> _clothesSizes;
 
@@ -258,7 +265,11 @@ namespace desktopapplication.ViewModel
             get { return _clothesSizeSelected; }
             set { _clothesSizeSelected = value; NotifyPropertyChanged(); }
         }
-        //tab classifications
+
+        #endregion
+        
+        #region TabClassifications
+
         private List<Classification> _clotheClassification;
 
         public List<Classification> ClothesClassification
@@ -299,9 +310,10 @@ namespace desktopapplication.ViewModel
             }
         }
 
+        #endregion
 
+        #region TabClothes
 
-        //tab clothes
         private void createCloth()
         {
             //TODO: fer-ho tot;
@@ -309,11 +321,11 @@ namespace desktopapplication.ViewModel
             c.Size = ClothesSizeSelected;
             c.Classification = ClothesClassificationSelected;
             c.Color = getColorByCode();
-            //c.Gender = ;
-
         }
 
-        //tab Gender;
+        #endregion
+
+        #region TabGender
 
         private Gender _clothesGenderSelected;
 
@@ -338,9 +350,12 @@ namespace desktopapplication.ViewModel
             Gender g = lg.Where(x => x.gender1.ToLower().Equals("female")).FirstOrDefault();
             ClothesGenderSelected = g;
         }
+        
 
+        #endregion
 
-        //tab Announcements
+        #region TabAnnouncements
+
         private List<Announcement> _announcements;
         public List<Announcement> Announcements
         {
@@ -432,8 +447,10 @@ namespace desktopapplication.ViewModel
             populateAnnouncements();
         }
 
+        #endregion
 
-        //Tab tabItems
+        #region TabTabItems
+
         private int _selectedTab;
         public int SelectedTab
         {
@@ -477,22 +494,36 @@ namespace desktopapplication.ViewModel
             Console.WriteLine("ANNOUNCEMENTS SELECTED");
         }
 
+        #endregion
 
-        //Tab Requestors
+        #region TabRequestors
+
         public ICommand DenyRequestorChecked { get; set; }
         public ICommand AcceptRequestorChecked { get; set; }
         //TODO: llista amb tots els status disponibles
-        
-        public void initRequestorCommands()
+
+        public void initRequestorActions()
         {
             DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
             AcceptRequestorChecked = new RelayCommand(x => denyRequestor(false));
+            
             populateStatus();
         }
 
         private void populateStatus()
         {
-            StatusDisponibles = requestorRepository.getAllStatus().Where(x=> x.reason != "").ToList();
+            ActionsRequestor = true;
+            List<Status> status = requestorRepository.getAllStatus();
+            StatusDisponibles = status.Where(x => x.reason != "").ToList();
+            if (!StatusDisponibles.Any())
+            {
+                disableActionsRequestor();
+            }
+        }
+
+        private void disableActionsRequestor()
+        {
+            ActionsRequestor = false;
         }
 
         private void denyRequestor(bool denied)
@@ -501,11 +532,11 @@ namespace desktopapplication.ViewModel
             if (denied)
             {
                 Status s = searchByReason(SelectedStatus.reason);
-                r.Status = s;
+                if (s != null) r.Status = s;
             }
             else if (!denied)
             {
-                r.Status_Id = 2;
+                if (r != null) r.Status = searchByReason("");
             }
             requestorRepository.setRequestors(SelectedRequestor.Id, SelectedRequestor);
             populateRequestors();
@@ -513,7 +544,7 @@ namespace desktopapplication.ViewModel
 
         private Status searchByReason(string statusText)
         {
-            return StatusDisponibles.Where(x => x.status1.Equals(statusText)).FirstOrDefault();
+            return StatusDisponibles.Where(x => x.status1.Equals(statusText) && !x.status1.Equals("Pending")).FirstOrDefault();
         }
 
 
@@ -521,7 +552,7 @@ namespace desktopapplication.ViewModel
         {
             Requestors = requestorRepository.getAllRequestors()
                 .Where(x => x.Status.status1.Equals("Pending"))
-                .Take(15)
+                .Take(10)
                 .OrderByDescending(x => x.dateCreated).ToList();
             SelectedRequestorIndex = 0;
         }
@@ -567,7 +598,7 @@ namespace desktopapplication.ViewModel
                 NotifyPropertyChanged();
             }
         }
-        
+
         private Status _selectedStatus;
         public Status SelectedStatus
         {
@@ -578,6 +609,19 @@ namespace desktopapplication.ViewModel
                 NotifyPropertyChanged();
             }
         }
+
+        private bool _actionsRequestor;
+        public bool ActionsRequestor
+        {
+            get { return _actionsRequestor; }
+            set
+            {
+                _actionsRequestor = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        #endregion
 
 
 

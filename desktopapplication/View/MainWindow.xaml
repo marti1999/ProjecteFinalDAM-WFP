@@ -89,17 +89,16 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <Button Content="Deny" HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="76"/>
-                        <Button HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="141">
+                        <Button HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="141" IsEnabled="{Binding ActionsRequestor}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Close" Height="25" Width="25" Margin="0"/>
                                 <TextBlock Text="Deny" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
-
                             </StackPanel>
                         </Button>
-                        <ComboBox DisplayMemberPath="{Binding /reason}" ItemsSource="{Binding StatusDisponibles}" SelectedItem="{Binding SelectedStatus}" Margin="692,252,150,201">
+                        <ComboBox DisplayMemberPath="reason" ItemsSource="{Binding StatusDisponibles}" SelectedItem="{Binding SelectedStatus}" Margin="692,252,150,201" IsEnabled="{Binding ActionsRequestor}">
                             
                         </ComboBox>
-                        <Button HorizontalAlignment="Left" Margin="692,349,0,0" VerticalAlignment="Top" Command="{Binding AcceptRequestorChecked}">
+                        <Button HorizontalAlignment="Left" Margin="692,349,0,0" VerticalAlignment="Top" Command="{Binding AcceptRequestorChecked}"  IsEnabled="{Binding ActionsRequestor}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Check" Height="25" Width="25" Margin="0"/>
                                 <TextBlock Text="Accept"  Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
