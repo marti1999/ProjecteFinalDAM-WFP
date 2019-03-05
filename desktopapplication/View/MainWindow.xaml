@@ -118,20 +118,18 @@
                         <ComboBox DisplayMemberPath="reason" ItemsSource="{Binding StatusDisponibles}" SelectedItem="{Binding SelectedStatus}" Margin="692,252,150,201" IsEnabled="{Binding ActionsRequestor}">
 
                         </ComboBox>
-                        
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="Clothes" >
                     <Grid Background="#FFE5E5E5"  >
-                        <materialDesign:PackIcon
-                            Kind="GenderMaleFemale" Height="41" Width="42" Margin="25,29,0,0" />
-                        <ToggleButton
-                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                            ToolTip="Default ToggleButton Style" Margin="19,76,942,371" />
-                        <materialDesign:PackIcon
-                            Kind="GenderMale" Height="41" Width="42" Margin="99,29,0,0" />
-                        <materialDesign:PackIcon
-                            Kind="GenderFemale" Height="41" Width="42" Margin="175,29,0,0" />
+                        <materialDesign:Card
+                           
+                            Height="388" Margin="0,32,74,0" Background="White" HorizontalAlignment="Right" Width="415" >
+                            <StackPanel>
+
+                            </StackPanel>
+                        </materialDesign:Card>
                         <ComboBox Name="classification" HorizontalAlignment="Left" Margin="556,76,0,0" VerticalAlignment="Top" Width="120"
                                   materialDesign:HintAssist.Hint="Classification"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
@@ -165,12 +163,28 @@
                                 Background="#596673" BorderBrush="#596673">
 
                         </Button>
+                        <materialDesign:Card Margin="10,0,0,29" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="389" >
+                            <StackPanel/>
+                        </materialDesign:Card>
+                        <materialDesign:PackIcon
+                            Kind="GenderMaleFemale" Height="28" Width="56" Margin="92,88,0,0" Foreground="#FF596673" />
                         <ToggleButton
                             Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                            ToolTip="Default ToggleButton Style" Margin="93,76,868,371" />
+                            ToolTip="Default ToggleButton Style" Margin="82,125,859,328" Foreground="#FF596673" />
+                        <materialDesign:PackIcon
+                            Kind="GenderMale" Height="28" Width="54" Margin="192,88,0,0" Foreground="#FF596673" />
+                        <materialDesign:PackIcon
+                            Kind="GenderFemale" Height="28" Width="58" Margin="296,88,0,0" Foreground="#FF596673" />
                         <ToggleButton
                             Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                            ToolTip="Default ToggleButton Style" Margin="175,76,786,371" />
+                            ToolTip="Default ToggleButton Style" Margin="188,125,753,328" Foreground="#FF596673" />
+                        <ToggleButton
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                            ToolTip="Default ToggleButton Style" Margin="296,125,645,328" Foreground="#FF596673" />
+                        <ComboBox x:Name="classification_Copy" HorizontalAlignment="Left" Margin="92,181,0,0" VerticalAlignment="Top" Width="120"
+                            materialDesign:HintAssist.Hint="Classification"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
+                        <wpfx:ColorPicker x:Name="ColorPicker1_Copy" DisplayColorAndName="false" Margin="244,190,645,260"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
 
 
                     </Grid>
