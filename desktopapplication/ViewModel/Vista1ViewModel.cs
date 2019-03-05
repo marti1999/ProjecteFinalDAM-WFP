@@ -554,11 +554,15 @@ namespace desktopapplication.ViewModel
         {
             ActionsRequestor = true;
             List<Status> status = requestorRepository.getAllStatus();
-            StatusDisponibles = status.Where(x => x.reason != "").ToList();
-            if (!StatusDisponibles.Any())
+
+            StatusDisponibles = status.Where(z => z.reason != "").ToList();
+
+            if (!Requestors.Any() || Requestors == null)
             {
                 disableActionsRequestor();
             }
+            
+
         }
 
         private void disableActionsRequestor()
