@@ -1,38 +1,25 @@
-﻿using desktopapplication.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
+using Newtonsoft.Json;
 
-
-namespace desktopapplication.Model.objects
+namespace desktopapplication.Model
 {
-    class ClothesRepository
+    class warehouseRepository
     {
         private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
-        //private static string ws1 = "http://localhost:51057/api/";
 
-        public static List<Cloth> getClothes()
+        public static List<Warehouse> getAllWarehouses()
         {
-
-
-            List<Cloth> cl = new List<Cloth>();
-            cl = (List<Cloth>)MakeRequest(string.Concat(ws1, "clothes"), null, "GET", "application/json", typeof(List<Cloth>));
-            return cl;
+            List<Warehouse> lc = new List<Warehouse>();
+            lc = (List<Warehouse>)MakeRequest(string.Concat(ws1, "warehouses"), null, "GET", "application/json", typeof(List<Warehouse>));
+            return lc;
         }
-
-        public static Cloth addCloth(Cloth c)
-        {
-            Cloth c2 = (Cloth)MakeRequest(string.Concat(ws1, "cloth"), c, "POST", "application/json", typeof(Cloth));
-            return c2;
-        }
-
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
         //  requestUrl: Url completa del Web Service, amb l'opció sol·licitada
@@ -77,5 +64,4 @@ namespace desktopapplication.Model.objects
             }
         }
     }
-
 }

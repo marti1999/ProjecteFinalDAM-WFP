@@ -30,6 +30,9 @@ namespace desktopapplication.ViewModel
         public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
         public ICommand createClothCommand { get; set; }
+        public  ICommand clothesSetMaleCommand { get; set; }
+        public ICommand clothesSetFemaleCommand { get; set; }
+        public ICommand clothesSetOtherCommand { get; set; }
         public ICommand exportDataCommand { get; set; }
 
         private void restartApp()
@@ -74,6 +77,9 @@ namespace desktopapplication.ViewModel
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
+            clothesSetMaleCommand = new RelayCommand(x => ClothesSetMale());
+            clothesSetFemaleCommand = new RelayCommand(x => ClothesSetFemale());
+            clothesSetOtherCommand = new RelayCommand(x=> ClothesSetOther());
             exportDataCommand = new RelayCommand(x => restartApp());
         }
 
@@ -214,26 +220,27 @@ namespace desktopapplication.ViewModel
         {
             ColorList = new ObservableCollection<Xceed.Wpf.Toolkit.ColorItem>();
             List<Model.Color> lc = colorRepository.getAllColors();
-            foreach (Model.Color item in lc)
-            {
-                System.Drawing.Color c = new System.Drawing.Color();
-                c = ColorTranslator.FromHtml(item.colorCode);
-                //int r = Convert.ToInt16(c.R);
-                //int g = Convert.ToInt16(c.G);
-                //int b = Convert.ToInt16(c.B);
+            if (lc != null)
+                foreach (Model.Color item in lc)
+                {
+                    System.Drawing.Color c = new System.Drawing.Color();
+                    c = ColorTranslator.FromHtml(item.colorCode);
+                    //int r = Convert.ToInt16(c.R);
+                    //int g = Convert.ToInt16(c.G);
+                    //int b = Convert.ToInt16(c.B);
 
-                //System.Windows.Media.Color c2 = new System.Windows.Media.Color.FromAR
-                System.Windows.Media.Color newColor = System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B);
+                    //System.Windows.Media.Color c2 = new System.Windows.Media.Color.FromAR
+                    System.Windows.Media.Color newColor = System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B);
 
-                /**
+                    /**
                  * check this website for help
                  * http://jkshay.com/configuring-the-extended-wpf-toolkits-colorpicker-color-palette/
                  *
                  */
 
 
-                ColorList.Add(new ColorItem(newColor, item.name));
-            }
+                    ColorList.Add(new ColorItem(newColor, item.name));
+                }
         }
 
         //tab sizes
@@ -304,13 +311,37 @@ namespace desktopapplication.ViewModel
         //tab clothes
         private void createCloth()
         {
-            //TODO: fer-ho tot;
+            //TODO: No afegeix res a la DB
             Cloth c = new Cloth();
             c.Size = ClothesSizeSelected;
             c.Classification = ClothesClassificationSelected;
             c.Color = getColorByCode();
-            //c.Gender = ;
+            c.Gender = ClothesGenderSelected;
+            c.Warehouse = ClothesWarehouseSelected;
+            //c.Size_Id = 1;
+            //c.Classification_Id = 1;
+            //c.Color_Id = 9;
+            //c.Gender_Id = 1;
+            //c.Warehouse_Id = 1;
+            c.active = true;
+            c.dateCreated = DateTime.Now;
+            ClothesRepository.addCloth(c);
+        }
 
+        //tab Warehouse;
+        private Warehouse _clotheswarehouseselected;
+
+        public Warehouse ClothesWarehouseSelected
+        {
+            get { return _clotheswarehouseselected; }
+            set { _clotheswarehouseselected = value;NotifyPropertyChanged(); }
+        }
+
+        private void PopulateClothesWarehouses()
+        {
+            //TODO: hacer el populate en la lista si hiciera falta;
+
+            ClothesWarehouseSelected = warehouseRepository.getAllWarehouses().FirstOrDefault();
         }
 
         //tab Gender;
@@ -336,6 +367,14 @@ namespace desktopapplication.ViewModel
             ClothesGenderSelected = new Gender();
             List<Gender> lg = genderRepository.getAllGenders();
             Gender g = lg.Where(x => x.gender1.ToLower().Equals("female")).FirstOrDefault();
+            ClothesGenderSelected = g;
+        }
+
+        private void ClothesSetOther()
+        {
+            ClothesGenderSelected = new Gender();
+            List<Gender> lg = genderRepository.getAllGenders();
+            Gender g = lg.Where(x => x.gender1.ToLower().Equals("other")).FirstOrDefault();
             ClothesGenderSelected = g;
         }
 

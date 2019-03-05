@@ -96,6 +96,7 @@
     <Compile Include="Model\objects\Classification.cs" />
     <Compile Include="Model\sizeRepository.cs" />
     <Compile Include="Model\Utils.cs" />
+    <Compile Include="Model\warehouseRepository.cs" />
     <Compile Include="Properties\Resources.es.Designer.cs">
       <DependentUpon>Resources.es.resx</DependentUpon>
       <AutoGen>True</AutoGen>

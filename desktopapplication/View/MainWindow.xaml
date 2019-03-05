@@ -92,7 +92,7 @@
                         <Button HorizontalAlignment="Left" Margin="692,308,0,0" VerticalAlignment="Top" Command="{Binding DenyRequestorChecked}" Width="76">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Close" Height="25" Width="25" Margin="0"/>
-                                
+
                             </StackPanel>
                         </Button>
                         <Button Content="Accept" HorizontalAlignment="Left" Margin="692,349,0,0" VerticalAlignment="Top" Command="{Binding AcceptRequestorChecked}"/>
@@ -101,22 +101,31 @@
                 </TabItem>
                 <TabItem Header="Clothes" >
                     <Grid Background="#FFE5E5E5"  >
+                        <materialDesign:PackIcon
+                            Kind="GenderMaleFemale" Height="41" Width="42" Margin="25,29,0,0" />
+                        <ToggleButton
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                            ToolTip="Default ToggleButton Style" Margin="19,76,942,371" />
+                        <materialDesign:PackIcon
+                            Kind="GenderMale" Height="41" Width="42" Margin="99,29,0,0" />
+                        <materialDesign:PackIcon
+                            Kind="GenderFemale" Height="41" Width="42" Margin="175,29,0,0" />
                         <ComboBox Name="classification" HorizontalAlignment="Left" Margin="556,76,0,0" VerticalAlignment="Top" Width="120"
                                   materialDesign:HintAssist.Hint="Classification"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
                         <ComboBox Name="size" HorizontalAlignment="Left" Margin="712,76,0,0" VerticalAlignment="Top" Width="94" materialDesign:HintAssist.Hint="Size"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesSizes}" SelectedItem="{Binding ClothesSizeSelected}"/>
-                        <Button  HorizontalAlignment="Left" Margin="556,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray"  BorderBrush="#FF596673">
+                        <Button  HorizontalAlignment="Left" Margin="556,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray"  BorderBrush="#FF596673" Command="{Binding clothesSetFemaleCommand}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
                         </Button>
-                        <Button  HorizontalAlignment="Left" Margin="654,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673">
+                        <Button  HorizontalAlignment="Left" Margin="654,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673" Command="{Binding clothesSetMaleCommand}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderMale" Height="25" Width="25" Margin="0"></materialDesign:PackIcon>
                             </StackPanel>
                         </Button>
-                        <Button  HorizontalAlignment="Left" Margin="749,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673">
+                        <Button  HorizontalAlignment="Left" Margin="749,148,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673"  Command="{Binding clothesSetOtherCommand}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderMaleFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
@@ -127,13 +136,19 @@
                         <ComboBox HorizontalAlignment="Left" Margin="561,275,0,0" VerticalAlignment="Top" Width="245"
                                   materialDesign:HintAssist.Hint="Donor:"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedItem="{Binding ClothnesDonorSelected}" ItemsSource="{Binding ClothesDonors}">
-                           
+
                         </ComboBox>
                         <Button HorizontalAlignment="Left" Margin="563,350,0,0" VerticalAlignment="Top" Width="243" Command="{Binding createClothCommand}" Height="39"
                                 Content="Register cloth"
                                 Background="#596673" BorderBrush="#596673">
 
                         </Button>
+                        <ToggleButton
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                            ToolTip="Default ToggleButton Style" Margin="93,76,868,371" />
+                        <ToggleButton
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                            ToolTip="Default ToggleButton Style" Margin="175,76,786,371" />
 
 
                     </Grid>
@@ -247,7 +262,7 @@
                 </Grid>
                 <ListView x:Name="ListViewMenu" Foreground="AntiqueWhite" Background="SlateGray" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" Margin="0,25,0,0">
                     <ListViewItem x:Name="itemWarehouses" Height="60">
-                        
+
                         <Button
                             Command="{Binding requestorReqClickCommand}"
                             HorizontalAlignment="Left"
@@ -264,7 +279,7 @@
 
                     </ListViewItem>
                     <ListViewItem x:Name="itemUsers" Height="60" >
-                        
+
                         <Button
                             Command="{Binding usersClickCommand}"
                             HorizontalAlignment="Left"
@@ -281,8 +296,8 @@
                     </ListViewItem>
 
                     <ListViewItem x:Name="itemClothes" Height="60"  >
-                       
-                      
+
+
                         <Button
                             Command="{Binding clothesClickCommand}"
                             HorizontalAlignment="Left"
@@ -298,7 +313,7 @@
                         </Button>
                     </ListViewItem>
                     <ListViewItem x:Name="itemNotifications" Height="60">
-                        
+
                         <Button
                             Command="{Binding announcementsClickCommand}"
                             HorizontalAlignment="Left"
