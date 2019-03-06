@@ -15,7 +15,7 @@ namespace desktopapplication.Model.objects
 {
     class ClothesRepository
     {
-        private static string ws1 = Utils.ws;        //private static string ws1 = "http://localhost:51057/api/";
+        private static string ws1 = Utils.ws;
 
         public static List<Cloth> getClothes()
         {

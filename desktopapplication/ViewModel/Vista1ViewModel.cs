@@ -554,14 +554,16 @@ namespace desktopapplication.ViewModel
         {
             ActionsRequestor = true;
             List<Status> status = requestorRepository.getAllStatus();
-
-            StatusDisponibles = status.Where(z => z.reason != "").ToList();
-
-            if (!Requestors.Any() || Requestors == null)
+            if (status != null)
             {
-                disableActionsRequestor();
+                StatusDisponibles = status.Where(z => z.reason != "").ToList();
+
+                if (Requestors == null || !Requestors.Any())
+                {
+                    disableActionsRequestor();
+                }
             }
-            
+
 
         }
 
@@ -594,10 +596,15 @@ namespace desktopapplication.ViewModel
 
         public void populateRequestors()
         {
-            Requestors = requestorRepository.getAllRequestors()
+            List<Requestor> requestorList = requestorRepository.getAllRequestors()
                 .Where(x => x.Status.status1.Equals("Pending"))
                 .Take(10)
                 .OrderByDescending(x => x.dateCreated).ToList();
+            if (requestorList != null && requestorList.Any())
+            {
+                Requestors = requestorList;
+            }
+
             SelectedRequestorIndex = 0;
         }
 
