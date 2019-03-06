@@ -56,7 +56,7 @@ namespace desktopapplication.ViewModel
             populateDonors();
             populareColorList();
 
-            requestorThings();
+           // requestorThings();
             populateAnnouncements();
 
             populateClassification();
@@ -508,6 +508,7 @@ namespace desktopapplication.ViewModel
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
             Console.WriteLine("HOME SELECTED");
+            requestorThings();
         }
 
         private void selectUsers()
