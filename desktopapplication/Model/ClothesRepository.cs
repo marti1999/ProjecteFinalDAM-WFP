@@ -15,8 +15,7 @@ namespace desktopapplication.Model.objects
 {
     class ClothesRepository
     {
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
-        //private static string ws1 = "http://localhost:51057/api/";
+        private static string ws1 = Utils.ws;        //private static string ws1 = "http://localhost:51057/api/";
 
         public static List<Cloth> getClothes()
         {

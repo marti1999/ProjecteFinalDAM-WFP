@@ -15,8 +15,7 @@ namespace desktopapplication.Model
     class colorRepository
     {
 
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
-
+        private static string ws1 = Utils.ws;
         public static List<Color> getAllColors()
         {
             List<Color> lc = new List<Color>();

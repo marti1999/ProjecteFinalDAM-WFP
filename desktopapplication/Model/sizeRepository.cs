@@ -15,8 +15,7 @@ namespace desktopapplication.Model
     class sizeRepository
     {
 
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
-
+        private static string ws1 = Utils.ws;
         public static List<Size> getAllSize()
         {
             List<Size> lc = new List<Size>();

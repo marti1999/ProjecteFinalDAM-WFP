@@ -15,8 +15,7 @@ namespace desktopapplication.Model.objects
 {
     class announcementRepository
     {
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
-
+        private static string ws1 = Utils.ws;
         public static List<Announcement> getAllAnnouncements()
         {
             List<Announcement> lu = new List<Announcement>();

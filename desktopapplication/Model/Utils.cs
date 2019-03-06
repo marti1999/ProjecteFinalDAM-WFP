@@ -8,6 +8,6 @@ namespace desktopapplication.Model
 {
     public static class Utils
     {
-        public static string ws = "https://wsrobasegonama.azurewebsites.net/api/";
+        public static string ws = "https://localhost:51057/api/";
     }
 }

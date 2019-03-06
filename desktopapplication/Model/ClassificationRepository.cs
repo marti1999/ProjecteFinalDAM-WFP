@@ -15,7 +15,7 @@ namespace desktopapplication.Model
     class ClassificationRepository
     {
 
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
+        private static string ws1 = Utils.ws;
 
         public static List<Classification> getAllClassifications()
         {

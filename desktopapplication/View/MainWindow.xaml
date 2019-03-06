@@ -123,6 +123,7 @@
                 </TabItem>
                 <TabItem Header="Clothes" >
                     <Grid Background="#FFE5E5E5"  >
+
                         <materialDesign:Card
                            
                             Height="388" Margin="0,32,74,0" Background="White" HorizontalAlignment="Right" Width="415" >

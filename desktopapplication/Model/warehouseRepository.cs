@@ -12,8 +12,7 @@ namespace desktopapplication.Model
 {
     class warehouseRepository
     {
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
-
+        private static string ws1 = Utils.ws;
         public static List<Warehouse> getAllWarehouses()
         {
             List<Warehouse> lc = new List<Warehouse>();

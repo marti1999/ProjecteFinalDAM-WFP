@@ -14,8 +14,7 @@ namespace desktopapplication.Model
 {
     class genderRepository
     {
-        private static string ws1 = "https://wsrobasegonama.azurewebsites.net/api/";
-
+        private static string ws1 = Utils.ws;
         public static List<Gender> getAllGenders()
         {
             List<Gender> lc = new List<Gender>();
