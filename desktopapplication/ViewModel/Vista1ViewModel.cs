@@ -582,15 +582,18 @@ namespace desktopapplication.ViewModel
             }
             else if (!denied)
             {
-                if (r != null) r.Status = searchByReason("");
+                //TODO: arreglar searchByReason per que busqui sobre tots els status i no nomes sobre els disponibles
+                List<Status> allStatus = requestorRepository.getAllStatus();
+                if (r != null) r.Status = allStatus.Where(x => x.reason.Equals("") && !x.status1.Equals("Pending")).FirstOrDefault();
             }
-            requestorRepository.setRequestors(SelectedRequestor.Id, SelectedRequestor);
+            requestorRepository.setRequestors(r.Id, r);
             populateRequestors();
         }
 
         private Status searchByReason(string statusText)
         {
-            return StatusDisponibles.Where(x => x.status1.Equals(statusText) && !x.status1.Equals("Pending")).FirstOrDefault();
+            Status s = StatusDisponibles.Where(x => x.reason.Equals(statusText)).FirstOrDefault();
+            return s;
         }
 
 
