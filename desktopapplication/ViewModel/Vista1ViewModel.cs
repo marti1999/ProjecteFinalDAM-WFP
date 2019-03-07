@@ -55,6 +55,7 @@ namespace desktopapplication.ViewModel
             initCommandsMenu();
             populateDonors();
             populareColorList();
+            PopulateClothesWarehouses();
 
             requestorThings();
             populateAnnouncements();
@@ -345,14 +346,23 @@ namespace desktopapplication.ViewModel
         public Warehouse ClothesWarehouseSelected
         {
             get { return _clotheswarehouseselected; }
-            set { _clotheswarehouseselected = value;NotifyPropertyChanged(); }
+            set { _clotheswarehouseselected = value; NotifyPropertyChanged(); }
+        }
+
+        private List<Warehouse> _clothesWarehouseList;
+
+        public List<Warehouse> ClothesWarehouseList
+        {
+            get { return _clothesWarehouseList; }
+            set { _clothesWarehouseList = value; NotifyPropertyChanged(); }
         }
 
         private void PopulateClothesWarehouses()
         {
-            //TODO: hacer el populate en la lista si hiciera falta;
+            ClothesWarehouseList = warehouseRepository.getAllWarehouses();
 
-            ClothesWarehouseSelected = warehouseRepository.getAllWarehouses().FirstOrDefault();
+            //TODO: asignar esto donde convenga
+            ClothesWarehouseSelected = ClothesWarehouseList.FirstOrDefault();
         }
         #endregion
 
@@ -508,6 +518,7 @@ namespace desktopapplication.ViewModel
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
             Console.WriteLine("HOME SELECTED");
+            requestorThings();
         }
 
         private void selectUsers()
@@ -599,6 +610,7 @@ namespace desktopapplication.ViewModel
 
         public void populateRequestors()
         {
+            
             List<Requestor> requestorList = requestorRepository.getAllRequestors()
                 .Where(x => x.Status.status1.Equals("Pending"))
                 .Take(10)
