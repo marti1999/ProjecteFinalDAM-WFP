@@ -330,11 +330,11 @@ namespace desktopapplication.ViewModel
             c.Color = getColorByCode();
             c.Gender = ClothesGenderSelected;
             c.Warehouse = ClothesWarehouseSelected;
-            //c.Size_Id = 1;
-            //c.Classification_Id = 1;
-            //c.Color_Id = 9;
-            //c.Gender_Id = 1;
-            //c.Warehouse_Id = 1;
+            c.Size_Id = ClothesSizeSelected.Id;
+            c.Classification_Id = ClothesClassificationSelected.Id;
+            c.Color_Id = getColorByCode().Id;
+            c.Gender_Id = ClothesGenderSelected.Id;
+            c.Warehouse_Id = ClothesWarehouseSelected.Id;
             c.active = true;
             c.dateCreated = DateTime.Now;
             ClothesRepository.addCloth(c);
@@ -589,13 +589,21 @@ namespace desktopapplication.ViewModel
             if (denied)
             {
                 Status s = searchByReason(SelectedStatus.reason);
-                if (s != null) r.Status = s;
+                if (s != null)
+                {
+                    r.Status = s;
+                    r.Status_Id = r.Status.Id;
+
+                }
             }
             else if (!denied)
             {
-                //TODO: arreglar searchByReason per que busqui sobre tots els status i no nomes sobre els disponibles
                 List<Status> allStatus = requestorRepository.getAllStatus();
-                if (r != null) r.Status = allStatus.Where(x => x.reason.Equals("") && !x.status1.Equals("Pending")).FirstOrDefault();
+                if (r != null)
+                {
+                    r.Status = allStatus.Where(x => x.reason.Equals("") && !x.status1.Equals("Pending")).FirstOrDefault();
+                    r.Status_Id = r.Status.Id;
+                }
             }
             requestorRepository.setRequestors(r.Id, r);
             populateRequestors();
