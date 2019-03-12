@@ -56,6 +56,7 @@ namespace desktopapplication.ViewModel
             populateDonors();
             populareColorList();
             PopulateClothesWarehouses();
+            IsClothesDonate = true;
 
             requestorThings();
             populateAnnouncements();
@@ -67,6 +68,7 @@ namespace desktopapplication.ViewModel
         private void requestorThings()
         {
             populateRequestors();
+            populateClothesRequestors();
             initRequestorActions();
         }
 
@@ -323,21 +325,29 @@ namespace desktopapplication.ViewModel
 
         private void createCloth()
         {
-            //TODO: No afegeix res a la DB
             Cloth c = new Cloth();
             c.Size = ClothesSizeSelected;
             c.Classification = ClothesClassificationSelected;
             c.Color = getColorByCode();
             c.Gender = ClothesGenderSelected;
             c.Warehouse = ClothesWarehouseSelected;
-            //c.Size_Id = 1;
-            //c.Classification_Id = 1;
-            //c.Color_Id = 9;
-            //c.Gender_Id = 1;
-            //c.Warehouse_Id = 1;
+         
             c.active = true;
             c.dateCreated = DateTime.Now;
             ClothesRepository.addCloth(c);
+
+            //TODO: sumar punts al donor
+
+        }
+
+        private void claimCloth()
+        {
+            
+
+            List<Cloth> lc = ClothesRepository.getClothes();
+
+            //Cloth c = lc.Where(x => x.Gender == ClothesGenderSelected && x.Size ==  ClothesSizeSelected && x.Classification == ClothesClassificationSelected && x.Color == getColorByCode())
+
         }
 
         //tab Warehouse;
@@ -347,6 +357,24 @@ namespace desktopapplication.ViewModel
         {
             get { return _clotheswarehouseselected; }
             set { _clotheswarehouseselected = value; NotifyPropertyChanged(); }
+        }
+
+        private bool _isClothesClaim;
+
+        public bool IsClothClaim
+        {
+            get { return _isClothesClaim; }
+            set { _isClothesClaim = value;
+                IsClothesDonate = !_isClothesDonate; NotifyPropertyChanged(); }
+        }
+
+        private bool _isClothesDonate;
+
+        public bool IsClothesDonate
+        {
+            get { return _isClothesDonate; }
+            set { _isClothesDonate = value; NotifyPropertyChanged(); }
+
         }
 
         private List<Warehouse> _clothesWarehouseList;
@@ -623,6 +651,11 @@ namespace desktopapplication.ViewModel
             SelectedRequestorIndex = 0;
         }
 
+        public void populateClothesRequestors()
+        {
+            ClothesRequestors = requestorRepository.getAllRequestors();
+        }
+
         private Requestor _selectedRequestor;
         public Requestor SelectedRequestor
         {
@@ -633,6 +666,7 @@ namespace desktopapplication.ViewModel
                 NotifyPropertyChanged();
             }
         }
+
         private int _selectedRequestorIndex;
         public int SelectedRequestorIndex
         {
@@ -640,6 +674,28 @@ namespace desktopapplication.ViewModel
             set
             {
                 _selectedRequestorIndex = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private Requestor _selectedClothesRequestor;
+        public Requestor ClothesSelectedRequestor
+        {
+            get { return _selectedClothesRequestor; }
+            set
+            {
+                _selectedClothesRequestor = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private List<Requestor> _clothesrequestors;
+        public List<Requestor> ClothesRequestors
+        {
+            get { return _clothesrequestors; }
+            set
+            {
+                _clothesrequestors = value;
                 NotifyPropertyChanged();
             }
         }
@@ -654,6 +710,7 @@ namespace desktopapplication.ViewModel
                 NotifyPropertyChanged();
             }
         }
+
         private List<Status> _statusDisponibles;
         public List<Status> StatusDisponibles
         {

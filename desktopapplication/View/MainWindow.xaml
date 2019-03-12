@@ -123,6 +123,14 @@
                 </TabItem>
                 <TabItem Header="Clothes" >
                     <Grid Background="#FFE5E5E5"  >
+                        <ToggleButton
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}" Margin="654,10,282,432" IsChecked="{Binding IsClothClaim}">
+
+
+                        </ToggleButton>
+                        
+
+
 
                         <materialDesign:Card
                            
@@ -131,6 +139,7 @@
 
                             </StackPanel>
                         </materialDesign:Card>
+                        <wpfx:IntegerUpDown Name="myUpDownControl" Margin="807,356,155,86"  IsEnabled="{Binding IsClothClaim}" Maximum="5"  />
                         <ComboBox Name="classification" HorizontalAlignment="Left" Margin="556,76,0,0" VerticalAlignment="Top" Width="120"
                                   materialDesign:HintAssist.Hint="Classification"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
@@ -154,14 +163,14 @@
 
 
                         <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="556,212,203,238"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="561,275,0,0" VerticalAlignment="Top" Width="245"
-                                  materialDesign:HintAssist.Hint="Donor:"
+                        <ComboBox HorizontalAlignment="Left" Margin="561,253,0,0" VerticalAlignment="Top" Width="245"
+                                  materialDesign:HintAssist.Hint="Donor:" IsEnabled="{Binding IsClothesDonate}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedItem="{Binding ClothnesDonorSelected}" ItemsSource="{Binding ClothesDonors}">
 
                         </ComboBox>
-                        <Button HorizontalAlignment="Left" Margin="563,350,0,0" VerticalAlignment="Top" Width="243" Command="{Binding createClothCommand}" Height="39"
+                        <Button HorizontalAlignment="Left" Margin="545,356,0,0" VerticalAlignment="Top" Width="131" Command="{Binding createClothCommand}" Height="39"
                                 Content="Register cloth"
-                                Background="#596673" BorderBrush="#596673">
+                                Background="#596673" BorderBrush="#596673" IsEnabled="{Binding IsClothesDonate}">
 
                         </Button>
                         <materialDesign:Card Margin="10,0,0,29" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="389" >
@@ -186,6 +195,14 @@
                             materialDesign:HintAssist.Hint="Classification"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
                         <wpfx:ColorPicker x:Name="ColorPicker1_Copy" DisplayColorAndName="false" Margin="244,190,645,260"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
+                        <Label Content="Donor" HorizontalAlignment="Left" Margin="594,14,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Requestor" HorizontalAlignment="Left" Margin="736,14,0,0" VerticalAlignment="Top"/>
+                        <Button HorizontalAlignment="Left" Margin="694,356,0,0" VerticalAlignment="Top" Width="95" Command="{Binding createClothCommand}" Height="39"
+                            Content="Donate cloth"
+                            Background="#596673" BorderBrush="#596673" IsEnabled="{Binding IsClothClaim}"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="561,293,0,0" VerticalAlignment="Top" Width="245"
+                            materialDesign:HintAssist.Hint="Requestor:"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEnabled="{Binding IsClothClaim}" SelectedItem="{Binding ClothesSelectedRequestor}" ItemsSource="{Binding ClothesRequestors}"/>
 
 
                     </Grid>
