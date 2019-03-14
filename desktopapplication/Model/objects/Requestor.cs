@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace desktopapplication.Model
+using desktopapplication.Model;
+
+namespace WSRobaSegonaMa.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Requestor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -36,6 +38,7 @@ namespace desktopapplication.Model
         public int householdMembers { get; set; }
         public string picturePath { get; set; }
         public int Id { get; set; }
+        public int points { get; set; }
         public int Language_Id { get; set; }
         public int MaxClaims_Id { get; set; }
         public int Status_Id { get; set; }

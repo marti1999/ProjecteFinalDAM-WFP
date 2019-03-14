@@ -13,9 +13,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WSRobaSegonaMa.Models;
 using Xceed.Wpf.Toolkit;
 using ClassificationRepository = desktopapplication.Model.ClassificationRepository;
 using Color = System.Drawing.Color;
+using MessageBox = System.Windows.MessageBox;
 using Size = desktopapplication.Model.Size;
 
 namespace desktopapplication.ViewModel
@@ -30,7 +32,7 @@ namespace desktopapplication.ViewModel
         public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
         public ICommand createClothCommand { get; set; }
-        public  ICommand clothesSetMaleCommand { get; set; }
+        public ICommand clothesSetMaleCommand { get; set; }
         public ICommand clothesSetFemaleCommand { get; set; }
         public ICommand clothesSetOtherCommand { get; set; }
         public ICommand exportDataCommand { get; set; }
@@ -82,7 +84,7 @@ namespace desktopapplication.ViewModel
             createClothCommand = new RelayCommand(x => createCloth());
             clothesSetMaleCommand = new RelayCommand(x => ClothesSetMale());
             clothesSetFemaleCommand = new RelayCommand(x => ClothesSetFemale());
-            clothesSetOtherCommand = new RelayCommand(x=> ClothesSetOther());
+            clothesSetOtherCommand = new RelayCommand(x => ClothesSetOther());
             exportDataCommand = new RelayCommand(x => restartApp());
         }
 
@@ -276,7 +278,7 @@ namespace desktopapplication.ViewModel
         }
 
         #endregion
-        
+
         #region TabClassifications
 
         private List<Classification> _clotheClassification;
@@ -331,7 +333,7 @@ namespace desktopapplication.ViewModel
             c.Color = getColorByCode();
             c.Gender = ClothesGenderSelected;
             c.Warehouse = ClothesWarehouseSelected;
-         
+
             c.active = true;
             c.dateCreated = DateTime.Now;
             ClothesRepository.addCloth(c);
@@ -342,11 +344,35 @@ namespace desktopapplication.ViewModel
 
         private void claimCloth()
         {
-            
+
 
             List<Cloth> lc = ClothesRepository.getClothes();
 
-            //Cloth c = lc.Where(x => x.Gender == ClothesGenderSelected && x.Size ==  ClothesSizeSelected && x.Classification == ClothesClassificationSelected && x.Color == getColorByCode())
+            Cloth c = lc.Where(x =>
+                x.Gender == ClothesGenderSelected && x.Size == ClothesSizeSelected &&
+                x.Classification == ClothesClassificationSelected && x.Color == getColorByCode()).FirstOrDefault();
+            if (c != null)
+            {
+                if (true) //todo: calcular si el requestor tiene puntos suficientes. Si tiene, poner el order a la database, a la cloth poner el atributo active a false y al requester restarle los puntos;
+
+                {
+                    Order o = new Order();
+                    o.Cloth = c;
+                    o.Requestor = ClothesSelectedRequestor;
+                    o.dateCreated = DateTime.Now;
+                    OrderRepository.newOrder(o);
+                }
+                else
+                {
+                    MessageBox.Show("Not enough points available");
+                }
+               
+
+                 }
+            else
+            {
+                MessageBox.Show("Cloth not available");
+            }
 
         }
 
@@ -364,8 +390,11 @@ namespace desktopapplication.ViewModel
         public bool IsClothClaim
         {
             get { return _isClothesClaim; }
-            set { _isClothesClaim = value;
-                IsClothesDonate = !_isClothesDonate; NotifyPropertyChanged(); }
+            set
+            {
+                _isClothesClaim = value;
+                IsClothesDonate = !_isClothesDonate; NotifyPropertyChanged();
+            }
         }
 
         private bool _isClothesDonate;
@@ -428,7 +457,7 @@ namespace desktopapplication.ViewModel
             ClothesGenderSelected = g;
         }
 
-        
+
 
         #endregion
 
@@ -585,7 +614,7 @@ namespace desktopapplication.ViewModel
         {
             DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
             AcceptRequestorChecked = new RelayCommand(x => denyRequestor(false));
-            
+
             populateStatus();
         }
 
@@ -646,7 +675,7 @@ namespace desktopapplication.ViewModel
 
         public void populateRequestors()
         {
-            
+
             List<Requestor> requestorList = requestorRepository.getAllRequestors()
                 .Where(x => x.Status.status1.Equals("Pending"))
                 .Take(10)

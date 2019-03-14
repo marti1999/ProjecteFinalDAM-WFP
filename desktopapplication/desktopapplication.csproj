@@ -91,6 +91,7 @@
     <Compile Include="Model\colorRepository.cs" />
     <Compile Include="Model\genderRepository.cs" />
     <Compile Include="Model\objects\ClassificationRepository.cs" />
+    <Compile Include="Model\OrderRepository.cs" />
     <Compile Include="Model\requestorRepository.cs" />
     <Compile Include="Model\donorRepository.cs" />
     <Compile Include="Model\objects\Classification.cs" />
