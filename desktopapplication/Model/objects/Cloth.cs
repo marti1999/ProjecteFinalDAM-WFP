@@ -23,7 +23,7 @@ namespace desktopapplication.Model
         public int Id { get; set; }
         public System.DateTime dateCreated { get; set; }
         public bool active { get; set; }
-        public int ClothesRequest_Id { get; set; }
+        public int? ClothesRequest_Id { get; set; }
         public int Warehouse_Id { get; set; }
         public int Size_Id { get; set; }
         public int Color_Id { get; set; }

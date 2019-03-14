@@ -617,13 +617,21 @@ namespace desktopapplication.ViewModel
             if (denied)
             {
                 Status s = searchByReason(SelectedStatus.reason);
-                if (s != null) r.Status = s;
+                if (s != null)
+                {
+                    r.Status = s;
+                    r.Status_Id = r.Status.Id;
+
+                }
             }
             else if (!denied)
             {
-                //TODO: arreglar searchByReason per que busqui sobre tots els status i no nomes sobre els disponibles
                 List<Status> allStatus = requestorRepository.getAllStatus();
-                if (r != null) r.Status = allStatus.Where(x => x.reason.Equals("") && !x.status1.Equals("Pending")).FirstOrDefault();
+                if (r != null)
+                {
+                    r.Status = allStatus.Where(x => x.reason.Equals("") && !x.status1.Equals("Pending")).FirstOrDefault();
+                    r.Status_Id = r.Status.Id;
+                }
             }
             requestorRepository.setRequestors(r.Id, r);
             populateRequestors();
