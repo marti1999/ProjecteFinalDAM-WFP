@@ -6,6 +6,8 @@ using System.IO;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Windows;
+using WSRobaSegonaMa.Models;
+
 namespace desktopapplication.Model
 {
     class RewardRepository
