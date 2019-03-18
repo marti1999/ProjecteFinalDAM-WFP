@@ -13,9 +13,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WSRobaSegonaMa.Models;
 using Xceed.Wpf.Toolkit;
 using ClassificationRepository = desktopapplication.Model.ClassificationRepository;
 using Color = System.Drawing.Color;
+using MessageBox = System.Windows.MessageBox;
 using Size = desktopapplication.Model.Size;
 
 namespace desktopapplication.ViewModel
@@ -30,7 +32,7 @@ namespace desktopapplication.ViewModel
         public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
         public ICommand createClothCommand { get; set; }
-        public  ICommand clothesSetMaleCommand { get; set; }
+        public ICommand clothesSetMaleCommand { get; set; }
         public ICommand clothesSetFemaleCommand { get; set; }
         public ICommand clothesSetOtherCommand { get; set; }
         public ICommand exportDataCommand { get; set; }
@@ -56,6 +58,7 @@ namespace desktopapplication.ViewModel
             populateDonors();
             populareColorList();
             PopulateClothesWarehouses();
+            IsClothesDonate = true;
 
             requestorThings();
             rewardsThings();
@@ -74,6 +77,7 @@ namespace desktopapplication.ViewModel
         private void requestorThings()
         {
             populateRequestors();
+            populateClothesRequestors();
             initRequestorActions();
         }
 
@@ -87,7 +91,7 @@ namespace desktopapplication.ViewModel
             createClothCommand = new RelayCommand(x => createCloth());
             clothesSetMaleCommand = new RelayCommand(x => ClothesSetMale());
             clothesSetFemaleCommand = new RelayCommand(x => ClothesSetFemale());
-            clothesSetOtherCommand = new RelayCommand(x=> ClothesSetOther());
+            clothesSetOtherCommand = new RelayCommand(x => ClothesSetOther());
             exportDataCommand = new RelayCommand(x => restartApp());
         }
 
@@ -281,7 +285,7 @@ namespace desktopapplication.ViewModel
         }
 
         #endregion
-        
+
         #region TabClassifications
 
         private List<Classification> _clotheClassification;
@@ -330,21 +334,53 @@ namespace desktopapplication.ViewModel
 
         private void createCloth()
         {
-            //TODO: No afegeix res a la DB
             Cloth c = new Cloth();
             c.Size = ClothesSizeSelected;
             c.Classification = ClothesClassificationSelected;
             c.Color = getColorByCode();
             c.Gender = ClothesGenderSelected;
             c.Warehouse = ClothesWarehouseSelected;
-            c.Size_Id = ClothesSizeSelected.Id;
-            c.Classification_Id = ClothesClassificationSelected.Id;
-            c.Color_Id = getColorByCode().Id;
-            c.Gender_Id = ClothesGenderSelected.Id;
-            c.Warehouse_Id = ClothesWarehouseSelected.Id;
+
             c.active = true;
             c.dateCreated = DateTime.Now;
             ClothesRepository.addCloth(c);
+
+            //TODO: sumar punts al donor
+
+        }
+
+        private void claimCloth()
+        {
+
+
+            List<Cloth> lc = ClothesRepository.getClothes();
+
+            Cloth c = lc.Where(x =>
+                x.Gender == ClothesGenderSelected && x.Size == ClothesSizeSelected &&
+                x.Classification == ClothesClassificationSelected && x.Color == getColorByCode()).FirstOrDefault();
+            if (c != null)
+            {
+                if (true) //todo: calcular si el requestor tiene puntos suficientes. Si tiene, poner el order a la database, a la cloth poner el atributo active a false y al requester restarle los puntos;
+
+                {
+                    Order o = new Order();
+                    o.Cloth = c;
+                    o.Requestor = ClothesSelectedRequestor;
+                    o.dateCreated = DateTime.Now;
+                    OrderRepository.newOrder(o);
+                }
+                else
+                {
+                    MessageBox.Show("Not enough points available");
+                }
+               
+
+                 }
+            else
+            {
+                MessageBox.Show("Cloth not available");
+            }
+
         }
 
         //tab Warehouse;
@@ -354,6 +390,27 @@ namespace desktopapplication.ViewModel
         {
             get { return _clotheswarehouseselected; }
             set { _clotheswarehouseselected = value; NotifyPropertyChanged(); }
+        }
+
+        private bool _isClothesClaim;
+
+        public bool IsClothClaim
+        {
+            get { return _isClothesClaim; }
+            set
+            {
+                _isClothesClaim = value;
+                IsClothesDonate = !_isClothesDonate; NotifyPropertyChanged();
+            }
+        }
+
+        private bool _isClothesDonate;
+
+        public bool IsClothesDonate
+        {
+            get { return _isClothesDonate; }
+            set { _isClothesDonate = value; NotifyPropertyChanged(); }
+
         }
 
         private List<Warehouse> _clothesWarehouseList;
@@ -407,7 +464,7 @@ namespace desktopapplication.ViewModel
             ClothesGenderSelected = g;
         }
 
-        
+
 
         #endregion
 
@@ -564,7 +621,7 @@ namespace desktopapplication.ViewModel
         {
             DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
             AcceptRequestorChecked = new RelayCommand(x => denyRequestor(false));
-            
+
             populateStatus();
         }
 
@@ -625,7 +682,7 @@ namespace desktopapplication.ViewModel
 
         public void populateRequestors()
         {
-            
+
             List<Requestor> requestorList = requestorRepository.getAllRequestors()
                 .Where(x => x.Status.status1.Equals("Pending"))
                 .Take(10)
@@ -638,6 +695,11 @@ namespace desktopapplication.ViewModel
             SelectedRequestorIndex = 0;
         }
 
+        public void populateClothesRequestors()
+        {
+            ClothesRequestors = requestorRepository.getAllRequestors();
+        }
+
         private Requestor _selectedRequestor;
         public Requestor SelectedRequestor
         {
@@ -648,6 +710,7 @@ namespace desktopapplication.ViewModel
                 NotifyPropertyChanged();
             }
         }
+
         private int _selectedRequestorIndex;
         public int SelectedRequestorIndex
         {
@@ -655,6 +718,28 @@ namespace desktopapplication.ViewModel
             set
             {
                 _selectedRequestorIndex = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private Requestor _selectedClothesRequestor;
+        public Requestor ClothesSelectedRequestor
+        {
+            get { return _selectedClothesRequestor; }
+            set
+            {
+                _selectedClothesRequestor = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private List<Requestor> _clothesrequestors;
+        public List<Requestor> ClothesRequestors
+        {
+            get { return _clothesrequestors; }
+            set
+            {
+                _clothesrequestors = value;
                 NotifyPropertyChanged();
             }
         }
@@ -669,6 +754,7 @@ namespace desktopapplication.ViewModel
                 NotifyPropertyChanged();
             }
         }
+
         private List<Status> _statusDisponibles;
         public List<Status> StatusDisponibles
         {

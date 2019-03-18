@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using WSRobaSegonaMa.Models;
+
 namespace desktopapplication.Model
 {
     using System;

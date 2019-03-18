@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using WSRobaSegonaMa.Models;
+
 namespace desktopapplication.Model
 {
     using System;
@@ -17,15 +19,16 @@ namespace desktopapplication.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.OrderLines = new HashSet<OrderLine>();
+           
         }
     
         public int Id { get; set; }
         public System.DateTime dateCreated { get; set; }
         public int Requestor_Id { get; set; }
-    
+        public int Clothes_Id { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderLine> OrderLines { get; set; }
+        public virtual Cloth Cloth { get; set; }
         public virtual Requestor Requestor { get; set; }
     }
 }

@@ -1,35 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Net;
 using System.IO;
-using System.Net.Http;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Newtonsoft.Json;
-using System.Windows;
-using WSRobaSegonaMa.Models;
 
 namespace desktopapplication.Model
 {
-    class requestorRepository
+    class OrderRepository
     {
-        public static List<Status> getAllStatus()
-        {
-            List<Status> lu = new List<Status>();
-            lu = (List<Status>)MakeRequest(string.Concat(Utils.ws, "status"), null, "GET", "application/json", typeof(List<Status>));
-            return lu;
-        }
 
-        public static List<Requestor> getAllRequestors()
+        public static Order newOrder( Order o)
         {
-            List<Requestor> lu = new List<Requestor>();
-            lu = (List<Requestor>)MakeRequest(string.Concat(Utils.ws, "requestorsTot"), null, "GET", "application/json", typeof(List<Requestor>));
-            return lu;
-        }
-        
-        public static Requestor setRequestors(int id, Requestor re)
-        {
-            Requestor r = (Requestor)MakeRequest(string.Concat(Utils.ws, "requestor/"+id), re, "PUT", "application/json", typeof(Requestor));
-            return r;
+            Order r = (Order)MakeRequest(string.Concat(Utils.ws, "Order"), o, "PUT", "application/json", typeof(Order));
+            return o;
         }
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
@@ -39,9 +26,9 @@ namespace desktopapplication.Model
         //  JSONContentType: "application/json" en els casos que el Web Service torni objectes
         //  JSONRensponseType:  tipus d'objecte que torna el Web Service (typeof(tipus))
         {
+            HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest; //WebRequest WR = WebRequest.Create(requestUrl);   
             try
             {
-                HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest; //WebRequest WR = WebRequest.Create(requestUrl);   
                 string sb = JsonConvert.SerializeObject(JSONRequest);
                 request.Method = JSONmethod;  // "GET"/"POST"/"PUT"/"DELETE";  
 
