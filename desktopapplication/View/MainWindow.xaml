@@ -54,7 +54,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid>
-                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,0,0" VerticalAlignment="Top" Width="404" ItemsSource="{Binding Users}">
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,0,0" VerticalAlignment="Top" Width="404" ItemsSource="{Binding Users}" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="*"/>
                                     <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
@@ -76,7 +76,7 @@
 
                     <Grid Background="#FFE5E5E5">
 
-                        <DataGrid HorizontalAlignment="Left" Margin="66,62,0,90" Width="614" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}">
+                        <DataGrid HorizontalAlignment="Left" Margin="60,62,0,90" Width="654" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id"/>
                                 <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
@@ -91,9 +91,9 @@
                         <Button
                             Command="{Binding DenyRequestorChecked}"
                             HorizontalAlignment="Left"
-                            Width="146"
+                            Width="170"
                             Height="Auto"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="700,298,0,140" IsEnabled="{Binding ActionsRequestor}">
+                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,298,0,140" IsEnabled="{Binding ActionsRequestor}">
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Close" Height="25" Width="25" Margin="10"/>
@@ -104,9 +104,9 @@
                         <Button
                             Command="{Binding AcceptRequestorChecked}"
                             HorizontalAlignment="Left"
-                            Width="146"
+                            Width="170"
                             Height="Auto"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="700,348,0,90" IsEnabled="{Binding ActionsRequestor}">
+                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,348,0,90" IsEnabled="{Binding ActionsRequestor}">
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Check" Height="25" Width="25" Margin="10"/>
@@ -115,7 +115,7 @@
 
                         </Button>
 
-                        <ComboBox DisplayMemberPath="reason" ItemsSource="{Binding StatusDisponibles}" SelectedItem="{Binding SelectedStatus}" Margin="700,252,142,201" IsEnabled="{Binding ActionsRequestor}">
+                        <ComboBox DisplayMemberPath="reason" ItemsSource="{Binding StatusDisponibles}" SelectedItem="{Binding SelectedStatus}" Margin="735,252,107,201" IsEnabled="{Binding ActionsRequestor}">
 
                         </ComboBox>
 
@@ -198,7 +198,7 @@
                         <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,0,0"
                                   VerticalAlignment="Top" Width="404" ItemsSource="{Binding Announcements}"
                                     materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-  materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+  materialDesign:DataGridAssist.ColumnHeaderPadding="8" IsReadOnly="True">
                             <DataGrid.Columns>
 
                                 <DataGridTextColumn Binding="{Binding title}"  Header="Title" Width="*"/>
@@ -236,6 +236,14 @@
                             materialDesign:HintAssist.Hint="Announcement title"
                             />
 
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Rewards">
+                    <Grid Background="#FFE5E5E5">
+                        <DataGrid HorizontalAlignment="Left" Height="352" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True"/>
+                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,112,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
+                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,160,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
+                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,208,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -278,7 +286,7 @@
         </DockPanel>
         <DockPanel Name="panelLeft" HorizontalAlignment="Left" Height="569" LastChildFill="False" VerticalAlignment="Top" Width="57" Background="SlateGray">
 
-            <StackPanel >
+            <StackPanel>
                 <Grid Height="60" Background="#596673" RenderTransformOrigin="0.5,0.5">
                     <Grid.RenderTransform>
                         <TransformGroup>

@@ -19,7 +19,7 @@ namespace desktopapplication.Model
         public string description { get; set; }
         public int Language_Id { get; set; }
         public int Rewards_Id { get; set; }
-    
+
         public virtual Language Language { get; set; }
         public virtual Reward Reward { get; set; }
     }
