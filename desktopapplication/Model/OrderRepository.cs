@@ -14,7 +14,10 @@ namespace desktopapplication.Model
     {
 
         public static Order newOrder( Order o)
+
+
         {
+            
             Order r = (Order)MakeRequest(string.Concat(Utils.ws, "Order"), o, "PUT", "application/json", typeof(Order));
             return o;
         }

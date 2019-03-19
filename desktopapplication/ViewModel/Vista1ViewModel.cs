@@ -32,6 +32,7 @@ namespace desktopapplication.ViewModel
         public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
         public ICommand createClothCommand { get; set; }
+        public ICommand ClothToRequestor { get; set; }
         public ICommand clothesSetMaleCommand { get; set; }
         public ICommand clothesSetFemaleCommand { get; set; }
         public ICommand clothesSetOtherCommand { get; set; }
@@ -82,6 +83,7 @@ namespace desktopapplication.ViewModel
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
+            ClothToRequestor = new RelayCommand(x => claimCloth());
             clothesSetMaleCommand = new RelayCommand(x => ClothesSetMale());
             clothesSetFemaleCommand = new RelayCommand(x => ClothesSetFemale());
             clothesSetOtherCommand = new RelayCommand(x => ClothesSetOther());
@@ -328,14 +330,19 @@ namespace desktopapplication.ViewModel
         private void createCloth()
         {
             Cloth c = new Cloth();
-            c.Size = ClothesSizeSelected;
-            c.Classification = ClothesClassificationSelected;
-            c.Color = getColorByCode();
-            c.Gender = ClothesGenderSelected;
-            c.Warehouse = ClothesWarehouseSelected;
+            c.Size_Id = ClothesSizeSelected.Id;
+            //c.Classification = ClothesClassificationSelected;
+            c.Classification_Id = ClothesClassificationSelected.Id;
+            //c.Color = getColorByCode();
+            //c.Gender = ClothesGenderSelected;
+            //c.Warehouse = ClothesWarehouseSelected;
+            c.Color_Id = getColorByCode().Id;
+            c.Gender_Id= ClothesGenderSelected.Id;
+            c.Warehouse_Id = ClothesWarehouseSelected.Id;
 
             c.active = true;
             c.dateCreated = DateTime.Now;
+            
             ClothesRepository.addCloth(c);
 
             //TODO: sumar punts al donor
@@ -349,11 +356,12 @@ namespace desktopapplication.ViewModel
             List<Cloth> lc = ClothesRepository.getClothes();
 
             Cloth c = lc.Where(x =>
-                x.Gender == ClothesGenderSelected && x.Size == ClothesSizeSelected &&
-                x.Classification == ClothesClassificationSelected && x.Color == getColorByCode()).FirstOrDefault();
+                x.Gender_Id == ClothesGenderSelected.Id && x.Size_Id == ClothesSizeSelected.Id &&
+                x.Classification_Id == ClothesClassificationSelected.Id && x.Color_Id == getColorByCode().Id && x.active==true).FirstOrDefault();
             if (c != null)
             {
-                if (true) //todo: calcular si el requestor tiene puntos suficientes. Si tiene, poner el order a la database, a la cloth poner el atributo active a false y al requester restarle los puntos;
+                if (ClothesSelectedRequestor.MaxClaim.value-ClothesSelectedRequestor.points >= c.Classification.value)
+
 
                 {
                     Order o = new Order();
@@ -366,9 +374,9 @@ namespace desktopapplication.ViewModel
                 {
                     MessageBox.Show("Not enough points available");
                 }
-               
 
-                 }
+
+            }
             else
             {
                 MessageBox.Show("Cloth not available");

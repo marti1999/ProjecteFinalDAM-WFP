@@ -197,7 +197,7 @@
                         <wpfx:ColorPicker x:Name="ColorPicker1_Copy" DisplayColorAndName="false" Margin="244,190,645,260"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
                         <Label Content="Donor" HorizontalAlignment="Left" Margin="594,14,0,0" VerticalAlignment="Top"/>
                         <Label Content="Requestor" HorizontalAlignment="Left" Margin="736,14,0,0" VerticalAlignment="Top"/>
-                        <Button HorizontalAlignment="Left" Margin="694,356,0,0" VerticalAlignment="Top" Width="95" Command="{Binding createClothCommand}" Height="39"
+                        <Button HorizontalAlignment="Left" Margin="694,356,0,0" VerticalAlignment="Top" Width="95" Command="{Binding ClothToRequestor}" Height="39"
                             Content="Donate cloth"
                             Background="#596673" BorderBrush="#596673" IsEnabled="{Binding IsClothClaim}"/>
                         <ComboBox HorizontalAlignment="Left" Margin="561,293,0,0" VerticalAlignment="Top" Width="245"
