@@ -62,10 +62,17 @@ namespace desktopapplication.ViewModel
             IsClothesDonate = true;
 
             requestorThings();
+            rewardsThings();
             populateAnnouncements();
 
             populateClassification();
             populateSizes();
+
+        }
+
+        private void rewardsThings()
+        {
+            initRewardsActions();
         }
 
         private void requestorThings()
@@ -791,7 +798,30 @@ namespace desktopapplication.ViewModel
 
         #endregion
 
+        #region TabRewards
 
+        private List<Reward> _listRewards;
+        public List<Reward> ListRewards
+        {
+            get { return _listRewards; }
+            set
+            {
+                _listRewards = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public void initRewardsActions()
+        {
+            //DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
+            populateRewards();
+        }
+
+        private void populateRewards()
+        {
+            ListRewards = RewardRepository.getAllReward();
+        }
+
+        #endregion
 
     }
 }
