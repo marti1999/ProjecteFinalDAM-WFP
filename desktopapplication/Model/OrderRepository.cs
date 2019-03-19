@@ -18,8 +18,8 @@ namespace desktopapplication.Model
 
         {
             
-            Order r = (Order)MakeRequest(string.Concat(Utils.ws, "Order"), o, "PUT", "application/json", typeof(Order));
-            return o;
+            Order r = (Order)MakeRequest(string.Concat(Utils.ws, "order"), o, "PUT", "application/json", typeof(Order));
+            return r;
         }
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)

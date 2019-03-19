@@ -372,8 +372,8 @@ namespace desktopapplication.ViewModel
 
                 {
                     Order o = new Order();
-                    o.Cloth = c;
-                    o.Requestor = ClothesSelectedRequestor;
+                    o.Clothes_Id = c.Id;
+                    o.Requestor_Id = ClothesSelectedRequestor.Id;
                     o.dateCreated = DateTime.Now;
                     OrderRepository.newOrder(o);
                 }
