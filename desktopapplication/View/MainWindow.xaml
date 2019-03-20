@@ -9,6 +9,7 @@
         xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:ViewModel="clr-namespace:desktopapplication.ViewModel"
         xmlns:p="clr-namespace:desktopapplication.Properties"
+        xmlns:properties="clr-namespace:Xceed.Wpf.AvalonDock.Properties;assembly=Xceed.Wpf.AvalonDock"
         x:Class="desktopapplication.MainWindow"
         mc:Ignorable="d"
 
@@ -246,9 +247,13 @@
                 <TabItem Header="Rewards" Visibility="Visible">
                     <Grid Background="#FFE5E5E5">
                         <DataGrid HorizontalAlignment="Left" Height="352" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True"/>
-                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,112,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
-                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,160,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
-                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,208,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
+                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
+                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
+                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
+                        <Label Content="EN" HorizontalAlignment="Left" Margin="525,80,0,0" VerticalAlignment="Top"/>
+                        <Label Content="CA" HorizontalAlignment="Left" Margin="525,163,0,0" VerticalAlignment="Top"/>
+                        <Label Content="ES" HorizontalAlignment="Left" Margin="525,250,0,0" VerticalAlignment="Top"/>
+                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="525,329,0,0" VerticalAlignment="Top" Width="103" Height="39"/>
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -261,23 +266,22 @@
 
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
-                        <Button Width="150" >
-                            <StackPanel>
-                                <Image Width="auto" Source="pack://siteoforigin:,,,/CustomResources/britishFlag.png" />
-
-
+                        <Button Width="150" Command="{Binding ChangeLangCmd}" CommandParameter="en">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="25px" Source="../CustomResources/ukFlag.jpg" />
+                                <Label Content="{x:Static p:Resources.English}"/>
                             </StackPanel>
                         </Button>
-                        <Button Width="auto" >
-                            <StackPanel>
-                                <Image Source="pack://siteoforigin:,,,/CustomResources/carlistFlag.png" />
-
+                        <Button Width="150" Command="{Binding ChangeLangCmd}" CommandParameter="es">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="25px" Source="/CustomResources/espFlag.jpg" />
+                                <Label Content="{x:Static p:Resources.Spanish}"/>
                             </StackPanel>
                         </Button>
-                        <Button Width="auto" >
-                            <StackPanel>
-                                <Image Source="pack://siteoforigin:,,,/CustomResources/catFlag.png" />
-
+                        <Button Width="150" Command="{Binding ChangeLangCmd}" CommandParameter="ca">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="25px" Source="/CustomResources/catFlag.jpg" />
+                                <Label Content="{x:Static p:Resources.Catalan}"/>
                             </StackPanel>
                         </Button>
                         <Button Content="Export data" Command="{Binding exportDataCommand}"/>

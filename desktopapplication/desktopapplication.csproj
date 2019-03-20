@@ -99,6 +99,11 @@
     <Compile Include="Model\sizeRepository.cs" />
     <Compile Include="Model\Utils.cs" />
     <Compile Include="Model\warehouseRepository.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.es.Designer.cs">
       <DependentUpon>Resources.es.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -164,11 +169,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -186,8 +186,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -201,23 +201,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CustomResources\engFlag.png" />
+    <Resource Include="CustomResources\espFlag.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CustomResources\espFlag.jpg" />
+    <Resource Include="CustomResources\catFlag.jpg" />
+    <Resource Include="CustomResources\ukFlag.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="CustomResources\catFlag.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CustomResources\ukFlag.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CustomResources\britishFlag.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CustomResources\carlistFlag.png" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
