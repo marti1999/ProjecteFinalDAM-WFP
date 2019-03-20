@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WSRobaSegonaMa.Models;
 using Xceed.Wpf.Toolkit;
@@ -67,6 +68,8 @@ namespace desktopapplication.ViewModel
             populateClassification();
             populateSizes();
 
+
+            initLangChanger();
         }
 
         private void rewardsThings()
@@ -815,5 +818,29 @@ namespace desktopapplication.ViewModel
 
         #endregion
 
+
+        #region ChangeLanguages
+
+        public ICommand ChangeLangCmd { get; set; }
+
+        private void initLangChanger()
+        {
+            ChangeLangCmd = new RelayCommand(x => LangChangerSelector(x));
+
+        }
+
+        private void LangChangerSelector(object o)
+        {
+            String btn = o as String;
+
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(btn);
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(btn);
+
+            restartApp();
+
+
+        }
+
+        #endregion
     }
 }

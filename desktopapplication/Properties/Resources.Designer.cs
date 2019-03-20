@@ -61,32 +61,20 @@ namespace desktopapplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Catalan.
         /// </summary>
-        public static System.Drawing.Bitmap britishFlag {
+        public static string Catalan {
             get {
-                object obj = ResourceManager.GetObject("britishFlag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Catalan", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to English.
         /// </summary>
-        public static System.Drawing.Bitmap carlistFlag {
+        public static string English {
             get {
-                object obj = ResourceManager.GetObject("carlistFlag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap catFlag {
-            get {
-                object obj = ResourceManager.GetObject("catFlag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("English", resourceCulture);
             }
         }
         
@@ -105,6 +93,24 @@ namespace desktopapplication.Properties {
         public static string RobaSegonaMa {
             get {
                 return ResourceManager.GetString("RobaSegonaMa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spanish.
+        /// </summary>
+        public static string Spanish {
+            get {
+                return ResourceManager.GetString("Spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
     }

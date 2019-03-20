@@ -37,6 +37,5 @@ namespace desktopapplication
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
             ButtonOpenMenu.Visibility = Visibility.Visible;
         }
-
     }
 }
