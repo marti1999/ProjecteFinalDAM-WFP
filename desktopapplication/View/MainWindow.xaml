@@ -47,7 +47,7 @@
     <Grid>
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="509" Width="1015">
             <TabControl  TabStripPlacement="Top" SelectedIndex="{Binding SelectedTab}" Height="509" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1015"  >
-                <TabItem Header="Donors" >
+                <TabItem Header="Donors" Visibility="Visible" >
                     <Grid Background="#FFE5E5E5" HorizontalAlignment="Left" Width="953" Margin="28,0,0,-22" Height="503" VerticalAlignment="Top"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -72,7 +72,7 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="Requestor">
+                <TabItem Header="Requestor" Visibility="Visible">
 
                     <Grid Background="#FFE5E5E5">
 
@@ -121,14 +121,14 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="Clothes" >
+                <TabItem Header="Clothes" Visibility="Visible" >
                     <Grid Background="#FFE5E5E5"  >
                         <ToggleButton
                             Style="{StaticResource MaterialDesignSwitchToggleButton}" Margin="654,10,282,432" IsChecked="{Binding IsClothClaim}">
 
 
                         </ToggleButton>
-                        
+
 
 
 
@@ -174,27 +174,15 @@
 
                         </Button>
                         <materialDesign:Card Margin="10,0,0,29" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="389" >
-                            <StackPanel/>
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="360" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Gender.gender1}" ClipboardContentBinding="{x:Null}"/>
+                                    <DataGridTextColumn Binding="{Binding Classification.classificationType}" ClipboardContentBinding="{x:Null}"/>
+                                    <DataGridTextColumn Binding="{Binding Color.name}" ClipboardContentBinding="{x:Null}"/>
+                                    <DataGridTextColumn Binding="{Binding Size.size1}" ClipboardContentBinding="{x:Null}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </materialDesign:Card>
-                        <materialDesign:PackIcon
-                            Kind="GenderMaleFemale" Height="28" Width="56" Margin="92,88,0,0" Foreground="#FF596673" />
-                        <ToggleButton
-                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                            ToolTip="Default ToggleButton Style" Margin="82,125,859,328" Foreground="#FF596673" />
-                        <materialDesign:PackIcon
-                            Kind="GenderMale" Height="28" Width="54" Margin="192,88,0,0" Foreground="#FF596673" />
-                        <materialDesign:PackIcon
-                            Kind="GenderFemale" Height="28" Width="58" Margin="296,88,0,0" Foreground="#FF596673" />
-                        <ToggleButton
-                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                            ToolTip="Default ToggleButton Style" Margin="188,125,753,328" Foreground="#FF596673" />
-                        <ToggleButton
-                            Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                            ToolTip="Default ToggleButton Style" Margin="296,125,645,328" Foreground="#FF596673" />
-                        <ComboBox x:Name="classification_Copy" HorizontalAlignment="Left" Margin="92,181,0,0" VerticalAlignment="Top" Width="120"
-                            materialDesign:HintAssist.Hint="Classification"
-                            Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
-                        <wpfx:ColorPicker x:Name="ColorPicker1_Copy" DisplayColorAndName="false" Margin="244,190,645,260"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
                         <Label Content="Donor" HorizontalAlignment="Left" Margin="594,14,0,0" VerticalAlignment="Top"/>
                         <Label Content="Requestor" HorizontalAlignment="Left" Margin="736,14,0,0" VerticalAlignment="Top"/>
                         <Button HorizontalAlignment="Left" Margin="694,356,0,0" VerticalAlignment="Top" Width="95" Command="{Binding ClothToRequestor}" Height="39"
@@ -207,7 +195,7 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="Announcements" >
+                <TabItem Header="Announcements" Visibility="Visible" >
                     <Grid Background="#FFE5E5E5"  >
 
 
@@ -255,7 +243,7 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="Rewards">
+                <TabItem Header="Rewards" Visibility="Visible">
                     <Grid Background="#FFE5E5E5">
                         <DataGrid HorizontalAlignment="Left" Height="352" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True"/>
                         <TextBox HorizontalAlignment="Left" Height="24" Margin="525,112,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
@@ -393,6 +381,7 @@
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <Button
+                            Command="{Binding rewardsClickCommand}"
                            HorizontalAlignment="Left"
                             Width="170"
                            Height="60"
