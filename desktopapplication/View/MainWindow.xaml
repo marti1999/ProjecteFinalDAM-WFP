@@ -46,8 +46,8 @@
 
 
     <Grid>
-        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="509" Width="1015">
-            <TabControl  TabStripPlacement="Top" SelectedIndex="{Binding SelectedTab}" Height="509" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1015"  >
+        <Grid Background="#FFE5E5E5" x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="509" Width="1015">
+            <TabControl  Background="#FFE5E5E5" TabStripPlacement="Top" SelectedIndex="{Binding SelectedTab}" Height="509" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1015" BorderBrush="#FFE5E5E5"  >
                 <TabItem Header="Donors" Visibility="Visible" >
                     <Grid Background="#FFE5E5E5" HorizontalAlignment="Left" Width="953" Margin="28,0,0,-22" Height="503" VerticalAlignment="Top"  >
                         <Grid.ColumnDefinitions>
