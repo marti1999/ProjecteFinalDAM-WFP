@@ -10,29 +10,31 @@ using WSRobaSegonaMa.Models;
 
 namespace desktopapplication.Model
 {
-    class RewardRepository
+    class AdministratorRepository
     {
-        public static List<Reward> getAllReward()
+        public static List<Administrator> getAllAdministrator()
         {
-            List<Reward> lu = new List<Reward>();
-            lu = (List<Reward>)MakeRequest(string.Concat(Utils.ws, "rewards"), null, "GET", "application/json", typeof(List<Reward>));
+            List<Administrator> lu = new List<Administrator>();
+            lu = (List<Administrator>)MakeRequest(string.Concat(Utils.ws, "administrators"), null, "GET", "application/json", typeof(List<Administrator>));
             return lu;
         }
 
-        public static Reward setRewardWithLang(int id, Reward re)
+        public static List<Administrator> getAllAdministrators()
         {
-            Reward r = (Reward)MakeRequest(string.Concat(Utils.ws, "reward/"+id), re, "PUT", "application/json", typeof(Reward));
+            List<Administrator> lu = new List<Administrator>();
+            lu = (List<Administrator>)MakeRequest(string.Concat(Utils.ws, "administratorsTot"), null, "GET", "application/json", typeof(List<Administrator>));
+            return lu;
+        }
+        
+        public static Administrator getAdministratorById(int id)
+        {
+            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administrator/"+id), null, "GET", "application/json", typeof(Administrator));
             return r;
         }
-        public static Reward insertRewardWithLang(Reward re)
+        public static Administrator getAdministratorByEmail(string email)
         {
-            Reward r = (Reward)MakeRequest(string.Concat(Utils.ws, "rewards"), re, "POST", "application/json", typeof(Reward));
+            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administratorEmail/" + email), null, "GET", "application/json", typeof(Administrator));
             return r;
-        }
-
-        public static void deactivateReward(int id)
-        {
-            Reward r = (Reward)MakeRequest(string.Concat(Utils.ws, "reward/" + id), null, "DELETE", "application/json", typeof(Reward));
         }
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)

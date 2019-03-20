@@ -259,11 +259,9 @@
             </TabControl>
         </Grid>
 
-
         <DockPanel Name="panelTop" VerticalAlignment="Top" LastChildFill="False" Background="#596673" Margin="57,0,0,0" Height="60">
             <TextBlock HorizontalAlignment="Center" FontSize="18"  Width="956" FlowDirection="RightToLeft" TextAlignment="Center" Margin="0,18"><Run Text="{x:Static p:Resources.RobaSegonaMa}"/></TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" FlowDirection="RightToLeft" Width="55" >
-
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
                         <Button Width="150" Command="{Binding ChangeLangCmd}" CommandParameter="en">
@@ -290,11 +288,9 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-
-
         </DockPanel>
-        <DockPanel Name="panelLeft" HorizontalAlignment="Left" Height="569" LastChildFill="False" VerticalAlignment="Top" Width="57" Background="SlateGray">
 
+        <DockPanel Name="panelLeft" HorizontalAlignment="Left" Height="569" LastChildFill="False" VerticalAlignment="Top" Width="57" Background="SlateGray">
             <StackPanel>
                 <Grid Height="60" Background="#596673" RenderTransformOrigin="0.5,0.5">
                     <Grid.RenderTransform>

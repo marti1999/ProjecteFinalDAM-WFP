@@ -92,6 +92,7 @@
     <Compile Include="Model\genderRepository.cs" />
     <Compile Include="Model\objects\ClassificationRepository.cs" />
     <Compile Include="Model\OrderRepository.cs" />
+    <Compile Include="Model\AdministratorRepository.cs" />
     <Compile Include="Model\RewardRepository.cs" />
     <Compile Include="Model\requestorRepository.cs" />
     <Compile Include="Model\donorRepository.cs" />
@@ -114,6 +115,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\loginViewModel.cs" />
     <Compile Include="View\logIn.xaml.cs">
       <DependentUpon>logIn.xaml</DependentUpon>
@@ -193,7 +195,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
