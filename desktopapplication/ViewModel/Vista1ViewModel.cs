@@ -29,6 +29,7 @@ namespace desktopapplication.ViewModel
 
         public ICommand requestorReqClickCommand { get; set; }
         public ICommand usersClickCommand { get; set; }
+        public ICommand rewardsClickCommand { get; set; }
         public ICommand clothesClickCommand { get; set; }
         public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
@@ -65,6 +66,8 @@ namespace desktopapplication.ViewModel
             populareColorList();
             PopulateClothesWarehouses();
             IsClothesDonate = true;
+            ClothesPopulate();
+            
 
             requestorThings();
             rewardsThings();
@@ -104,6 +107,7 @@ namespace desktopapplication.ViewModel
         {
             requestorReqClickCommand = new RelayCommand(x => selectHome());
             usersClickCommand = new RelayCommand(x => selectUsers());
+            rewardsClickCommand = new RelayCommand(x => selectRewards());
             clothesClickCommand = new RelayCommand(x => selectClothes());
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
@@ -362,12 +366,12 @@ namespace desktopapplication.ViewModel
             //c.Gender = ClothesGenderSelected;
             //c.Warehouse = ClothesWarehouseSelected;
             c.Color_Id = getColorByCode().Id;
-            c.Gender_Id= ClothesGenderSelected.Id;
+            c.Gender_Id = ClothesGenderSelected.Id;
             c.Warehouse_Id = ClothesWarehouseSelected.Id;
 
             c.active = true;
             c.dateCreated = DateTime.Now;
-            
+
             ClothesRepository.addCloth(c);
 
             //TODO: sumar punts al donor
@@ -382,10 +386,10 @@ namespace desktopapplication.ViewModel
 
             Cloth c = lc.Where(x =>
                 x.Gender_Id == ClothesGenderSelected.Id && x.Size_Id == ClothesSizeSelected.Id &&
-                x.Classification_Id == ClothesClassificationSelected.Id && x.Color_Id == getColorByCode().Id && x.active==true).FirstOrDefault();
+                x.Classification_Id == ClothesClassificationSelected.Id && x.Color_Id == getColorByCode().Id && x.active == true).FirstOrDefault();
             if (c != null)
             {
-                if (ClothesSelectedRequestor.MaxClaim.value-ClothesSelectedRequestor.points >= c.Classification.value)
+                if (ClothesSelectedRequestor.MaxClaim.value - ClothesSelectedRequestor.points >= c.Classification.value)
 
 
                 {
@@ -409,7 +413,7 @@ namespace desktopapplication.ViewModel
 
         }
 
-        //tab Warehouse;
+
         private Warehouse _clotheswarehouseselected;
 
         public Warehouse ClothesWarehouseSelected
@@ -417,6 +421,37 @@ namespace desktopapplication.ViewModel
             get { return _clotheswarehouseselected; }
             set { _clotheswarehouseselected = value; NotifyPropertyChanged(); }
         }
+
+        private List<Cloth> _clothsList;
+
+        public List<Cloth> ClothList
+        {
+            get { return _clothsList; }
+            set
+            {
+                _clothsList = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void ClothesPopulate()
+        {
+            ClothList = ClothesRepository.getClothes().Where(x => x.active == true).ToList();
+
+        }
+
+        private Cloth _clothSelected;
+
+        public Cloth ClothSelected
+        {
+            get { return _clothSelected; }
+            set
+            {
+                _clothSelected = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         private bool _isClothesClaim;
 
@@ -611,6 +646,11 @@ namespace desktopapplication.ViewModel
             requestorThings();
         }
 
+        private void selectRewards()
+        {
+            SelectedTab = 4;
+            Console.WriteLine("Rewards Selected");
+        }
         private void selectUsers()
         {
             SelectedTab = 0;
