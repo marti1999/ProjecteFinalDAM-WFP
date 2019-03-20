@@ -18,7 +18,6 @@ namespace desktopapplication.ViewModel
     class loginViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-       // public logIn loginWindow = new logIn();
         public ICommand loginCommand { get; set; }
         public ICommand PasswordCommand { get; set; }
         public loginViewModel()
@@ -28,6 +27,9 @@ namespace desktopapplication.ViewModel
             loginCommand = new RelayCommand(o => logIn(o));
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ca");
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ca");
+
+
+
         }
 
         private string _adminUsername;
@@ -35,7 +37,9 @@ namespace desktopapplication.ViewModel
         public string AdminUsername
         {
             get { return _adminUsername; }
-            set { _adminUsername = value;
+            set
+            {
+                _adminUsername = value;
                 NotifyPropertyChanged();
             }
         }
@@ -69,14 +73,19 @@ namespace desktopapplication.ViewModel
             a.email = AdminUsername;
             AdminPassword = passwordVar.Password;
             a.password = AdminPassword;
-            
+
             if (Repository.loginAdministrator(a))
             {
+                Administrator currenAdministrator = AdministratorRepository.getAdministratorByEmail(a.email);
+                Properties.Settings.Default.remindUser = currenAdministrator.Id;
+                Properties.Settings.Default.Save();
+
                 Console.WriteLine("Login OK");
                 MainWindow main = new MainWindow();
                 Application.Current.Windows[0].Close();
                 main.ShowDialog();
-            } else
+            }
+            else
             {
                 Console.WriteLine("Incorrect email/password");
             }

@@ -56,6 +56,10 @@ namespace desktopapplication.ViewModel
 
         public Vista1ViewModel()
         {
+            setUserLanguageCulture();
+
+
+
             initCommandsMenu();
             populateDonors();
             populareColorList();
@@ -71,6 +75,17 @@ namespace desktopapplication.ViewModel
 
 
             initLangChanger();
+        }
+
+        private void setUserLanguageCulture()
+        {
+            int userId = Properties.Settings.Default.remindUser;
+            if (userId != 0)
+            {
+                Administrator currentAdministrator = AdministratorRepository.getAdministratorById(userId);
+                LangChangerSelector(currentAdministrator.Language.code);
+            }
+
         }
 
         private void rewardsThings()
@@ -840,12 +855,14 @@ namespace desktopapplication.ViewModel
         private void LangChangerSelector(object o)
         {
             String btn = o as String;
+            if (!Thread.CurrentThread.CurrentCulture.IetfLanguageTag.Equals(btn))
+            {
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(btn);
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(btn);
 
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(btn);
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(btn);
 
-            restartApp();
-
+                restartApp();
+            }
 
         }
 
