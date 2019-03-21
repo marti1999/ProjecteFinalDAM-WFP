@@ -135,4 +135,7 @@
   <data name="Spanish" xml:space="preserve">
     <value>Castellà</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Benvingut</value>
+  </data>
 </root>

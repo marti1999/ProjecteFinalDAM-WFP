@@ -37,7 +37,7 @@
                 </materialDesign:PopupBox>
 
             </StackPanel>
-            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="18"><Run Foreground="White" Text="Welcome"/></TextBlock>
+            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="18"><Run Foreground="White" Text="{x:Static p:Resources.Welcome}"/></TextBlock>
 
         </Grid>
         <Grid Margin="0,60,0,0">

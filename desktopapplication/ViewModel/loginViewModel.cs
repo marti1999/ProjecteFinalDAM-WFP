@@ -25,10 +25,6 @@ namespace desktopapplication.ViewModel
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             loginCommand = new RelayCommand(o => logIn(o));
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ca");
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ca");
-
-
 
         }
 
@@ -83,13 +79,13 @@ namespace desktopapplication.ViewModel
                 Console.WriteLine("Login OK");
                 MainWindow main = new MainWindow();
                 Application.Current.Windows[0].Close();
+
                 main.ShowDialog();
             }
             else
             {
                 Console.WriteLine("Incorrect email/password");
             }
-            //     System.Windows.Forms.Application.Exit();
         }
 
 

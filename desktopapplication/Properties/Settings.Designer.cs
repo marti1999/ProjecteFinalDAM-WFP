@@ -34,5 +34,17 @@ namespace desktopapplication.Properties {
                 this["remindUser"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("default")]
+        public string selectedLang {
+            get {
+                return ((string)(this["selectedLang"]));
+            }
+            set {
+                this["selectedLang"] = value;
+            }
+        }
     }
 }

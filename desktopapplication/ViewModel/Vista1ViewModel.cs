@@ -44,6 +44,7 @@ namespace desktopapplication.ViewModel
         {
             MainWindow main = new MainWindow();
             Application.Current.Windows[0].Close();
+
             main.ShowDialog();
         }
 
@@ -83,7 +84,7 @@ namespace desktopapplication.ViewModel
         private void setUserLanguageCulture()
         {
             int userId = Properties.Settings.Default.remindUser;
-            if (userId != 0)
+            if (userId != 0 && Properties.Settings.Default.selectedLang.Equals("default"))
             {
                 Administrator currentAdministrator = AdministratorRepository.getAdministratorById(userId);
                 LangChangerSelector(currentAdministrator.Language.code);
@@ -899,7 +900,8 @@ namespace desktopapplication.ViewModel
             {
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(btn);
                 Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(btn);
-
+                Properties.Settings.Default.selectedLang = btn;
+                Properties.Settings.Default.Save();
 
                 restartApp();
             }
