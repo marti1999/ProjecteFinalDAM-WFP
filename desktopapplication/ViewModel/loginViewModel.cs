@@ -89,7 +89,7 @@ namespace desktopapplication.ViewModel
             Console.WriteLine(hashString);
 
             hashString = hashString.Substring(0, 32);
-
+            Console.WriteLine(hashString);
 
             AdminPassword = passwordVar.Password;
             a.password = hashString;
