@@ -88,7 +88,16 @@ namespace desktopapplication.ViewModel
             {
                 Administrator currentAdministrator = AdministratorRepository.getAdministratorById(userId);
                 LangChangerSelector(currentAdministrator.Language.code);
+
             }
+
+
+
+            if (Properties.Settings.Default.currentTab != (-1))
+            {
+                SelectedTab = Properties.Settings.Default.currentTab;
+            }
+
 
         }
 
@@ -901,6 +910,7 @@ namespace desktopapplication.ViewModel
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(btn);
                 Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(btn);
                 Properties.Settings.Default.selectedLang = btn;
+                Properties.Settings.Default.currentTab = SelectedTab;
                 Properties.Settings.Default.Save();
 
                 restartApp();

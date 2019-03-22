@@ -46,5 +46,17 @@ namespace desktopapplication.Properties {
                 this["selectedLang"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int currentTab {
+            get {
+                return ((int)(this["currentTab"]));
+            }
+            set {
+                this["currentTab"] = value;
+            }
+        }
     }
 }
