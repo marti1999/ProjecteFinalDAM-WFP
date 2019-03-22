@@ -170,7 +170,7 @@
 
                         </Button>
                         <materialDesign:Card Margin="10,0,0,10" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="418" >
-                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}">
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Gender.gender1}" ClipboardContentBinding="{x:Null}" Width="*" Header="Gender"/>
                                     <DataGridTextColumn Binding="{Binding Classification.classificationType}" ClipboardContentBinding="{x:Null}" Width="*" Header="Type"/>
@@ -193,7 +193,7 @@
 
 
                         </ToggleButton>
-                        <Button HorizontalAlignment="Left" Margin="294,399,0,0" VerticalAlignment="Top" Width="131" Command="{Binding createClothCommand}" Height="39"
+                        <Button HorizontalAlignment="Left" Margin="294,399,0,0" VerticalAlignment="Top" Width="131" Command="{Binding deleteClothCommand}" Height="39"
                             Content="Remove"
                             Background="#596673" BorderBrush="#596673"/>
                     </Grid>

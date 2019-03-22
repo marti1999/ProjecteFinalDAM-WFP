@@ -32,6 +32,11 @@ namespace desktopapplication.Model.objects
             return c2;
         }
 
+        public static void deleteCloth(Cloth c)
+        {
+        Cloth c2 = (Cloth) MakeRequest(string.Concat(ws1, "cloth/", c.Id), null, "DELETE", "application/json", typeof(Cloth));
+        }
+
 
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
         //  requestUrl: Url completa del Web Service, amb l'opció sol·licitada
