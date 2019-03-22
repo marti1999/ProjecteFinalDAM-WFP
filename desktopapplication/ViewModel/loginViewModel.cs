@@ -94,6 +94,7 @@ namespace desktopapplication.ViewModel
             {
                 Administrator currenAdministrator = AdministratorRepository.getAdministratorByEmail(a.email);
                 Properties.Settings.Default.remindUser = currenAdministrator.Id;
+                Properties.Settings.Default.currentTab = -1;
                 Properties.Settings.Default.Save();
 
                 Console.WriteLine("Login OK");
