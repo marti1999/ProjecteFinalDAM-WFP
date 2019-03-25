@@ -867,6 +867,76 @@ namespace desktopapplication.ViewModel
         #endregion
 
         #region TabRewards
+        public ICommand ActualitarRewardBtnCmd { get; set; }
+        public ICommand InsertRewardBtnCmd { get; set; }
+        public ICommand DeleteRewardBtnCmd { get; set; }
+
+
+        private string _tbRewardsCA;
+        public string TbRewardsCA
+        {
+            get { return _tbRewardsCA; }
+            set
+            {
+                _tbRewardsCA = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private string _tbDescRewardsCA;
+        public string TbDescRewardsCA
+        {
+            get { return _tbDescRewardsCA; }
+            set
+            {
+                _tbDescRewardsCA = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _tbRewardsEN;
+        public string TbRewardsEN
+        {
+            get { return _tbRewardsEN; }
+            set
+            {
+                _tbRewardsEN = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _tbDescRewardsEN;
+        public string TbDescRewardsEN
+        {
+            get { return _tbDescRewardsEN; }
+            set
+            {
+                _tbDescRewardsEN = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _tbRewardsES;
+        public string TbRewardsES
+        {
+            get { return _tbRewardsES; }
+            set
+            {
+                _tbRewardsES = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _tbDescRewardsES;
+        public string TbDescRewardsES
+        {
+            get { return _tbDescRewardsES; }
+            set
+            {
+                _tbDescRewardsES = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         private List<Reward> _listRewards;
         public List<Reward> ListRewards
@@ -878,15 +948,55 @@ namespace desktopapplication.ViewModel
                 NotifyPropertyChanged();
             }
         }
+
+        private Reward _selectedReward;
+        public Reward SelectedReward
+        {
+            get { return _selectedReward; }
+            set
+            {
+                _selectedReward = value;
+                populateTextBoxRewards();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void populateTextBoxRewards()
+        {
+            //TbRewardsCA = SelectedReward.RewardInfoLangs.
+        }
+
         public void initRewardsActions()
         {
-            //DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
+            ActualitarRewardBtnCmd = new RelayCommand(x => updateReward());
+            InsertRewardBtnCmd = new RelayCommand(x => insertReward());
+            DeleteRewardBtnCmd = new RelayCommand(x => deleteReward());
             populateRewards();
         }
 
         private void populateRewards()
         {
             ListRewards = RewardRepository.getAllReward();
+
+        }
+
+        private void updateReward()
+        {
+            //RewardRepository.setRewardWithLang();
+            populateRewards();
+        }
+        private void insertReward()
+        {
+            RewardInfoLang rewInfo = new RewardInfoLang();
+
+
+            RewardRepository.insertRewardWithLang(SelectedReward);
+            populateRewards();
+        }
+        private void deleteReward()
+        {
+
+            populateRewards();
         }
 
         #endregion
