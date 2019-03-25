@@ -12,6 +12,8 @@
     <Window.DataContext>
         <ViewModel:loginViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+    </Window.Resources>
     <Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#596673">
             <Grid.Effect>
@@ -21,9 +23,49 @@
 
         </Grid>
         <Grid Margin="0,60,0,0">
-            <TextBox HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" Text="{Binding AdminUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="158" Margin="0,0,0,100"/>
-            <PasswordBox PasswordChar="{Binding PasswordCommand}" Name="PasswordText"  HorizontalAlignment="Center" Height="26" VerticalAlignment="Center" Width="158" Margin="0,70,0,0"></PasswordBox>
-            <Button Content="{x:Static p:Resources.Login}" HorizontalAlignment="Left" Margin="184,256,0,0" VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}" CommandParameter="{Binding ElementName=PasswordText}"/>
+
+
+
+            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                <StackPanel Margin="0,0,0,30"  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <materialDesign:PackIcon
+                        Kind="Account"
+                        Foreground="DimGray"
+                        Height="24"
+                        Margin="10"
+                        Width="24"  />
+                    <TextBox   HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" Text="{Binding AdminUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="158" 
+                    />
+                </StackPanel>
+
+                <StackPanel   Margin="0,0,0,30" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <materialDesign:PackIcon
+                        Kind="Lock"
+                        Foreground="DimGray"
+                        Height="24"
+                        Margin="10"
+                        Width="24"  />
+                    <PasswordBox PasswordChar="{Binding PasswordCommand}" Name="PasswordText"  HorizontalAlignment="Center" Height="26" VerticalAlignment="Center" Width="158" ></PasswordBox>
+
+                </StackPanel>
+                <StackPanel   VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <Button Content="{x:Static p:Resources.Login}"  VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}" CommandParameter="{Binding ElementName=PasswordText}"
+                    />
+                </StackPanel>
+
+            </StackPanel>
+
+
+
+
+
+
+
+
+
+
+
         </Grid>
 
     </Grid>

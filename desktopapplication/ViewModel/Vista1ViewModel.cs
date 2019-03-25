@@ -34,6 +34,7 @@ namespace desktopapplication.ViewModel
         public ICommand announcementsClickCommand { get; set; }
         public ICommand createAnnouncementCommand { get; set; }
         public ICommand createClothCommand { get; set; }
+        public ICommand deleteClothCommand { get; set; }
         public ICommand ClothToRequestor { get; set; }
         public ICommand clothesSetMaleCommand { get; set; }
         public ICommand clothesSetFemaleCommand { get; set; }
@@ -122,6 +123,7 @@ namespace desktopapplication.ViewModel
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
+            deleteClothCommand = new RelayCommand(x => deleteCloth());
             ClothToRequestor = new RelayCommand(x => claimCloth());
             clothesSetMaleCommand = new RelayCommand(x => ClothesSetMale());
             clothesSetFemaleCommand = new RelayCommand(x => ClothesSetFemale());
@@ -366,6 +368,13 @@ namespace desktopapplication.ViewModel
 
         #region TabClothes
 
+        private void deleteCloth()
+        {
+            Cloth c = ClothSelected;
+            ClothesRepository.deleteCloth(c);
+            ClothesPopulate();
+
+        }
         private void createCloth()
         {
             Cloth c = new Cloth();
