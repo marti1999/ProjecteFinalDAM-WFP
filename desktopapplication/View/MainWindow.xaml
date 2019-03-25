@@ -55,9 +55,9 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid>
-                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,0,0" VerticalAlignment="Top" Width="404" ItemsSource="{Binding Users}" IsReadOnly="True">
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,-176,0" VerticalAlignment="Top" Width="642" ItemsSource="{Binding Donors}" SelectedItem="{Binding DonorSelected}" IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
                                     <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
                                     <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="Name" Width="*"/>
                                     <DataGridTextColumn Binding="{Binding lastName}" ClipboardContentBinding="{x:Null}" Header="Last Name" Width="*"/>
@@ -66,6 +66,7 @@
                                     <DataGridCheckBoxColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="Active" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
+                            <Button Content= "Delete" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
                         </Grid>
                         <Grid Grid.Column="1" >
 

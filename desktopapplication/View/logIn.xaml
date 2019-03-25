@@ -8,7 +8,7 @@
         xmlns:ViewModel="clr-namespace:desktopapplication.ViewModel"
         xmlns:p="clr-namespace:desktopapplication.Properties"
         mc:Ignorable="d"
-        Title="logIn" Height="448.454" Width="534.021">
+        Title="logIn" Height="448.454" Width="418.521">
     <Window.DataContext>
         <ViewModel:loginViewModel/>
     </Window.DataContext>
