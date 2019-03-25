@@ -65,6 +65,7 @@ namespace desktopapplication.ViewModel
 
             initCommandsMenu();
             populateDonors();
+            populateClothDonors();
             populareColorList();
             PopulateClothesWarehouses();
             IsClothesDonate = true;
@@ -173,8 +174,21 @@ namespace desktopapplication.ViewModel
 
         private void populateDonors()
         {
+            Donors = new List<Donor>();
+            Donors = donorRepository.getAllDonors();
+        }
+        private void populateClothDonors()
+        {
             ClothesDonors = new List<Donor>();
-            ClothesDonors = donorRepository.getAllDonors();
+            ClothesDonors = donorRepository.getAllDonors().Where(x => x.active == true).ToList();
+        }
+
+        private Donor _donorSelected;
+
+        public Donor DonorSelected
+        {
+            get { return _donorSelected; }
+            set { _donorSelected = value; NotifyPropertyChanged(); }
         }
 
         private Donor _clothesDonorSelected;
