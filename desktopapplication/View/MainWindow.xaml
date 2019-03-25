@@ -250,14 +250,34 @@
                 </TabItem>
                 <TabItem Header="Rewards" Visibility="Visible">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid HorizontalAlignment="Left" Height="352" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True"/>
-                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
-                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
-                        <TextBox HorizontalAlignment="Left" Height="24" Margin="525,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
-                        <Label Content="EN" HorizontalAlignment="Left" Margin="525,80,0,0" VerticalAlignment="Top"/>
-                        <Label Content="CA" HorizontalAlignment="Left" Margin="525,163,0,0" VerticalAlignment="Top"/>
-                        <Label Content="ES" HorizontalAlignment="Left" Margin="525,250,0,0" VerticalAlignment="Top"/>
-                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="525,329,0,0" VerticalAlignment="Top" Width="103" Height="39"/>
+                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}"/>
+                        <TextBox
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Price}" Text="{Binding TbPriceRewards, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,153,267,289" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Title}" Text="{Binding TbRewardsEN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,153,267,289" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Description}" Text="{Binding TbDescRewardsEN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="764,153,28,289" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Title}" Text="{Binding TbRewardsCA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,236,267,206" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Description}" Text="{Binding TbDescRewardsCA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="764,236,28,206" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Title}" Text="{Binding TbRewardsES, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,318,267,124" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Description}" Text="{Binding TbDescRewardsES, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="764,318,28,124" />
+                        <Label Content="EN" HorizontalAlignment="Left" Margin="525,122,0,0" VerticalAlignment="Top"/>
+                        <Label Content="CA" HorizontalAlignment="Left" Margin="525,205,0,0" VerticalAlignment="Top"/>
+                        <Label Content="ES" HorizontalAlignment="Left" Margin="525,287,0,0" VerticalAlignment="Top"/>
+                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="656,375,0,0" VerticalAlignment="Top" Width="103" Height="39" Command="{Binding ActualitarRewardBtnCmd}"/>
+                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="525,375,0,0" VerticalAlignment="Top" Width="103" Height="39" Command="{Binding InsertRewardBtnCmd}"/>
+                        <Button Content="{x:Static p:Resources.Delete}" HorizontalAlignment="Left" Margin="764,375,0,0" VerticalAlignment="Top" Width="217" Height="39" Command="{Binding DeleteRewardBtnCmd}"/>
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -307,10 +327,10 @@
                     </Grid.RenderTransform>
                     <Button x:Name="ButtonOpenMenu" Height="60" Width="50" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Top"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="AntiqueWhite" Click="ButtonOpenMenu_Click"
                             >
-                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
+                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25" Foreground="White"/>
                     </Button>
                     <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="50" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="AntiqueWhite" Click="ButtonCloseMenu_Click">
-                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
+                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25" Foreground="White"/>
                     </Button>
 
                 </Grid>
