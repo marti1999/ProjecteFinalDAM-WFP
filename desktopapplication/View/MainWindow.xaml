@@ -252,7 +252,7 @@
                         <DataGrid HorizontalAlignment="Left" Height="354" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}"/>
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Price}" Text="{Binding TbPriceRewards, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,153,267,289" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,78,267,364" />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Title}" Text="{Binding TbRewardsEN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,153,267,289" />

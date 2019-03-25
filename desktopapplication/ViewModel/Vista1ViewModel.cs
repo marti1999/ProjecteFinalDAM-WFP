@@ -881,6 +881,17 @@ namespace desktopapplication.ViewModel
         public ICommand DeleteRewardBtnCmd { get; set; }
 
 
+        private string _tbPriceRewards;
+        public string TbPriceRewards
+        {
+            get { return _tbPriceRewards; }
+            set
+            {
+                _tbPriceRewards = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         private string _tbRewardsCA;
         public string TbRewardsCA
         {
