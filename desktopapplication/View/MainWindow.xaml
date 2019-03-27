@@ -66,11 +66,32 @@
                                     <DataGridCheckBoxColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="Active" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content= "Delete" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
+                            <Button Content= "Delete" Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
                         </Grid>
                         <Grid Grid.Column="1" >
+                            <TextBox
+                                materialDesign:HintAssist.Hint="Name"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="212,52,178,412" Text="{Binding DonorName}" />
+                            <TextBox
+                                materialDesign:HintAssist.Hint="Last Name"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="343,52,47,412" Text="{Binding DonorLastName}" />
+                            <TextBox
+                                materialDesign:HintAssist.Hint="Email"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="212,113,47,351" Text="{Binding DonorEmail}" />
+
+                            <DatePicker
+                                materialDesign:HintAssist.Hint="Birth date"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="212,179,188,295" Text="{Binding DonorBirthDate}" />
+
+                            <ToggleButton
+                                Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                ToolTip="MaterialDesignSwitchToggleButton"
+                                IsChecked="{Binding DonorActive}" Margin="382,179,47,298" 
+                                />
+                            <Label Content="Active: " HorizontalAlignment="Left" Margin="328,178,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
+                        <Button Content= "Save changes" Command="{Binding DonorUpdateCommand}" HorizontalAlignment="Left" Margin="212,246,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
 
                     </Grid>
                 </TabItem>

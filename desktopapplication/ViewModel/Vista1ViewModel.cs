@@ -35,6 +35,8 @@ namespace desktopapplication.ViewModel
         public ICommand createAnnouncementCommand { get; set; }
         public ICommand createClothCommand { get; set; }
         public ICommand deleteClothCommand { get; set; }
+        public ICommand deleteDonorCommand { get; set; }
+        public ICommand DonorUpdateCommand { get; set; }
         public ICommand ClothToRequestor { get; set; }
         public ICommand clothesSetMaleCommand { get; set; }
         public ICommand clothesSetFemaleCommand { get; set; }
@@ -70,7 +72,7 @@ namespace desktopapplication.ViewModel
             PopulateClothesWarehouses();
             IsClothesDonate = true;
             ClothesPopulate();
-            
+
 
             requestorThings();
             rewardsThings();
@@ -125,6 +127,8 @@ namespace desktopapplication.ViewModel
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
             deleteClothCommand = new RelayCommand(x => deleteCloth());
+            deleteDonorCommand = new RelayCommand(x => DonorDelete());
+            DonorUpdateCommand = new RelayCommand(x => DonorUpdate());
             ClothToRequestor = new RelayCommand(x => claimCloth());
             clothesSetMaleCommand = new RelayCommand(x => ClothesSetMale());
             clothesSetFemaleCommand = new RelayCommand(x => ClothesSetFemale());
@@ -160,6 +164,14 @@ namespace desktopapplication.ViewModel
             }
         }
 
+        private void DonorDelete()
+        {
+            Donor d = DonorSelected;
+            donorRepository.DeleteDonor(d);
+            populateDonors();
+
+        }
+
         private List<Donor> _clothesDonors;
 
         public List<Donor> ClothesDonors
@@ -188,8 +200,80 @@ namespace desktopapplication.ViewModel
         public Donor DonorSelected
         {
             get { return _donorSelected; }
-            set { _donorSelected = value; NotifyPropertyChanged(); }
+            set
+            {
+                _donorSelected = value; NotifyPropertyChanged();
+                DonorName = value.name;
+                DonorLastName = value.lastName;
+                DonorActive = value.active;
+                DonorEmail = value.email;
+                DonorBirthDate = value.birthDate;
+            }
         }
+
+        public void DonorUpdate()
+        {
+            Donor d = DonorSelected;
+            d.name = DonorName;
+            d.lastName = DonorLastName;
+            d.email = DonorEmail;
+            d.active = DonorActive;
+            d.birthDate = DonorBirthDate;
+            
+            //todo donor repository
+        }
+
+        private string _donorName;
+
+        public string DonorName
+        {
+            get { return _donorName; }
+            set
+            {
+                _donorName = value; NotifyPropertyChanged();
+            }
+        }
+
+        private string _donorLastName;
+
+        public string DonorLastName
+        {
+            get { return _donorLastName; }
+            set
+            {
+                _donorLastName = value; NotifyPropertyChanged();
+            }
+        }
+
+        private string _donorEmail;
+
+        public string DonorEmail
+        {
+            get { return _donorEmail; }
+            set
+            {
+                _donorEmail = value; NotifyPropertyChanged();
+            }
+        }
+
+        private bool _donorActive;
+
+        public bool DonorActive
+        {
+            get { return _donorActive; }
+            set { _donorActive = value; NotifyPropertyChanged(); }
+        }
+
+        private DateTime _donorBirthDate;
+
+        public DateTime DonorBirthDate
+        {
+            get { return _donorBirthDate;}
+            set { _donorBirthDate = value; NotifyPropertyChanged(); }
+        }
+
+
+
 
         private Donor _clothesDonorSelected;
 
