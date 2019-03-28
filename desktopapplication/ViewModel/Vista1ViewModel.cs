@@ -72,7 +72,7 @@ namespace desktopapplication.ViewModel
             PopulateClothesWarehouses();
             IsClothesDonate = true;
             ClothesPopulate();
-            
+
 
 
             requestorThings();
@@ -495,10 +495,10 @@ namespace desktopapplication.ViewModel
             c.Size_Id = ClothesSizeSelected.Id;
             //c.Classification = ClothesClassificationSelected;
             c.Classification_Id = ClothesClassificationSelected.Id;
-            //c.Color = getColorByCode();
+            c.Color = getColorByCode();
             //c.Gender = ClothesGenderSelected;
             //c.Warehouse = ClothesWarehouseSelected;
-            c.Color_Id = getColorByCode().Id;
+            //c.Color_Id = getColorByCode().Id;
             c.Gender_Id = ClothesGenderSelected.Id;
             c.Warehouse_Id = ClothesWarehouseSelected.Id;
 
@@ -1097,7 +1097,42 @@ namespace desktopapplication.ViewModel
 
         private void populateTextBoxRewards()
         {
-            //TbRewardsCA = SelectedReward.RewardInfoLangs.
+            emptyFields();
+            TbPriceRewards = SelectedReward.neededPoints.ToString();
+            List<RewardInfoLang> listRewardInfo = RewardInfoLangRepository.getRewardInfoLangFromReward(SelectedReward.Id);
+            if (listRewardInfo != null)
+            {
+                foreach (RewardInfoLang rewardInfo in listRewardInfo)
+                {
+                    if (rewardInfo.Language.code.ToLower().Equals("es"))
+                    {
+                        TbRewardsES = rewardInfo.title;
+                        TbDescRewardsES = rewardInfo.description;
+                    }
+                    else if (rewardInfo.Language.code.ToLower().Equals("ca"))
+                    {
+                        TbRewardsCA = rewardInfo.title;
+                        TbDescRewardsCA = rewardInfo.description;
+                    }
+                    else if (rewardInfo.Language.code.ToLower().Equals("en"))
+                    {
+                        TbRewardsEN = rewardInfo.title;
+                        TbDescRewardsEN = rewardInfo.description;
+                    }
+                }
+            }
+
+        }
+
+        public void emptyFields()
+        {
+            TbPriceRewards = "";
+            TbRewardsES = "";
+            TbDescRewardsES = "";
+            TbRewardsCA = "";
+            TbDescRewardsCA = "";
+            TbRewardsEN = "";
+            TbDescRewardsEN = "";
         }
 
         public void initRewardsActions()
@@ -1121,11 +1156,32 @@ namespace desktopapplication.ViewModel
         }
         private void insertReward()
         {
-            RewardInfoLang rewInfo = new RewardInfoLang();
+            Reward reward = new Reward();
+            if (TbPriceRewards != "")
+            {
+                reward.neededPoints = int.Parse(TbPriceRewards);
+                reward.active = true;
+                reward.dateCreated = DateTime.Now;
+
+                RewardInfoLang rwInfo = new RewardInfoLang();
+
+                rwInfo.title = TbRewardsES;
+                rwInfo.description = TbDescRewardsES;
+                reward.RewardInfoLangs.Add(rwInfo);
+
+                rwInfo.title = TbRewardsCA;
+                rwInfo.description = TbDescRewardsCA;
+                reward.RewardInfoLangs.Add(rwInfo);
+
+                rwInfo.title = TbRewardsEN;
+                rwInfo.description = TbDescRewardsEN;
+                //rwInfo.Language_Id = LanguageRepository.//   language/getcode 
+                reward.RewardInfoLangs.Add(rwInfo);
 
 
-            RewardRepository.insertRewardWithLang(SelectedReward);
-            populateRewards();
+                RewardRepository.insertRewardWithLang(reward);
+                populateRewards();
+            }
         }
         private void deleteReward()
         {

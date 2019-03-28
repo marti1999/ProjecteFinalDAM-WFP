@@ -94,6 +94,8 @@
     <Compile Include="Model\objects\RequestorMod.cs" />
     <Compile Include="Model\OrderRepository.cs" />
     <Compile Include="Model\AdministratorRepository.cs" />
+    <Compile Include="Model\LanguageRepository.cs" />
+    <Compile Include="Model\RewardInfoLangRepository.cs" />
     <Compile Include="Model\RewardRepository.cs" />
     <Compile Include="Model\requestorRepository.cs" />
     <Compile Include="Model\donorRepository.cs" />

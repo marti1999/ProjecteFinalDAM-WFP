@@ -105,9 +105,8 @@ namespace desktopapplication.ViewModel
             }
 
             string hashString = System.Text.Encoding.Default.GetString(hash);
-            Console.WriteLine(hashString);
 
-            hashString = hashString.Substring(0, 32);
+            //hashString = hashString.Substring(0, 32);
             Console.WriteLine(hashString);
 
             AdminPassword = passwordVar.Password;
