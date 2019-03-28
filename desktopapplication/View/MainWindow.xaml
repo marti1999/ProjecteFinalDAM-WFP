@@ -81,7 +81,7 @@
 
                             <DatePicker
                                 materialDesign:HintAssist.Hint="Birth date"
-                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="212,179,188,295" Text="{Binding DonorBirthDate}" />
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="212,179,188,295" Text="{Binding DonorBirthDate , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                             <ToggleButton
                                 Style="{StaticResource MaterialDesignSwitchToggleButton}"
@@ -301,6 +301,35 @@
                         <Button Content="{x:Static p:Resources.Delete}" HorizontalAlignment="Left" Margin="764,375,0,0" VerticalAlignment="Top" Width="217" Height="39" Command="{Binding DeleteRewardBtnCmd}"/>
                     </Grid>
                 </TabItem>
+                <TabItem Header="Warehouses" Visibility="Visible">
+                    <Grid>
+                        <!--<StackPanel  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,50,0"/>
+                            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0"/>
+
+                        </StackPanel>-->
+                        <DataGrid Margin="52,18,593,255" />
+                        <DataGrid Margin="602,55,81,166"/>
+                        <TextBox
+                            materialDesign:HintAssist.Hint="City"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,300,751,139" Text="{Binding DonorName}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Postal Code"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,300,611,139" Text="{Binding DonorName}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Street"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,364,751,75" Text="{Binding DonorName}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Street Number"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,364,611,75" Text="{Binding DonorName}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Name"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,254,611,185" Text="{Binding DonorName}" />
+
+                    </Grid>
+
+                </TabItem>
+
             </TabControl>
         </Grid>
 

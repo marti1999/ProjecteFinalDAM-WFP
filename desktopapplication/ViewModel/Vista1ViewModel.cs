@@ -72,6 +72,7 @@ namespace desktopapplication.ViewModel
             PopulateClothesWarehouses();
             IsClothesDonate = true;
             ClothesPopulate();
+            
 
 
             requestorThings();
@@ -203,11 +204,23 @@ namespace desktopapplication.ViewModel
             set
             {
                 _donorSelected = value; NotifyPropertyChanged();
-                DonorName = value.name;
-                DonorLastName = value.lastName;
-                DonorActive = value.active;
-                DonorEmail = value.email;
-                DonorBirthDate = value.birthDate;
+                if (value != null)
+                {
+                    DonorName = value.name;
+                    DonorLastName = value.lastName;
+                    DonorActive = value.active;
+                    DonorEmail = value.email;
+                    DonorBirthDate = value.birthDate.ToString();
+                }
+                else
+                {
+                    DonorName = null;
+                    DonorLastName = null;
+                    DonorActive = false;
+                    DonorEmail = null;
+                    DonorBirthDate = null; ;
+                }
+                
             }
         }
 
@@ -218,9 +231,12 @@ namespace desktopapplication.ViewModel
             d.lastName = DonorLastName;
             d.email = DonorEmail;
             d.active = DonorActive;
-            d.birthDate = DonorBirthDate;
+            d.birthDate = Convert.ToDateTime(DonorBirthDate);
+
+
+            Donor d2 = donorRepository.updateDonor(d);
+            populateDonors();
             
-            //todo donor repository
         }
 
         private string _donorName;
@@ -264,9 +280,9 @@ namespace desktopapplication.ViewModel
             set { _donorActive = value; NotifyPropertyChanged(); }
         }
 
-        private DateTime _donorBirthDate;
+        private string _donorBirthDate;
 
-        public DateTime DonorBirthDate
+        public string DonorBirthDate
         {
             get { return _donorBirthDate;}
             set { _donorBirthDate = value; NotifyPropertyChanged(); }
