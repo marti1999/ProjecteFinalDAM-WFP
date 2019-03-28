@@ -17,7 +17,19 @@ namespace desktopapplication.Model
             return lu;
         }
 
-       
+        public static Donor updateDonor(Donor d)
+        {
+            Donor d2 = (Donor)MakeRequest(string.Concat(Utils.ws, "donor/", d.Id), d, "PUT", "application/json", typeof(Donor));
+            return d2;
+        }
+
+        public static Donor DeleteDonor(Donor d0)
+        {
+            
+            Donor d = (Donor)MakeRequest(string.Concat(Utils.ws, "donor/",d0.Id ), null, "DELETE", "application/json", typeof(Donor));
+            return d;
+        }
+
 
 
 

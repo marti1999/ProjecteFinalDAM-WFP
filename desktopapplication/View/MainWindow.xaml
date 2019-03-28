@@ -66,11 +66,32 @@
                                     <DataGridCheckBoxColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="Active" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content= "Delete" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
+                            <Button Content= "Delete" Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
                         </Grid>
                         <Grid Grid.Column="1" >
+                            <TextBox
+                                materialDesign:HintAssist.Hint="Name"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="212,52,178,412" Text="{Binding DonorName}" />
+                            <TextBox
+                                materialDesign:HintAssist.Hint="Last Name"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="343,52,47,412" Text="{Binding DonorLastName}" />
+                            <TextBox
+                                materialDesign:HintAssist.Hint="Email"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="212,113,47,351" Text="{Binding DonorEmail}" />
+
+                            <DatePicker
+                                materialDesign:HintAssist.Hint="Birth date"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="212,179,188,295" Text="{Binding DonorBirthDate , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                            <ToggleButton
+                                Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                ToolTip="MaterialDesignSwitchToggleButton"
+                                IsChecked="{Binding DonorActive}" Margin="382,179,47,298" 
+                                />
+                            <Label Content="Active: " HorizontalAlignment="Left" Margin="328,178,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
+                        <Button Content= "Save changes" Command="{Binding DonorUpdateCommand}" HorizontalAlignment="Left" Margin="212,246,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
 
                     </Grid>
                 </TabItem>
@@ -280,6 +301,35 @@
                         <Button Content="{x:Static p:Resources.Delete}" HorizontalAlignment="Left" Margin="841,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding DeleteRewardBtnCmd}"/>
                     </Grid>
                 </TabItem>
+                <TabItem Header="Warehouses" Visibility="Visible">
+                    <Grid>
+                        <!--<StackPanel  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,50,0"/>
+                            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0"/>
+
+                        </StackPanel>-->
+                        <DataGrid Margin="52,18,593,255" />
+                        <DataGrid Margin="602,55,81,166"/>
+                        <TextBox
+                            materialDesign:HintAssist.Hint="City"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,300,751,139" Text="{Binding DonorName}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Postal Code"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,300,611,139" Text="{Binding DonorName}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Street"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,364,751,75" Text="{Binding DonorName}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Street Number"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,364,611,75" Text="{Binding DonorName}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Name"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,254,611,185" Text="{Binding DonorName}" />
+
+                    </Grid>
+
+                </TabItem>
+
             </TabControl>
         </Grid>
 
