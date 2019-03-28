@@ -26,9 +26,9 @@
 
 
 
-            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Opacity="{Binding Opacity}" Background="White"  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="357" Width="411">
 
-                <StackPanel Margin="0,0,0,30"  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel Margin="0,100,0,30"  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                     <materialDesign:PackIcon
                         Kind="Account"
                         Foreground="DimGray"
@@ -55,6 +55,12 @@
                 </StackPanel>
 
             </StackPanel>
+            <ProgressBar
+                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                Visibility="{Binding Progress}"
+                
+                IsIndeterminate="True" Height="Auto" Margin="190,162,183,159" Width="Auto" />
+
 
 
 

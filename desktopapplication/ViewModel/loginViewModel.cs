@@ -27,6 +27,9 @@ namespace desktopapplication.ViewModel
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             loginCommand = new RelayCommand(o => logIn(o));
+            Progress = "HIDDEN";
+            Opacity = 1;
+
 
         }
 
@@ -40,6 +43,22 @@ namespace desktopapplication.ViewModel
                 _adminUsername = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        private double _opacity;
+
+        public double Opacity
+        {
+            get { return _opacity; }
+            set { _opacity = value; NotifyPropertyChanged(); }
+        }
+
+        private string _progress;
+
+        public String Progress
+        {
+            get { return _progress; }
+            set { _progress = value; NotifyPropertyChanged(); }
         }
 
         private string _adminPassword;
@@ -65,6 +84,10 @@ namespace desktopapplication.ViewModel
 
         private async void logIn(object parameter)
         {
+            Opacity = 0.3;
+            Progress = "VISIBLE";
+
+
             var passwordVar = parameter as PasswordBox;
 
             Administrator a = new Administrator();
@@ -105,7 +128,10 @@ namespace desktopapplication.ViewModel
             }
             else
             {
-                Console.WriteLine("Incorrect email/password");
+                //Progress = "HIDDEN";
+                //Opacity = 1;
+                //Console.WriteLine("Incorrect email/password");
+                //MessageBox.Show("Incorrect email/password");
             }
         }
 
