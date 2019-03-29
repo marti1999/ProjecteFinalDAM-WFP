@@ -105,9 +105,11 @@ namespace desktopapplication.ViewModel
         private  void logIn(object parameter)
         {
             loginAnimation();
+            bool isLogin;
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
+                
                 logInActions(parameter);
             }).Start();
             
@@ -144,16 +146,21 @@ namespace desktopapplication.ViewModel
 
             if (Repository.loginAdministrator(a))
             {
+                Thread.Sleep(1500);
                 Administrator currenAdministrator = AdministratorRepository.getAdministratorByEmail(a.email);
                 Properties.Settings.Default.remindUser = currenAdministrator.Id;
                 Properties.Settings.Default.currentTab = -1;
                 Properties.Settings.Default.Save();
 
                 Console.WriteLine("Login OK");
-                MainWindow main = new MainWindow();
-                Application.Current.Windows[0].Close();
+                Application.Current.Dispatcher.Invoke((Action)delegate {
+                    
+                    MainWindow main = new MainWindow();
+                    Application.Current.Windows[0].Close();
 
-                main.ShowDialog();
+                    main.ShowDialog();
+                });
+             
             }
             else
             {
