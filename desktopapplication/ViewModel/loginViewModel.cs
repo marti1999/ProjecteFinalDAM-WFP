@@ -93,19 +93,25 @@ namespace desktopapplication.ViewModel
 
         private  void loginAnimation()
         {
+
             Opacity = 0.3;
             Progress = "VISIBLE";
             PanelEnabled = false;
 
-            MessageBox.Show("test");
+            
             //CommandManager.InvalidateRequerySuggested();
         }
 
         private  void logIn(object parameter)
         {
             loginAnimation();
-            logInActions(parameter);
-            Console.Write("test");
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                logInActions(parameter);
+            }).Start();
+            
+            
            
 
         }
