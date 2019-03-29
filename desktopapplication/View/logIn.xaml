@@ -19,16 +19,18 @@
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
-            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="18"><Run Foreground="White" Text="{x:Static p:Resources.Welcome}"/></TextBlock>
+            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="18"><Run Foreground="White" Text="Welcome}"/></TextBlock>
 
         </Grid>
         <Grid Margin="0,60,0,0">
 
 
 
-            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel 
+                IsEnabled="{Binding PanelEnabled}" Opacity="{Binding Opacity}" Background="White" 
+                Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="357" Width="411">
 
-                <StackPanel Margin="0,0,0,30"  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel Margin="0,100,0,30"  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                     <materialDesign:PackIcon
                         Kind="Account"
                         Foreground="DimGray"
@@ -55,6 +57,12 @@
                 </StackPanel>
 
             </StackPanel>
+            <ProgressBar
+                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                Visibility="{Binding Progress}"
+                
+                IsIndeterminate="True" Height="Auto" Margin="190,162,183,159" Width="Auto" />
+
 
 
 

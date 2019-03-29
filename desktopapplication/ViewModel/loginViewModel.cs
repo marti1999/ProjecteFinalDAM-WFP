@@ -27,6 +27,10 @@ namespace desktopapplication.ViewModel
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             loginCommand = new RelayCommand(o => logIn(o));
+            Progress = "HIDDEN";
+            Opacity = 1;
+            _panelEnabled = true;
+
 
         }
 
@@ -40,6 +44,30 @@ namespace desktopapplication.ViewModel
                 _adminUsername = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        private double _opacity;
+
+        public double Opacity
+        {
+            get { return _opacity; }
+            set { _opacity = value; NotifyPropertyChanged(); }
+        }
+
+        private bool _panelEnabled;
+        public bool PanelEnabled
+        {
+            get { return _panelEnabled; }
+            set { _panelEnabled = value; NotifyPropertyChanged(); }
+        }
+
+
+        private string _progress;
+
+        public string Progress
+        {
+            get { return _progress; }
+            set { _progress = value; NotifyPropertyChanged(); }
         }
 
         private string _adminPassword;
@@ -63,7 +91,34 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        private async void logIn(object parameter)
+        private  void loginAnimation()
+        {
+
+            Opacity = 0.3;
+            Progress = "VISIBLE";
+            PanelEnabled = false;
+
+            
+            //CommandManager.InvalidateRequerySuggested();
+        }
+
+        private  void logIn(object parameter)
+        {
+            loginAnimation();
+            bool isLogin;
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                
+                logInActions(parameter);
+            }).Start();
+            
+            
+           
+
+        }
+
+        private async void logInActions(object parameter)
         {
             var passwordVar = parameter as PasswordBox;
 
@@ -91,24 +146,33 @@ namespace desktopapplication.ViewModel
 
             if (Repository.loginAdministrator(a))
             {
+                Thread.Sleep(1500);
                 Administrator currenAdministrator = AdministratorRepository.getAdministratorByEmail(a.email);
                 Properties.Settings.Default.remindUser = currenAdministrator.Id;
                 Properties.Settings.Default.currentTab = -1;
                 Properties.Settings.Default.Save();
 
                 Console.WriteLine("Login OK");
-                MainWindow main = new MainWindow();
-                Application.Current.Windows[0].Close();
+                Application.Current.Dispatcher.Invoke((Action)delegate {
+                    
+                    MainWindow main = new MainWindow();
+                    Application.Current.Windows[0].Close();
 
-                main.ShowDialog();
+                    main.ShowDialog();
+                });
+             
             }
             else
             {
+
                 Console.WriteLine("Incorrect email/password");
+                MessageBox.Show("Incorrect email/password");
+                Progress = "HIDDEN";
+                Opacity = 1;
+                PanelEnabled = true;
+               
             }
         }
-
-
 
         static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {
