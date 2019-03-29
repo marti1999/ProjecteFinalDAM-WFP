@@ -21,7 +21,7 @@ namespace desktopapplication.Model
 
         public static Reward setRewardWithLang(int id, Reward re)
         {
-            Reward r = (Reward)MakeRequest(string.Concat(Utils.ws, "reward/"+id), re, "PUT", "application/json", typeof(Reward));
+            Reward r = (Reward)MakeRequest(string.Concat(Utils.ws, "reward/update/" + id), re, "PUT", "application/json", typeof(Reward));
             return r;
         }
         public static Reward insertRewardWithLang(Reward re)

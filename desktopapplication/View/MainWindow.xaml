@@ -271,7 +271,7 @@
                 </TabItem>
                 <TabItem Header="Rewards" Visibility="Visible">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}"/>
+                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}"/>
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Price}" Text="{Binding TbPriceRewards, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,78,267,364" />
