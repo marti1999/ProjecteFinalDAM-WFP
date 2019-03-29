@@ -29,6 +29,7 @@ namespace desktopapplication.ViewModel
             loginCommand = new RelayCommand(o => logIn(o));
             Progress = "HIDDEN";
             Opacity = 1;
+            _panelEnabled = true;
 
 
         }
@@ -53,9 +54,17 @@ namespace desktopapplication.ViewModel
             set { _opacity = value; NotifyPropertyChanged(); }
         }
 
+        private bool _panelEnabled;
+        public bool PanelEnabled
+        {
+            get { return _panelEnabled; }
+            set { _panelEnabled = value; NotifyPropertyChanged(); }
+        }
+
+
         private string _progress;
 
-        public String Progress
+        public string Progress
         {
             get { return _progress; }
             set { _progress = value; NotifyPropertyChanged(); }
@@ -82,12 +91,27 @@ namespace desktopapplication.ViewModel
             }
         }
 
-        private async void logIn(object parameter)
+        private  void loginAnimation()
         {
             Opacity = 0.3;
             Progress = "VISIBLE";
+            PanelEnabled = false;
 
+            MessageBox.Show("test");
+            //CommandManager.InvalidateRequerySuggested();
+        }
 
+        private  void logIn(object parameter)
+        {
+            loginAnimation();
+            logInActions(parameter);
+            Console.Write("test");
+           
+
+        }
+
+        private async void logInActions(object parameter)
+        {
             var passwordVar = parameter as PasswordBox;
 
             Administrator a = new Administrator();
@@ -127,14 +151,15 @@ namespace desktopapplication.ViewModel
             }
             else
             {
-                //Progress = "HIDDEN";
-                //Opacity = 1;
-                //Console.WriteLine("Incorrect email/password");
-                //MessageBox.Show("Incorrect email/password");
+
+                Console.WriteLine("Incorrect email/password");
+                MessageBox.Show("Incorrect email/password");
+                Progress = "HIDDEN";
+                Opacity = 1;
+                PanelEnabled = true;
+               
             }
         }
-
-
 
         static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {

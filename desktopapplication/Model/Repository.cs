@@ -22,7 +22,15 @@ namespace desktopapplication.Model
         public static bool loginAdministrator(Administrator a)
         {
             bool login;
-            login = (bool)MakeRequest(String.Concat(Utils.ws, "administrator/login"), a, "POST", "application/json", typeof(bool));
+            try
+            {
+                login = (bool)MakeRequest(String.Concat(Utils.ws, "administrator/login"), a, "POST", "application/json", typeof(bool));
+            }
+            catch(Exception ex)
+            {
+                login = false;
+            }
+            
             return login;
         }
 
