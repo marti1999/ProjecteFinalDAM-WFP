@@ -1167,15 +1167,17 @@ namespace desktopapplication.ViewModel
 
                 rwInfo.title = TbRewardsES;
                 rwInfo.description = TbDescRewardsES;
+                rwInfo.Language_Id = getLanguageId("es");
                 reward.RewardInfoLangs.Add(rwInfo);
 
                 rwInfo.title = TbRewardsCA;
                 rwInfo.description = TbDescRewardsCA;
+                rwInfo.Language_Id = getLanguageId("ca");
                 reward.RewardInfoLangs.Add(rwInfo);
 
                 rwInfo.title = TbRewardsEN;
                 rwInfo.description = TbDescRewardsEN;
-                //rwInfo.Language_Id = LanguageRepository.//   language/getcode 
+                rwInfo.Language_Id = getLanguageId("en"); 
                 reward.RewardInfoLangs.Add(rwInfo);
 
 
@@ -1187,6 +1189,18 @@ namespace desktopapplication.ViewModel
         {
 
             populateRewards();
+        }
+
+        private int getLanguageId(String lang)
+        {
+            Language first = null;
+            foreach (var language in LanguageRepository.getLanguageByCode(lang))
+            {
+                first = language;
+                break;
+            }
+
+            return first.Id;
         }
 
         #endregion
