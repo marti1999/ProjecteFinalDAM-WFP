@@ -495,7 +495,7 @@ namespace desktopapplication.ViewModel
             c.Size_Id = ClothesSizeSelected.Id;
             //c.Classification = ClothesClassificationSelected;
             c.Classification_Id = ClothesClassificationSelected.Id;
-            c.Color = getColorByCode();
+            c.Color = getColorByCode(); //TODO: mirar si hace falta canviar por la otra linea
             //c.Gender = ClothesGenderSelected;
             //c.Warehouse = ClothesWarehouseSelected;
             //c.Color_Id = getColorByCode().Id;

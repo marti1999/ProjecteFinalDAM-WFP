@@ -7,8 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:ViewModel="clr-namespace:desktopapplication.ViewModel"
         xmlns:p="clr-namespace:desktopapplication.Properties"
-        mc:Ignorable="d"
-        Title="logIn" Height="448.454" Width="418.521">
+        mc:Ignorable="d" Height="448.454" Width="418.521" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="/desktopapplication;component/CustomResources/tie.png">
     <Window.DataContext>
         <ViewModel:loginViewModel/>
     </Window.DataContext>
@@ -51,10 +50,12 @@
                     <PasswordBox PasswordChar="{Binding PasswordCommand}" Name="PasswordText"  HorizontalAlignment="Center" Height="26" VerticalAlignment="Center" Width="158" ></PasswordBox>
 
                 </StackPanel>
-                <StackPanel   VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" >
+                <StackPanel   VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
                     <Button Content="{x:Static p:Resources.Login}"  VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}" CommandParameter="{Binding ElementName=PasswordText}"
                     />
+                    
                 </StackPanel>
+
 
             </StackPanel>
             <ProgressBar
@@ -62,7 +63,6 @@
                 Visibility="{Binding Progress}"
                 
                 IsIndeterminate="True" Height="Auto" Margin="190,162,183,159" Width="Auto" />
-
 
 
 
