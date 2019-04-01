@@ -46,6 +46,8 @@ namespace desktopapplication.ViewModel
         public ICommand clothesSetFemaleCommand { get; set; }
         public ICommand clothesSetOtherCommand { get; set; }
         public ICommand exportDataCommand { get; set; }
+        public ICommand warehouseEditCommand { get; set; }
+        public ICommand warehouseAddCommand { get; set; }
 
         private void restartApp()
         {
@@ -78,6 +80,7 @@ namespace desktopapplication.ViewModel
             IsClothesDonate = true;
             ClothesPopulate();
             PopulateWarehouses();
+            WarehouseEditing = new Warehouse();
 
 
 
@@ -160,6 +163,8 @@ namespace desktopapplication.ViewModel
             clothesSetFemaleCommand = new RelayCommand(x => ClothesSetFemale());
             clothesSetOtherCommand = new RelayCommand(x => ClothesSetOther());
             exportDataCommand = new RelayCommand(x => restartApp());
+            warehouseAddCommand = new RelayCommand(x => warehouseAdd());
+            warehouseEditCommand = new RelayCommand(x => warehouseEdit());
         }
 
 
@@ -662,14 +667,46 @@ namespace desktopapplication.ViewModel
         public Warehouse WarehouseSelected
         {
             get { return _warehouseselected; }
-            set { _warehouseselected = value; NotifyPropertyChanged(); }
+            set
+            {
+                _warehouseselected = value; NotifyPropertyChanged();
+                WarehouseEditing = value;
+            }
+        }
+
+        private Warehouse _warehouseEditing;
+
+        public Warehouse WarehouseEditing
+        {
+            get { return _warehouseEditing; }
+            set { _warehouseEditing = value; NotifyPropertyChanged(); }
+        }
+
+        private void warehouseAdd()
+        {
+            Warehouse w = new Warehouse();
+            w.name = WarehouseEditing.name;
+            w.city = WarehouseEditing.city;
+            w.number = WarehouseEditing.number;
+            w.postalCode = WarehouseEditing.postalCode;
+            w.street = WarehouseEditing.street;
+            Warehouse w2 = warehouseRepository.addWarehouse(WarehouseEditing);
+            PopulateWarehouses();
+        }
+
+        private void warehouseEdit()
+        {
+            //todo posar=ho b'e al web service
+            Warehouse w = warehouseRepository.updateWarehouse(WarehouseEditing);
+            PopulateWarehouses();
+
         }
 
 
 
 
-
         #endregion
+
         #region tabAdministrators
 
 

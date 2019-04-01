@@ -20,6 +20,20 @@ namespace desktopapplication.Model
             return lc;
         }
 
+        public static Warehouse addWarehouse(Warehouse w0)
+        {
+            Warehouse w = (Warehouse)MakeRequest(string.Concat(ws1, "warehouse"), w0, "POST", "application/json", typeof(Warehouse));
+            return w;
+        }
+
+        public static Warehouse updateWarehouse(Warehouse w0)
+        {
+            Warehouse w = (Warehouse)MakeRequest(string.Concat(ws1, "warehouse/", w0.Id), w0, "PUT", "application/json", typeof(Warehouse));
+            return w;
+        }
+
+
+
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
         //  requestUrl: Url completa del Web Service, amb l'opció sol·licitada
         //  JSONrequest: objecte que se li passa en el body (només per a POST/PUT)
