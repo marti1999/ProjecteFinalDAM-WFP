@@ -357,9 +357,8 @@
                                 <Label Content="{x:Static p:Resources.Catalan}"/>
                             </StackPanel>
                         </Button>
-                        <Button Content="Export data" Command="{Binding exportDataCommand}"/>
                         <Separator/>
-                        <Button Content="Exit"/>
+                        <Button Content="Exit" Command="{Binding closeApplication}"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>

@@ -47,6 +47,7 @@ namespace desktopapplication.ViewModel
         public ICommand clothesSetFemaleCommand { get; set; }
         public ICommand clothesSetOtherCommand { get; set; }
         public ICommand exportDataCommand { get; set; }
+        public ICommand closeApplication { get; set; }
 
         private void restartApp()
         {
@@ -54,6 +55,11 @@ namespace desktopapplication.ViewModel
             Application.Current.Windows[0].Close();
 
             main.ShowDialog();
+        }
+
+        private void closeApp()
+        {
+            Application.Current.Windows[0].Close();
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -161,11 +167,10 @@ namespace desktopapplication.ViewModel
             clothesSetFemaleCommand = new RelayCommand(x => ClothesSetFemale());
             clothesSetOtherCommand = new RelayCommand(x => ClothesSetOther());
             exportDataCommand = new RelayCommand(x => restartApp());
+            closeApplication = new RelayCommand(x => closeApp());
         }
 
-
-
-
+        
 
         #region TabDonors
 
@@ -671,7 +676,8 @@ namespace desktopapplication.ViewModel
 
 
         #endregion
-        #region tabAdministrators
+        
+        #region TabAdministrators
 
 
 
@@ -1313,7 +1319,6 @@ namespace desktopapplication.ViewModel
         }
 
         #endregion
-
 
         #region ChangeLanguages
 
