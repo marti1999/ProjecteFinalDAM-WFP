@@ -510,7 +510,7 @@ namespace desktopapplication.ViewModel
             c.Size_Id = ClothesSizeSelected.Id;
             //c.Classification = ClothesClassificationSelected;
             c.Classification_Id = ClothesClassificationSelected.Id;
-            c.Color = getColorByCode();
+            c.Color = getColorByCode(); //TODO: mirar si hace falta canviar por la otra linea
             //c.Gender = ClothesGenderSelected;
             //c.Warehouse = ClothesWarehouseSelected;
             //c.Color_Id = getColorByCode().Id;
@@ -1147,38 +1147,58 @@ namespace desktopapplication.ViewModel
             }
         }
 
+
+        private int _selectedIndexReward;
+        public int SelectedIndexReward
+        {
+            get { return _selectedIndexReward; }
+            set
+            {
+                _selectedIndexReward = value;
+                populateTextBoxRewards();
+                NotifyPropertyChanged();
+            }
+        }
+
         private void populateTextBoxRewards()
         {
             emptyFields();
-            TbPriceRewards = SelectedReward.neededPoints.ToString();
-            List<RewardInfoLang> listRewardInfo = RewardInfoLangRepository.getRewardInfoLangFromReward(SelectedReward.Id);
-            if (listRewardInfo != null)
+            try
             {
-                foreach (RewardInfoLang rewardInfo in listRewardInfo)
+                TbPriceRewards = SelectedReward.neededPoints.ToString();
+                List<RewardInfoLang> listRewardInfo = RewardInfoLangRepository.getRewardInfoLangFromReward(SelectedReward.Id);
+                if (listRewardInfo != null)
                 {
-                    if (rewardInfo.Language.code.ToLower().Equals("es"))
+                    foreach (RewardInfoLang rewardInfo in listRewardInfo)
                     {
-                        TbRewardsES = rewardInfo.title;
-                        TbDescRewardsES = rewardInfo.description;
-                    }
-                    else if (rewardInfo.Language.code.ToLower().Equals("ca"))
-                    {
-                        TbRewardsCA = rewardInfo.title;
-                        TbDescRewardsCA = rewardInfo.description;
-                    }
-                    else if (rewardInfo.Language.code.ToLower().Equals("en"))
-                    {
-                        TbRewardsEN = rewardInfo.title;
-                        TbDescRewardsEN = rewardInfo.description;
+                        if (rewardInfo.Language.code.ToLower().Equals("es"))
+                        {
+                            TbRewardsES = rewardInfo.title;
+                            TbDescRewardsES = rewardInfo.description;
+                        }
+                        else if (rewardInfo.Language.code.ToLower().Equals("ca"))
+                        {
+                            TbRewardsCA = rewardInfo.title;
+                            TbDescRewardsCA = rewardInfo.description;
+                        }
+                        else if (rewardInfo.Language.code.ToLower().Equals("en"))
+                        {
+                            TbRewardsEN = rewardInfo.title;
+                            TbDescRewardsEN = rewardInfo.description;
+                        }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
 
         }
 
         public void emptyFields()
         {
-            TbPriceRewards = "";
+            TbPriceRewards = "0";
             TbRewardsES = "";
             TbDescRewardsES = "";
             TbRewardsCA = "";
@@ -1198,13 +1218,12 @@ namespace desktopapplication.ViewModel
         private void populateRewards()
         {
             ListRewards = RewardRepository.getAllReward();
-
         }
 
         private void updateReward()
         {
-            //RewardRepository.setRewardWithLang();
-            populateRewards();
+            RewardRepository.setRewardWithLang(SelectedReward.Id, SelectedReward);
+            //populateRewards();
         }
         private void insertReward()
         {
@@ -1219,15 +1238,19 @@ namespace desktopapplication.ViewModel
 
                 rwInfo.title = TbRewardsES;
                 rwInfo.description = TbDescRewardsES;
+                rwInfo.Language_Id = getLanguageId("es");
                 reward.RewardInfoLangs.Add(rwInfo);
 
+                rwInfo = new RewardInfoLang();
                 rwInfo.title = TbRewardsCA;
                 rwInfo.description = TbDescRewardsCA;
+                rwInfo.Language_Id = getLanguageId("ca");
                 reward.RewardInfoLangs.Add(rwInfo);
 
+                rwInfo = new RewardInfoLang();
                 rwInfo.title = TbRewardsEN;
                 rwInfo.description = TbDescRewardsEN;
-                //rwInfo.Language_Id = LanguageRepository.//   language/getcode 
+                rwInfo.Language_Id = getLanguageId("en");
                 reward.RewardInfoLangs.Add(rwInfo);
 
 
@@ -1237,8 +1260,24 @@ namespace desktopapplication.ViewModel
         }
         private void deleteReward()
         {
+            if (SelectedReward != null)
+            {
+                RewardRepository.deactivateReward(SelectedReward.Id);
+                populateRewards();
+            }
 
-            populateRewards();
+        }
+
+        private int getLanguageId(String lang)
+        {
+            Language first = null;
+            foreach (var language in LanguageRepository.getLanguageByCode(lang))
+            {
+                first = language;
+                break;
+            }
+
+            return first.Id;
         }
 
         #endregion

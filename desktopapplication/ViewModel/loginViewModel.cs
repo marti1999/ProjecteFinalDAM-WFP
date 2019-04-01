@@ -15,6 +15,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using desktopapplication.View;
 
+using MaterialDesignThemes.Wpf;
+
 namespace desktopapplication.ViewModel
 {
     class loginViewModel : INotifyPropertyChanged
@@ -28,6 +30,7 @@ namespace desktopapplication.ViewModel
 
             loginCommand = new RelayCommand(o => logIn(o));
             Progress = "HIDDEN";
+            _dialogOpen = false;
             Opacity = 1;
             _panelEnabled = true;
 
@@ -59,6 +62,13 @@ namespace desktopapplication.ViewModel
         {
             get { return _panelEnabled; }
             set { _panelEnabled = value; NotifyPropertyChanged(); }
+        }
+
+        private bool _dialogOpen;
+        public bool DialogOpen
+        {
+            get { return _dialogOpen; }
+            set { _dialogOpen = value; NotifyPropertyChanged(); }
         }
 
 
@@ -97,6 +107,7 @@ namespace desktopapplication.ViewModel
             Opacity = 0.3;
             Progress = "VISIBLE";
             PanelEnabled = false;
+
 
             
             //CommandManager.InvalidateRequerySuggested();
@@ -167,6 +178,11 @@ namespace desktopapplication.ViewModel
 
                 Console.WriteLine("Incorrect email/password");
                 MessageBox.Show("Incorrect email/password");
+
+
+                //DialogOpen = true;
+
+
                 Progress = "HIDDEN";
                 Opacity = 1;
                 PanelEnabled = true;
