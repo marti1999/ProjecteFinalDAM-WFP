@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using WSRobaSegonaMa.Models;
 using Xceed.Wpf.Toolkit;
@@ -730,7 +731,7 @@ namespace desktopapplication.ViewModel
         {
             Announcement a = new Announcement();
             a.dateCreated = DateTime.Now;
-            a.language = AnnouncementLanguage;
+            a.language = AnnouncementLanguage.ToLower();
             a.message = AnnouncementMessage;
             a.title = AnnouncementTitle;
 
@@ -1170,8 +1171,39 @@ namespace desktopapplication.ViewModel
 
         private void updateReward()
         {
-            RewardRepository.setRewardWithLang(SelectedReward.Id, SelectedReward);
-            //populateRewards();
+            Reward reward = SelectedReward;
+
+            if (TbPriceRewards != "")
+            {
+                reward.neededPoints = int.Parse(TbPriceRewards);
+                reward.active = true;
+                reward.dateCreated = DateTime.Now;
+
+                List<RewardInfoLang> listInfo = new List<RewardInfoLang>();
+                RewardInfoLang rwInfo = new RewardInfoLang();
+
+                rwInfo.title = TbRewardsES;
+                rwInfo.description = TbDescRewardsES;
+                rwInfo.Language_Id = getLanguageId("es");
+                listInfo.Add(rwInfo);
+
+                rwInfo = new RewardInfoLang();
+                rwInfo.title = TbRewardsCA;
+                rwInfo.description = TbDescRewardsCA;
+                rwInfo.Language_Id = getLanguageId("ca");
+                listInfo.Add(rwInfo);
+
+                rwInfo = new RewardInfoLang();
+                rwInfo.title = TbRewardsEN;
+                rwInfo.description = TbDescRewardsEN;
+                rwInfo.Language_Id = getLanguageId("en");
+                listInfo.Add(rwInfo);
+
+
+                reward.RewardInfoLangs = listInfo;
+                RewardRepository.setRewardWithLang(SelectedReward.Id, reward);
+                populateRewards();
+            }
         }
         private void insertReward()
         {
