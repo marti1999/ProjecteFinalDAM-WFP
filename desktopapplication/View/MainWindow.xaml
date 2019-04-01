@@ -252,8 +252,9 @@
                         <Button Content="Button" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
                         <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding AnnouncementLanguage}" 
                                   materialDesign:HintAssist.Hint="Language" >
-                            <ComboBoxItem Content="ENG" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="CAT" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="EN" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="CA" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="ES"/>
                         </ComboBox>
 
                         <TextBox
@@ -358,9 +359,8 @@
                                 <Label Content="{x:Static p:Resources.Catalan}"/>
                             </StackPanel>
                         </Button>
-                        <Button Content="Export data" Command="{Binding exportDataCommand}"/>
                         <Separator/>
-                        <Button Content="Exit"/>
+                        <Button Content="Exit" Command="{Binding closeApplication}"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
