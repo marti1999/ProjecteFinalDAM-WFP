@@ -212,5 +212,8 @@
     <Resource Include="CustomResources\catFlag.jpg" />
     <Resource Include="CustomResources\ukFlag.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CustomResources\tie.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

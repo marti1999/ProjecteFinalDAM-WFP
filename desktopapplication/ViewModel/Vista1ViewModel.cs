@@ -15,10 +15,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using MaterialDesignColors;
+using MaterialDesignThemes.Wpf;
 using WSRobaSegonaMa.Models;
 using Xceed.Wpf.Toolkit;
 using ClassificationRepository = desktopapplication.Model.ClassificationRepository;
 using Color = System.Drawing.Color;
+using ColorConverter = System.Drawing.ColorConverter;
 using MessageBox = System.Windows.MessageBox;
 using Size = desktopapplication.Model.Size;
 
@@ -64,6 +68,7 @@ namespace desktopapplication.ViewModel
         {
             setUserLanguageCulture();
 
+            //setColors();
 
 
             initCommandsMenu();
@@ -73,6 +78,7 @@ namespace desktopapplication.ViewModel
             PopulateClothesWarehouses();
             IsClothesDonate = true;
             ClothesPopulate();
+            PopulateWarehouses();
 
 
 
@@ -114,9 +120,28 @@ namespace desktopapplication.ViewModel
 
         private void requestorThings()
         {
+
+
             populateRequestors();
             populateClothesRequestors();
             initRequestorActions();
+        }
+
+        private void setColors()
+        {
+            List<Hue> primary = new List<Hue>();
+            List<Hue> accent = new List<Hue>();
+            primary.Add(new Hue("prim1", System.Windows.Media.Color.FromRgb(89, 102, 115), System.Windows.Media.Color.FromRgb(89, 102, 115)));
+            primary.Add(new Hue("prim2", System.Windows.Media.Color.FromRgb(89, 102, 115), System.Windows.Media.Color.FromRgb(89, 102, 115)));
+            primary.Add(new Hue("prim3", System.Windows.Media.Color.FromRgb(89, 102, 115), System.Windows.Media.Color.FromRgb(89, 102, 115)));
+            primary.Add(new Hue("prim3", System.Windows.Media.Color.FromRgb(89, 102, 115), System.Windows.Media.Color.FromRgb(89, 102, 115)));
+            accent.Add(new Hue("prim3", System.Windows.Media.Color.FromRgb(115, 51, 38), System.Windows.Media.Color.FromRgb(115, 51, 38)));
+
+            Swatch s = new Swatch("Custom", primary, accent);
+
+            PaletteHelper ph = new PaletteHelper();
+            Palette p = new Palette(s, s, 0, 1, 2, 0);
+            ph.ReplacePalette(p);
         }
 
         private void initCommandsMenu()
@@ -139,17 +164,7 @@ namespace desktopapplication.ViewModel
         }
 
 
-        //tab Not used
-        private Visibility _homeSelected;
-        public Visibility HomeSelected
-        {
-            get { return _homeSelected; }
-            set
-            {
-                _homeSelected = value;
-                NotifyPropertyChanged();
-            }
-        }
+
 
 
         #region TabDonors
@@ -496,7 +511,7 @@ namespace desktopapplication.ViewModel
             c.Size_Id = ClothesSizeSelected.Id;
             //c.Classification = ClothesClassificationSelected;
             c.Classification_Id = ClothesClassificationSelected.Id;
-            c.Color = getColorByCode();
+            c.Color = getColorByCode(); //TODO: mirar si hace falta canviar por la otra linea
             //c.Gender = ClothesGenderSelected;
             //c.Warehouse = ClothesWarehouseSelected;
             //c.Color_Id = getColorByCode().Id;
@@ -608,6 +623,8 @@ namespace desktopapplication.ViewModel
 
         }
 
+
+
         private List<Warehouse> _clothesWarehouseList;
 
         public List<Warehouse> ClothesWarehouseList
@@ -623,6 +640,41 @@ namespace desktopapplication.ViewModel
             //TODO: asignar esto donde convenga
             ClothesWarehouseSelected = ClothesWarehouseList.FirstOrDefault();
         }
+        #endregion
+
+        #region Tabwarehouse
+
+        private List<Warehouse> _warehouseList;
+
+        public List<Warehouse> WarehouseList
+        {
+            get { return _warehouseList; }
+            set { _warehouseList = value; NotifyPropertyChanged(); }
+        }
+
+        private void PopulateWarehouses()
+        {
+            WarehouseList = warehouseRepository.getAllWarehouses();
+
+        }
+
+        private Warehouse _warehouseselected;
+
+        public Warehouse WarehouseSelected
+        {
+            get { return _warehouseselected; }
+            set { _warehouseselected = value; NotifyPropertyChanged(); }
+        }
+
+
+
+
+
+        #endregion
+        #region tabAdministrators
+
+
+
         #endregion
 
         #region TabGender
