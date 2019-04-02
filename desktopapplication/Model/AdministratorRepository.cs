@@ -37,6 +37,22 @@ namespace desktopapplication.Model
             return r;
         }
 
+        public static Administrator add(Administrator a)
+        {
+            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administrator" ), a, "POST", "application/json", typeof(Administrator));
+            return r;
+        }
+
+        public static Administrator edit(Administrator a)
+        {
+            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administrator/", a.Id), a, "PUT", "application/json", typeof(Administrator));
+            return r;
+        }
+        
+        
+
+
+
         public static object MakeRequest(string requestUrl, object JSONRequest, string JSONmethod, string JSONContentType, Type JSONResponseType)
         //  requestUrl: Url completa del Web Service, amb l'opció sol·licitada
         //  JSONrequest: objecte que se li passa en el body (només per a POST/PUT)

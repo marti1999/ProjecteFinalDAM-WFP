@@ -89,6 +89,7 @@ namespace desktopapplication.ViewModel
             ClothesPopulate();
             PopulateWarehouses();
             WarehouseEditing = new Warehouse();
+            AdministratorEditing = new Administrator();
 
             requestorThings();
             rewardsThings();
@@ -728,6 +729,14 @@ namespace desktopapplication.ViewModel
             set { _administratorSelected = value; NotifyPropertyChanged(); }
         }
 
+        private Administrator _administratorComboBoxSelected;
+
+        public Administrator AdministratorComboBoxSelected
+        {
+            get { return _administratorComboBoxSelected; }
+            set { _administratorComboBoxSelected = value; NotifyPropertyChanged(); }
+        }
+
         private Administrator _administratorEditing;
 
         public Administrator AdministratorEditing
@@ -738,8 +747,50 @@ namespace desktopapplication.ViewModel
 
         public void addAdministrator()
         {
-AdministratorRepository            
+            if (WarehouseSelected != null)
+            {
+                Administrator a = new Administrator();
+
+                a.Warehouse_Id = WarehouseSelected.Id;
+                a.lastName = WarehouseSelected.name;
+                a.dateCreated = DateTime.Now;
+                a.active = true;
+                a.Language_Id = 1;
+
+                //todo check if all fields are filled up;
+
+                AdministratorRepository.add(a);
+            }
+            else
+            {
+                MessageBox.Show("Please, select a warehouse first");
+
+            }
+            
+
         }
+
+        public void assignAdministrator()
+        {
+            if (AdministratorComboBoxSelected != null)
+
+
+            {
+
+                AdministratorComboBoxSelected.Warehouse_Id = WarehouseSelected.Id;
+                AdministratorComboBoxSelected.lastName = WarehouseSelected.name;
+                AdministratorRepository.edit(AdministratorComboBoxSelected);
+
+            }
+            else
+            {
+                MessageBox.Show("Please, select an administrator from the combo box first");
+            }
+
+        }
+
+        
+        
 
 
 
