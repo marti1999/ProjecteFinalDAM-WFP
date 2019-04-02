@@ -76,7 +76,6 @@ namespace desktopapplication.ViewModel
 
             //setColors();
 
-
             initCommandsMenu();
             populateDonors();
             populateClothDonors();
@@ -86,15 +85,12 @@ namespace desktopapplication.ViewModel
             ClothesPopulate();
             PopulateWarehouses();
 
-
-
             requestorThings();
             rewardsThings();
             populateAnnouncements();
 
             populateClassification();
             populateSizes();
-
 
             initLangChanger();
         }
@@ -108,7 +104,6 @@ namespace desktopapplication.ViewModel
                 LangChangerSelector(currentAdministrator.Language.code);
 
             }
-
 
 
             if (Properties.Settings.Default.currentTab != (-1))
@@ -1224,7 +1219,7 @@ namespace desktopapplication.ViewModel
 
         private void populateRewards()
         {
-            ListRewards = RewardRepository.getAllReward();
+            ListRewards = RewardRepository.getAllReward().OrderByDescending(x => x.dateCreated).ToList();
         }
 
         private void updateReward()
