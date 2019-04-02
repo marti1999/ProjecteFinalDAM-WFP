@@ -309,23 +309,25 @@
                             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0"/>
 
                         </StackPanel>-->
-                        <DataGrid Margin="52,18,593,255" ItemsSource="{Binding WarehouseList}" />
+                        <DataGrid Margin="52,18,593,255" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
                         <DataGrid Margin="602,55,81,166"/>
                         <TextBox
                             materialDesign:HintAssist.Hint="City"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,300,751,139" Text="{Binding DonorName}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,300,751,139" Text="{Binding WarehouseEditing.city}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="Postal Code"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,300,611,139" Text="{Binding DonorName}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,300,611,139" Text="{Binding WarehouseEditing.postalCode}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="Street"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,364,751,75" Text="{Binding DonorName}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,364,751,75" Text="{Binding WarehouseEditing.street}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="Street Number"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,364,611,75" Text="{Binding DonorName}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,364,611,75" Text="{Binding WarehouseEditing.number}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="Name"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,254,611,185" Text="{Binding DonorName}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,254,611,185" Text="{Binding WarehouseEditing.name}" />
+                        <Button Content="Edit" HorizontalAlignment="Left" Margin="66,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
+                        <Button Content="Add" HorizontalAlignment="Left" Margin="297,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
 
                     </Grid>
 
