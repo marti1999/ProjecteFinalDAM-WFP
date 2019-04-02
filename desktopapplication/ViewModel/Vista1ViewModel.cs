@@ -50,6 +50,8 @@ namespace desktopapplication.ViewModel
         public ICommand closeApplication { get; set; }
         public ICommand warehouseEditCommand { get; set; }
         public ICommand warehouseAddCommand { get; set; }
+        public ICommand administratorAddCommand { get; set; }
+        public ICommand administratorRemoveCommand { get; set; }
 
         private void restartApp()
         {
@@ -714,6 +716,36 @@ namespace desktopapplication.ViewModel
         #endregion
         
         #region TabAdministrators
+
+        private List<Administrator> _administrators;
+
+        public List<Administrator> Administrators
+        {
+            get { return _administrators; }
+            set { _administrators = value ; NotifyPropertyChanged();}
+        }
+
+        private Administrator _administratorSelected;
+
+        public Administrator AdministratorSelected
+        {
+            get { return _administratorSelected;}
+            set { _administratorSelected = value; NotifyPropertyChanged(); }
+        }
+
+        private Administrator _administratorEditing;
+
+        public Administrator AdministratorEditing
+        {
+            get { return _administratorEditing; }
+            set { _administratorEditing = value; NotifyPropertyChanged(); }
+        }
+
+        public void addAdministrator()
+        {
+AdministratorRepository            
+        }
+
 
 
 

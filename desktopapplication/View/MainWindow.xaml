@@ -310,7 +310,7 @@
 
                         </StackPanel>-->
                         <DataGrid Margin="52,18,593,255" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
-                        <DataGrid Margin="602,55,81,166"/>
+                        <DataGrid Margin="571,0,107,255" ItemsSource="{Binding Administrators}" SelectedItem="{Binding AdministratorSelected}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="City"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,300,751,139" Text="{Binding WarehouseEditing.city}" />
@@ -328,6 +328,25 @@
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,254,611,185" Text="{Binding WarehouseEditing.name}" />
                         <Button Content="Edit" HorizontalAlignment="Left" Margin="66,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
                         <Button Content="Add" HorizontalAlignment="Left" Margin="297,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Email"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="570,253,247,186" Text="{Binding AdministratorEditing.email}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Postal Code"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="804,253,107,186" Text="{Binding AdministratorEditing.name}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="password"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="570,317,247,122" Text="{Binding AdministratorEditing.password}" />
+                        <TextBox
+                            materialDesign:HintAssist.Hint="Worker code"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="804,317,107,122" Text="{Binding AdministratorEditing.workerCode}" />
+                        <Label Content="Is super administrator?" HorizontalAlignment="Left" Margin="566,378,0,0" VerticalAlignment="Top"/>
+
+                        <ToggleButton
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="{Binding AdministratorEditing.isSuper}" Background="#FF596673" Foreground="White" Height="39" Width="73" Margin="704,373,232,69"/>
+                        <Button Content="Remove" HorizontalAlignment="Left" Margin="573,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
+                        <Button Content="Add" HorizontalAlignment="Left" Margin="804,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
+
 
                     </Grid>
 
