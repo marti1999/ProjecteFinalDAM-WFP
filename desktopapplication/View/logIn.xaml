@@ -51,7 +51,7 @@
 
                 </StackPanel>
                 <StackPanel   VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
-                    <Button Content="{x:Static p:Resources.Login}"  VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}" CommandParameter="{Binding ElementName=PasswordText}"
+                    <Button Content="{x:Static p:Resources.Login}" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}" CommandParameter="{Binding ElementName=PasswordText}"
                     />
                     
                 </StackPanel>
