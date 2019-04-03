@@ -116,7 +116,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="Auto"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,298,0,140" IsEnabled="{Binding ActionsRequestor}">
+                            BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,298,0,140" IsEnabled="{Binding ActionsRequestor}">
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Close" Height="25" Width="25" Margin="10"/>
@@ -129,7 +129,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="Auto"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,348,0,90" IsEnabled="{Binding ActionsRequestor}">
+                            BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,348,0,90" IsEnabled="{Binding ActionsRequestor}">
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Check" Height="25" Width="25" Margin="10"/>
@@ -424,7 +424,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
@@ -441,7 +441,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="AccessPoint" Height="25" Width="25" Margin="10"/>
@@ -459,7 +459,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="TshirtCrew"  Height="25" Width="25" Margin="10"/>
@@ -475,7 +475,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
@@ -491,7 +491,7 @@
                            HorizontalAlignment="Left"
                             Width="170"
                            Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
