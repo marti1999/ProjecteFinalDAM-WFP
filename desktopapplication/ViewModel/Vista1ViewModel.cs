@@ -51,6 +51,8 @@ namespace desktopapplication.ViewModel
         public ICommand closeApplication { get; set; }
         public ICommand warehouseEditCommand { get; set; }
         public ICommand warehouseAddCommand { get; set; }
+        public ICommand administratorAddCommand { get; set; }
+        public ICommand administratorRemoveCommand { get; set; }
 
         private void restartApp()
         {
@@ -88,6 +90,7 @@ namespace desktopapplication.ViewModel
             ClothesPopulate();
             PopulateWarehouses();
             WarehouseEditing = new Warehouse();
+            AdministratorEditing = new Administrator();
 
             rewardsThings();
             populateAnnouncements();
@@ -708,6 +711,86 @@ namespace desktopapplication.ViewModel
         #endregion
         
         #region TabAdministrators
+
+        private List<Administrator> _administrators;
+
+        public List<Administrator> Administrators
+        {
+            get { return _administrators; }
+            set { _administrators = value ; NotifyPropertyChanged();}
+        }
+
+        private Administrator _administratorSelected;
+
+        public Administrator AdministratorSelected
+        {
+            get { return _administratorSelected;}
+            set { _administratorSelected = value; NotifyPropertyChanged(); }
+        }
+
+        private Administrator _administratorComboBoxSelected;
+
+        public Administrator AdministratorComboBoxSelected
+        {
+            get { return _administratorComboBoxSelected; }
+            set { _administratorComboBoxSelected = value; NotifyPropertyChanged(); }
+        }
+
+        private Administrator _administratorEditing;
+
+        public Administrator AdministratorEditing
+        {
+            get { return _administratorEditing; }
+            set { _administratorEditing = value; NotifyPropertyChanged(); }
+        }
+
+        public void addAdministrator()
+        {
+            if (WarehouseSelected != null)
+            {
+                Administrator a = new Administrator();
+
+                a.Warehouse_Id = WarehouseSelected.Id;
+                a.lastName = WarehouseSelected.name;
+                a.dateCreated = DateTime.Now;
+                a.active = true;
+                a.Language_Id = 1;
+
+                //todo check if all fields are filled up;
+
+                AdministratorRepository.add(a);
+            }
+            else
+            {
+                MessageBox.Show("Please, select a warehouse first");
+
+            }
+            
+
+        }
+
+        public void assignAdministrator()
+        {
+            if (AdministratorComboBoxSelected != null)
+
+
+            {
+
+                AdministratorComboBoxSelected.Warehouse_Id = WarehouseSelected.Id;
+                AdministratorComboBoxSelected.lastName = WarehouseSelected.name;
+                AdministratorRepository.edit(AdministratorComboBoxSelected);
+
+            }
+            else
+            {
+                MessageBox.Show("Please, select an administrator from the combo box first");
+            }
+
+        }
+
+        
+        
+
 
 
 
