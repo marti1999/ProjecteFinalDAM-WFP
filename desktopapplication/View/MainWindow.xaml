@@ -310,7 +310,7 @@
 
                         </StackPanel>-->
                         <DataGrid Margin="52,18,593,255" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
-                        <DataGrid Margin="526,18,152,237"  />
+                        <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}"  />
                         <TextBox
                             materialDesign:HintAssist.Hint="City"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,300,751,139" Text="{Binding WarehouseEditing.city}" />
@@ -330,31 +330,31 @@
                         <Button Content="Add" HorizontalAlignment="Left" Margin="297,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
                         <TextBox
                             materialDesign:HintAssist.Hint="Email"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="526,265,291,174" Text="{Binding AdministratorEditing.email}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="526,254,291,185" Text="{Binding AdministratorEditing.email}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="Name"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,265,151,174" Text="{Binding AdministratorEditing.name}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,254,151,185" Text="{Binding AdministratorEditing.name}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="Password"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="526,329,291,110" Text="{Binding AdministratorEditing.password}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="526,301,291,138" Text="{Binding AdministratorEditing.password}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="Worker code"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,329,151,110" Text="{Binding AdministratorEditing.workerCode}" />
-                        <Label Content="Is super administrator?" HorizontalAlignment="Left" Margin="522,390,0,0" VerticalAlignment="Top"/>
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,301,151,138" Text="{Binding AdministratorEditing.workerCode}" />
+                        <Label Content="Is super administrator?" HorizontalAlignment="Left" Margin="525,380,0,0" VerticalAlignment="Top"/>
 
                         <ToggleButton
-                            Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="{Binding AdministratorEditing.isSuper}" Background="#FF596673" Foreground="White" Height="39" Width="73" Margin="660,385,276,57"/>
-                        <Button Content="Add" HorizontalAlignment="Left" Margin="756,390,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
-                        <Button Content="Assign" HorizontalAlignment="Left" Margin="889,105,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="{Binding AdministratorEditing.isSuper}" Background="#FF596673" Foreground="White" Height="39" Width="73" Margin="660,377,276,65"/>
+                        <Button Content="Add" HorizontalAlignment="Left" Margin="757,380,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorAddCommand}"/>
+                        <Button Content="Assign" HorizontalAlignment="Left" Margin="889,105,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorReassignCommand}"/>
 
-                        <ComboBox HorizontalAlignment="Left" Margin="889,150,0,0" VerticalAlignment="Top" Width="101"
+                        <ComboBox HorizontalAlignment="Left" Margin="889,165,0,0" VerticalAlignment="Top" Width="101"
                                   materialDesign:HintAssist.Hint="Classification"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding Administrators}" SelectedItem="{Binding AdministratorSelected}" />
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding Administrators}" SelectedItem="{Binding AdministratorComboBoxSelected}" />
 
                     </Grid>
 
                 </TabItem>
-                <View:UcClothes Height="100" Width="100"/>
+
 
             </TabControl>
         </Grid>
