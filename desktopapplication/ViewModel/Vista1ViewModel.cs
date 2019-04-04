@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,7 +53,7 @@ namespace desktopapplication.ViewModel
         public ICommand warehouseEditCommand { get; set; }
         public ICommand warehouseAddCommand { get; set; }
         public ICommand administratorAddCommand { get; set; }
-        public ICommand administratorRemoveCommand { get; set; }
+        public ICommand administratorReassignCommand { get; set; }
 
         private void restartApp()
         {
@@ -91,6 +92,7 @@ namespace desktopapplication.ViewModel
             PopulateWarehouses();
             WarehouseEditing = new Warehouse();
             AdministratorEditing = new Administrator();
+            populateAdministrators();
 
             rewardsThings();
             populateAnnouncements();
@@ -167,10 +169,13 @@ namespace desktopapplication.ViewModel
             exportDataCommand = new RelayCommand(x => restartApp());
             warehouseAddCommand = new RelayCommand(x => warehouseAdd());
             warehouseEditCommand = new RelayCommand(x => warehouseEdit());
+            administratorAddCommand = new RelayCommand(x => addAdministrator());
+            administratorReassignCommand = new RelayCommand(x => assignAdministrator());
             closeApplication = new RelayCommand(x => closeApp());
+
         }
 
-        
+
 
         #region TabDonors
 
@@ -476,7 +481,9 @@ namespace desktopapplication.ViewModel
             //TODO: canviar el if un cop estigui implementat el multi idioma
             if (true)
             {
-                ClothesClassification = ClassificationRepository.getAllClassifications();
+                //ClothesClassification = ClassificationRepository.getAllClassifications();
+                ClothesClassification = ClassificationRepository.getAllClassificationsLang(Properties.Settings.Default.selectedLang);
+                
 
             }
             else
@@ -512,23 +519,49 @@ namespace desktopapplication.ViewModel
         }
         private void createCloth()
         {
-            Cloth c = new Cloth();
-            c.Size_Id = ClothesSizeSelected.Id;
-            //c.Classification = ClothesClassificationSelected;
-            c.Classification_Id = ClothesClassificationSelected.Id;
-            c.Color = getColorByCode(); //TODO: mirar si hace falta canviar por la otra linea
-            //c.Gender = ClothesGenderSelected;
-            //c.Warehouse = ClothesWarehouseSelected;
-            //c.Color_Id = getColorByCode().Id;
-            c.Gender_Id = ClothesGenderSelected.Id;
-            c.Warehouse_Id = ClothesWarehouseSelected.Id;
+            if (ClothesSizeSelected != null && ClothesClassificationSelected != null  && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothnesDonorSelected != null)
+            {
+                Cloth c = new Cloth();
+                c.Size_Id = ClothesSizeSelected.Id;
+               
+                c.Classification_Id = ClothesClassificationSelected.Id;
+              
+                c.Color_Id = getColorByCode().Id;
 
-            c.active = true;
-            c.dateCreated = DateTime.Now;
+                if (c.Color_Id != null)
+                {
+                    c.Gender_Id = ClothesGenderSelected.Id;
+                    c.Warehouse_Id = ClothesWarehouseSelected.Id;
 
-            ClothesRepository.addCloth(c);
+                    c.active = true;
+                    c.dateCreated = DateTime.Now;
 
-            //TODO: sumar punts al donor
+                    ClothesRepository.addCloth(c);
+
+                    Donor d = ClothnesDonorSelected;
+
+                    d.points += ClothesClassificationSelected.value;
+                    d.ammountGiven += 1;
+
+                    donorRepository.updateDonor(d);
+
+                    //TODO: comprovar que sumar els punts al donor funciona; 
+
+                    ClothesPopulate();
+                }
+                else
+                {
+                    MessageBox.Show("Please, fill up all the fields.");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Please, fill up all the fields.");
+            }
+
+
 
         }
 
@@ -672,6 +705,11 @@ namespace desktopapplication.ViewModel
             {
                 _warehouseselected = value; NotifyPropertyChanged();
                 WarehouseEditing = value;
+                if (value != null)
+                {
+                    populateAdministratorsWarehouse();
+                }
+                
             }
         }
 
@@ -707,7 +745,7 @@ namespace desktopapplication.ViewModel
 
 
         #endregion
-        
+
         #region TabAdministrators
 
         private List<Administrator> _administrators;
@@ -715,14 +753,22 @@ namespace desktopapplication.ViewModel
         public List<Administrator> Administrators
         {
             get { return _administrators; }
-            set { _administrators = value ; NotifyPropertyChanged();}
+            set { _administrators = value; NotifyPropertyChanged(); }
+        }
+
+        private List<Administrator> _administratorsWarehouse;
+
+        public List<Administrator> AdministratorsWarehouse
+        {
+            get { return _administratorsWarehouse; }
+            set { _administratorsWarehouse = value; NotifyPropertyChanged(); }
         }
 
         private Administrator _administratorSelected;
 
         public Administrator AdministratorSelected
         {
-            get { return _administratorSelected;}
+            get { return _administratorSelected; }
             set { _administratorSelected = value; NotifyPropertyChanged(); }
         }
 
@@ -748,22 +794,43 @@ namespace desktopapplication.ViewModel
             {
                 Administrator a = new Administrator();
 
+                a = AdministratorEditing;
+
                 a.Warehouse_Id = WarehouseSelected.Id;
                 a.lastName = WarehouseSelected.name;
                 a.dateCreated = DateTime.Now;
                 a.active = true;
                 a.Language_Id = 1;
 
+
+                var data = Encoding.UTF8.GetBytes(a.password);
+
+
+                byte[] hash;
+
+                using (SHA512 sha = new SHA512Managed())
+                {
+                    hash = sha.ComputeHash(data);
+                }
+
+                string hashString = System.Text.Encoding.Default.GetString(hash);
+
+                a.password = hashString;
+
                 //todo check if all fields are filled up;
 
                 AdministratorRepository.add(a);
+
+                populateAdministrators();
+                populateAdministratorsWarehouse();
+
             }
             else
             {
                 MessageBox.Show("Please, select a warehouse first");
 
             }
-            
+
 
         }
 
@@ -773,10 +840,11 @@ namespace desktopapplication.ViewModel
 
 
             {
-
-                AdministratorComboBoxSelected.Warehouse_Id = WarehouseSelected.Id;
-                AdministratorComboBoxSelected.lastName = WarehouseSelected.name;
+                Administrator a = AdministratorComboBoxSelected;
+                a.Warehouse_Id = WarehouseSelected.Id;
+                a.lastName = WarehouseSelected.name;
                 AdministratorRepository.edit(AdministratorComboBoxSelected);
+                populateAdministrators();
 
             }
             else
@@ -786,8 +854,21 @@ namespace desktopapplication.ViewModel
 
         }
 
-        
-        
+        public void populateAdministrators()
+        {
+            Administrators = AdministratorRepository.getAllAdministrators();
+        }
+
+        public void populateAdministratorsWarehouse()
+        {
+            List<Administrator> a = AdministratorRepository.getAllAdministrators();
+
+
+            AdministratorsWarehouse = a.Where(x => x.Warehouse_Id == WarehouseSelected.Id).ToList();
+        }
+
+
+
 
 
 

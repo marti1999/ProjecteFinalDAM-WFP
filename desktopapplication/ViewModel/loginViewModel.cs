@@ -137,6 +137,9 @@ namespace desktopapplication.ViewModel
             a.email = AdminUsername;
             string passwordRaw = passwordVar.Password;
 
+
+
+
             var data = Encoding.UTF8.GetBytes(passwordRaw);
 
 
