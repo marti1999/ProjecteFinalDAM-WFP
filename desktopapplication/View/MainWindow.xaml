@@ -66,7 +66,7 @@
                                     <DataGridCheckBoxColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="Active" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content= "Delete" Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
+                            <Button Content="Delete" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
                         </Grid>
                         <Grid Grid.Column="1" >
                             <TextBox
@@ -91,7 +91,7 @@
                             <Label Content="Active: " HorizontalAlignment="Left" Margin="328,178,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
-                        <Button Content= "Save changes" Command="{Binding DonorUpdateCommand}" HorizontalAlignment="Left" Margin="212,246,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
+                        <Button Content="Save changes" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding DonorUpdateCommand}" HorizontalAlignment="Left" Margin="212,246,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
 
                     </Grid>
                 </TabItem>
@@ -116,7 +116,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="Auto"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,298,0,140" IsEnabled="{Binding ActionsRequestor}">
+                            BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,298,0,140" IsEnabled="{Binding ActionsRequestor}">
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Close" Height="25" Width="25" Margin="10"/>
@@ -129,7 +129,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="Auto"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,348,0,90" IsEnabled="{Binding ActionsRequestor}">
+                            BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,348,0,90" IsEnabled="{Binding ActionsRequestor}">
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Check" Height="25" Width="25" Margin="10"/>
@@ -141,6 +141,7 @@
                         <ComboBox DisplayMemberPath="reason" ItemsSource="{Binding StatusDisponibles}" SelectedItem="{Binding SelectedStatus}" Margin="735,252,107,201" IsEnabled="{Binding ActionsRequestor}">
 
                         </ComboBox>
+                        <Label Visibility="{Binding EnableHasErrorRequestor}" Foreground="Red" Content="{x:Static p:Resources.ReasonDenyRequestor}" HorizontalAlignment="Left" Margin="735,208,0,0" VerticalAlignment="Top" Width="167"/>
 
                     </Grid>
                 </TabItem>
@@ -192,7 +193,7 @@
 
                         </Button>
                         <materialDesign:Card Margin="10,0,0,10" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="418" >
-                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}">
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Gender.gender1}" ClipboardContentBinding="{x:Null}" Width="*" Header="Gender"/>
                                     <DataGridTextColumn Binding="{Binding Classification.classificationType}" ClipboardContentBinding="{x:Null}" Width="*" Header="Type"/>
@@ -249,7 +250,7 @@
                             <ComboBoxItem Content="Donors" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Requestors" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
-                        <Button Content="Button" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
+                        <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="Button" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
                         <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding AnnouncementLanguage}" 
                                   materialDesign:HintAssist.Hint="Language" >
                             <ComboBoxItem Content="EN" HorizontalAlignment="Left" Width="118"/>
@@ -272,7 +273,13 @@
                 </TabItem>
                 <TabItem Header="Rewards" Visibility="Visible">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}"/>
+                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding neededPoints}" ClipboardContentBinding="{x:Null}" Header="Needed points" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding dateCreated}" ClipboardContentBinding="{x:Null}" Header="Date created" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Price}" Text="{Binding TbPriceRewards, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="525,78,267,364" />
@@ -297,9 +304,9 @@
                         <Label Content="EN" HorizontalAlignment="Left" Margin="525,122,0,0" VerticalAlignment="Top"/>
                         <Label Content="CA" HorizontalAlignment="Left" Margin="525,205,0,0" VerticalAlignment="Top"/>
                         <Label Content="ES" HorizontalAlignment="Left" Margin="525,287,0,0" VerticalAlignment="Top"/>
-                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="684,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding ActualitarRewardBtnCmd}"/>
-                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="525,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding InsertRewardBtnCmd}"/>
-                        <Button Content="{x:Static p:Resources.Delete}" HorizontalAlignment="Left" Margin="841,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding DeleteRewardBtnCmd}"/>
+                        <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="684,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding ActualitarRewardBtnCmd}"/>
+                        <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="525,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding InsertRewardBtnCmd}"/>
+                        <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.Delete}" HorizontalAlignment="Left" Margin="841,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding DeleteRewardBtnCmd}"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Warehouses" Visibility="Visible">
@@ -417,7 +424,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
@@ -434,7 +441,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="AccessPoint" Height="25" Width="25" Margin="10"/>
@@ -452,7 +459,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="TshirtCrew"  Height="25" Width="25" Margin="10"/>
@@ -468,7 +475,7 @@
                             HorizontalAlignment="Left"
                             Width="170"
                             Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
@@ -484,7 +491,7 @@
                            HorizontalAlignment="Left"
                             Width="170"
                            Height="60"
-                            ToolTip="Test" BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>

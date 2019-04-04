@@ -153,4 +153,7 @@
   <data name="Price" xml:space="preserve">
     <value>Precio</value>
   </data>
+  <data name="ReasonDenyRequestor" xml:space="preserve">
+    <value>Se ha de especificar el motivo</value>
+  </data>
 </root>

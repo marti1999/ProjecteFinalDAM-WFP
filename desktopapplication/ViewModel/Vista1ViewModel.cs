@@ -20,6 +20,7 @@ using System.Windows.Media;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using WSRobaSegonaMa.Models;
+using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.Toolkit;
 using ClassificationRepository = desktopapplication.Model.ClassificationRepository;
 using Color = System.Drawing.Color;
@@ -93,7 +94,6 @@ namespace desktopapplication.ViewModel
             AdministratorEditing = new Administrator();
             populateAdministrators();
 
-            requestorThings();
             rewardsThings();
             populateAnnouncements();
 
@@ -129,7 +129,6 @@ namespace desktopapplication.ViewModel
 
         private void requestorThings()
         {
-
 
             populateRequestors();
             populateClothesRequestors();
@@ -1040,7 +1039,6 @@ namespace desktopapplication.ViewModel
 
         public ICommand DenyRequestorChecked { get; set; }
         public ICommand AcceptRequestorChecked { get; set; }
-        //TODO: llista amb tots els status disponibles
 
         public void initRequestorActions()
         {
@@ -1074,28 +1072,38 @@ namespace desktopapplication.ViewModel
 
         private void denyRequestor(bool denied)
         {
-            Requestor r = SelectedRequestor;
-            if (denied)
+            if (SelectedStatus != null && denied)
             {
-                Status s = searchByReason(SelectedStatus.reason);
-                if (s != null)
+                EnableHasErrorRequestor = "HIDDEN";
+                Requestor r = SelectedRequestor;
+                if (denied)
                 {
-                    r.Status = s;
-                    r.Status_Id = r.Status.Id;
+                    Status s = searchByReason(SelectedStatus.reason);
+                    if (s != null)
+                    {
+                        r.Status = s;
+                        r.Status_Id = r.Status.Id;
 
+                    }
                 }
-            }
-            else if (!denied)
-            {
-                List<Status> allStatus = requestorRepository.getAllStatus();
-                if (r != null)
+                else if (!denied)
                 {
-                    r.Status = allStatus.Where(x => x.reason.Equals("") && !x.status1.Equals("Pending")).FirstOrDefault();
-                    r.Status_Id = r.Status.Id;
+                    List<Status> allStatus = requestorRepository.getAllStatus();
+                    if (r != null)
+                    {
+                        r.Status = allStatus.Where(x => x.reason.Equals("") && !x.status1.Equals("Pending"))
+                            .FirstOrDefault();
+                        r.Status_Id = r.Status.Id;
+                    }
                 }
+
+                requestorRepository.setRequestors(r.Id, r);
+                populateRequestors();
             }
-            requestorRepository.setRequestors(r.Id, r);
-            populateRequestors();
+            else
+            {
+                EnableHasErrorRequestor = "VISIBLE";
+            }
         }
 
         private Status searchByReason(string statusText)
@@ -1107,7 +1115,7 @@ namespace desktopapplication.ViewModel
 
         public void populateRequestors()
         {
-
+            EnableHasErrorRequestor = "HIDDEN";
             List<Requestor> requestorList = requestorRepository.getAllRequestors()
                 .Where(x => x.Status.status1.Equals("Pending"))
                 .Take(10)
@@ -1132,6 +1140,16 @@ namespace desktopapplication.ViewModel
             set
             {
                 _selectedRequestor = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private string _enableHasErrorRequestor;
+        public string EnableHasErrorRequestor
+        {
+            get { return _enableHasErrorRequestor; }
+            set
+            {
+                _enableHasErrorRequestor = value;
                 NotifyPropertyChanged();
             }
         }
@@ -1392,6 +1410,7 @@ namespace desktopapplication.ViewModel
         private void populateRewards()
         {
             ListRewards = RewardRepository.getAllReward().OrderByDescending(x => x.dateCreated).ToList();
+            emptyFields();
         }
 
         private void updateReward()

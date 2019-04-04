@@ -124,6 +124,15 @@ namespace desktopapplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reason has to be especified.
+        /// </summary>
+        public static string ReasonDenyRequestor {
+            get {
+                return ResourceManager.GetString("ReasonDenyRequestor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Second hand clothes.
         /// </summary>
         public static string RobaSegonaMa {
