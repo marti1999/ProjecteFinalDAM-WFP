@@ -254,16 +254,25 @@ namespace desktopapplication.ViewModel
 
         public void DonorUpdate()
         {
-            Donor d = DonorSelected;
-            d.name = DonorName;
-            d.lastName = DonorLastName;
-            d.email = DonorEmail;
-            d.active = DonorActive;
-            d.birthDate = Convert.ToDateTime(DonorBirthDate);
+            if (DonorName != null && DonorLastName != null && DonorEmail != null && DonorBirthDate != null)
+            {
+
+                Donor d = DonorSelected;
+                d.name = DonorName;
+                d.lastName = DonorLastName;
+                d.email = DonorEmail;
+                d.active = DonorActive;
+                d.birthDate = Convert.ToDateTime(DonorBirthDate); //todo mirar si funciona o no
 
 
-            Donor d2 = donorRepository.updateDonor(d);
-            populateDonors();
+                Donor d2 = donorRepository.updateDonor(d);
+                populateDonors();
+            }
+            else
+            {
+                MessageBox.Show("Please, fill up all the fields");
+            }
+
 
         }
 
@@ -400,12 +409,23 @@ namespace desktopapplication.ViewModel
         private Model.Color getColorByCode()
         {
 
-            List<Model.Color> lc = colorRepository.getAllColors();
-            System.Windows.Media.Color c = SelectedColorRaw;
-            string code = string.Format("#{0:X2}{1:X2}{2:X2}", c.R, c.G, c.B);
-            Console.WriteLine(code);
-            Model.Color c2 = lc.Where(x => x.colorCode.Equals(code)).FirstOrDefault();
-            return c2;
+            try
+            {
+                List<Model.Color> lc = colorRepository.getAllColors();
+                System.Windows.Media.Color c = SelectedColorRaw;
+                string code = string.Format("#{0:X2}{1:X2}{2:X2}", c.R, c.G, c.B);
+                Console.WriteLine(code);
+                Model.Color c2 = lc.Where(x => x.colorCode.Equals(code)).FirstOrDefault();
+                return c2;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+           
 
 
         }
@@ -569,36 +589,43 @@ namespace desktopapplication.ViewModel
 
         private void claimCloth()
         {
-
-
-            List<Cloth> lc = ClothesRepository.getClothes();
-
-            Cloth c = lc.Where(x =>
-                x.Gender_Id == ClothesGenderSelected.Id && x.Size_Id == ClothesSizeSelected.Id &&
-                x.Classification_Id == ClothesClassificationSelected.Id && x.Color_Id == getColorByCode().Id && x.active == true).FirstOrDefault();
-            if (c != null)
+            if (ClothesSizeSelected != null && ClothesClassificationSelected != null && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothnesDonorSelected != null && getColorByCode() != null)
             {
-                if (ClothesSelectedRequestor.MaxClaim.value - ClothesSelectedRequestor.points >= c.Classification.value)
+                List<Cloth> lc = ClothesRepository.getClothes();
 
-
+                Cloth c = lc.Where(x =>
+                    x.Gender_Id == ClothesGenderSelected.Id && x.Size_Id == ClothesSizeSelected.Id &&
+                    x.Classification_Id == ClothesClassificationSelected.Id && x.Color_Id == getColorByCode().Id && x.active == true).FirstOrDefault();
+                if (c != null)
                 {
-                    Order o = new Order();
-                    o.Clothes_Id = c.Id;
-                    o.Requestor_Id = ClothesSelectedRequestor.Id;
-                    o.dateCreated = DateTime.Now;
-                    OrderRepository.newOrder(o);
+                    if (ClothesSelectedRequestor.MaxClaim.value - ClothesSelectedRequestor.points >= c.Classification.value)
+
+
+                    {
+                        Order o = new Order();
+                        o.Clothes_Id = c.Id;
+                        o.Requestor_Id = ClothesSelectedRequestor.Id;
+                        o.dateCreated = DateTime.Now;
+                        OrderRepository.newOrder(o);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Not enough points available");
+                    }
+
+
                 }
                 else
                 {
-                    MessageBox.Show("Not enough points available");
+                    MessageBox.Show("Cloth not available");
                 }
-
-
             }
             else
             {
-                MessageBox.Show("Cloth not available");
+                MessageBox.Show("Please, fill up all the fields.");
             }
+
+            
 
         }
 
@@ -928,6 +955,24 @@ namespace desktopapplication.ViewModel
             }
         }
 
+        private List<Language> _announcementLanguages;
+
+        public List<Language> AnnouncementLanguages
+        {
+            get { return _announcementLanguages; }
+            set { _announcementLanguages = value; NotifyPropertyChanged(); }
+        }
+
+        private List<string> _announcementType;
+
+        public List<string> AnnouncementType
+        {
+            get { return _announcementType; ; }
+            set { _announcementType = value; NotifyPropertyChanged(); }
+        }
+
+
+
         private string _announcementTitle;
         public string AnnouncementTitle
         {
@@ -977,35 +1022,84 @@ namespace desktopapplication.ViewModel
         {
             Announcements = new List<Announcement>();
             Announcements = announcementRepository.getAllAnnouncements();
+            populateAnnouncementType();
         }
 
-        private void createAnnouncement()
+        private string _announcementDestination;
+        public string AnnouncementDestination
         {
-            Announcement a = new Announcement();
-            a.dateCreated = DateTime.Now;
-            a.language = AnnouncementLanguage.ToLower();
-            a.message = AnnouncementMessage;
-            a.title = AnnouncementTitle;
+            get { return _announcementDestination; }
+            set { _announcementDestination = value; NotifyPropertyChanged(); }
+        }
 
-            if (SelectedRecipient.ToLower().Equals("Everyone".ToLower()) ||
-                SelectedRecipient.ToLower().Equals("Tothom".ToLower()))
+        public void populateAnnouncementType()
+        {
+            List<string> l = new List<string>();
+            if (Properties.Settings.Default.selectedLang.Equals("en"))
             {
-                a.recipient = "Everyone";
-            }
-            else if (SelectedRecipient.ToLower().Equals("Donors".ToLower()) ||
-                     SelectedRecipient.ToLower().Equals("Donants".ToLower()))
+               
+                l.Add("Everyone");
+                    l.Add("Donors");
+                    l.Add("Requestors");
+            } else if (Properties.Settings.Default.selectedLang.Equals("ca"))
             {
-                a.recipient = "Donors";
+
+                l.Add("Tothom");
+                l.Add("Donants");
+                l.Add("Demanants");
             }
             else
             {
-                a.recipient = "Requestors";
+                l.Add("Todos");
+                l.Add("Donantes");
+                l.Add("Pedidores");
             }
 
-            announcementRepository.addAnnouncement(a);
-            Console.WriteLine("announcement added to db");
+            AnnouncementType = l;
 
-            populateAnnouncements();
+
+
+        }
+
+
+        private void createAnnouncement()
+        {
+            if (AnnouncementLanguage != null && AnnouncementMessage != null && SelectedRecipient != null && AnnouncementTitle != null)
+            {
+
+                Announcement a = new Announcement();
+                a.dateCreated = DateTime.Now;
+                a.language = AnnouncementLanguage;
+                a.message = AnnouncementMessage;
+                a.title = AnnouncementTitle;
+
+
+
+                if (SelectedRecipient.ToLower().Equals("Everyone".ToLower()) ||
+                    SelectedRecipient.ToLower().Equals("Tothom".ToLower()))
+                {
+                    a.recipient = "Everyone";
+                }
+                else if (SelectedRecipient.ToLower().Equals("Donors".ToLower()) ||
+                         SelectedRecipient.ToLower().Equals("Donants".ToLower()))
+                {
+                    a.recipient = "Donors";
+                }
+                else
+                {
+                    a.recipient = "Requestors";
+                }
+
+                announcementRepository.addAnnouncement(a);
+                Console.WriteLine("announcement added to db");
+
+                populateAnnouncements();
+            }
+            else
+            {
+                MessageBox.Show("Please, fill up all the fields");
+            }
+
         }
 
         #endregion
@@ -1039,6 +1133,7 @@ namespace desktopapplication.ViewModel
         }
         private void selectUsers()
         {
+            populateDonors();
             SelectedTab = 0;
             // UsersSelected = Visibility.Visible;
             // HomeSelected = Visibility.Hidden;
@@ -1047,6 +1142,7 @@ namespace desktopapplication.ViewModel
 
         private void selectClothes()
         {
+            ClothesPopulate();
             SelectedTab = 2;
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
@@ -1055,6 +1151,7 @@ namespace desktopapplication.ViewModel
 
         private void selectAnnouncements()
         {
+            populateAnnouncements();
             SelectedTab = 3;
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;

@@ -244,18 +244,16 @@
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="528,50,348,392" />
 
 
-                        <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120"  SelectedItem="{Binding SelectedRecipient}"
+                        <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AnnouncementType}" SelectedItem="{Binding SelectedRecipient}"
                             materialDesign:HintAssist.Hint="Recipient" >
-                            <ComboBoxItem Content="Everyone" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Donors" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Requestors" HorizontalAlignment="Left" Width="118"/>
+                           
                         </ComboBox>
                         <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="Button" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
-                        <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding AnnouncementLanguage}" 
+                        <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedValue="{Binding AnnouncementLanguage}" 
                                   materialDesign:HintAssist.Hint="Language" >
-                            <ComboBoxItem Content="EN" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="CA" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="ES"/>
+                            <ComboBoxItem Content="English" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="Català" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="Castellano"/>
                         </ComboBox>
 
                         <TextBox
