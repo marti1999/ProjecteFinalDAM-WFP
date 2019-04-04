@@ -483,7 +483,9 @@ namespace desktopapplication.ViewModel
             //TODO: canviar el if un cop estigui implementat el multi idioma
             if (true)
             {
-                ClothesClassification = ClassificationRepository.getAllClassifications();
+                //ClothesClassification = ClassificationRepository.getAllClassifications();
+                ClothesClassification = ClassificationRepository.getAllClassificationsLang(Properties.Settings.Default.selectedLang);
+                
 
             }
             else
@@ -519,23 +521,49 @@ namespace desktopapplication.ViewModel
         }
         private void createCloth()
         {
-            Cloth c = new Cloth();
-            c.Size_Id = ClothesSizeSelected.Id;
-            //c.Classification = ClothesClassificationSelected;
-            c.Classification_Id = ClothesClassificationSelected.Id;
-            c.Color = getColorByCode(); //TODO: mirar si hace falta canviar por la otra linea
-            //c.Gender = ClothesGenderSelected;
-            //c.Warehouse = ClothesWarehouseSelected;
-            //c.Color_Id = getColorByCode().Id;
-            c.Gender_Id = ClothesGenderSelected.Id;
-            c.Warehouse_Id = ClothesWarehouseSelected.Id;
+            if (ClothesSizeSelected != null && ClothesClassificationSelected != null  && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothnesDonorSelected != null)
+            {
+                Cloth c = new Cloth();
+                c.Size_Id = ClothesSizeSelected.Id;
+               
+                c.Classification_Id = ClothesClassificationSelected.Id;
+              
+                c.Color_Id = getColorByCode().Id;
 
-            c.active = true;
-            c.dateCreated = DateTime.Now;
+                if (c.Color_Id != null)
+                {
+                    c.Gender_Id = ClothesGenderSelected.Id;
+                    c.Warehouse_Id = ClothesWarehouseSelected.Id;
 
-            ClothesRepository.addCloth(c);
+                    c.active = true;
+                    c.dateCreated = DateTime.Now;
 
-            //TODO: sumar punts al donor
+                    ClothesRepository.addCloth(c);
+
+                    Donor d = ClothnesDonorSelected;
+
+                    d.points += ClothesClassificationSelected.value;
+                    d.ammountGiven += 1;
+
+                    donorRepository.updateDonor(d);
+
+                    //TODO: comprovar que sumar els punts al donor funciona; 
+
+                    ClothesPopulate();
+                }
+                else
+                {
+                    MessageBox.Show("Please, fill up all the fields.");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Please, fill up all the fields.");
+            }
+
+
 
         }
 
