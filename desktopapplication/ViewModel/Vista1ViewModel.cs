@@ -108,9 +108,7 @@ namespace desktopapplication.ViewModel
             {
                 Administrator currentAdministrator = AdministratorRepository.getAdministratorById(userId);
                 LangChangerSelector(currentAdministrator.Language.code);
-
             }
-
 
             if (Properties.Settings.Default.currentTab != (-1))
             {
