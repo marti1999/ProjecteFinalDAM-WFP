@@ -188,7 +188,7 @@ namespace desktopapplication.ViewModel
             {
                 _donors = value;
                 NotifyPropertyChanged();
-            }
+            }   
         }
 
         private void DonorDelete()
