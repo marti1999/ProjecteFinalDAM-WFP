@@ -248,7 +248,7 @@
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Recipient}" >
                            
                         </ComboBox>
-                        <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="Button" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
+                        <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.send}" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
                         <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedValue="{Binding AnnouncementLanguage}" 
                                   materialDesign:HintAssist.Hint="{x:Static p:Resources.Language}" >
                             <ComboBoxItem Content="English" HorizontalAlignment="Left" Width="118"/>

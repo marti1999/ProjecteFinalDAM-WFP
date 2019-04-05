@@ -186,4 +186,25 @@
   <data name="WorkerCode" xml:space="preserve">
     <value>Codigo de trabajador</value>
   </data>
+  <data name="announcementMessage" xml:space="preserve">
+    <value>Descripción de la notificación</value>
+  </data>
+  <data name="announcementTitle" xml:space="preserve">
+    <value>Título de la notificación</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Destinatario</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
 </root>
