@@ -194,8 +194,16 @@ namespace desktopapplication.ViewModel
         private void DonorDelete()
         {
             Donor d = DonorSelected;
-            donorRepository.DeleteDonor(d);
-            populateDonors();
+            if (d!= null)
+            {
+                donorRepository.DeleteDonor(d);
+                populateDonors();
+            }
+            else
+            {
+                MessageBox.Show("Please, select a donor");
+            }
+            
 
         }
 
@@ -423,7 +431,7 @@ namespace desktopapplication.ViewModel
                 return null;
             }
 
-           
+
 
 
         }
@@ -503,7 +511,7 @@ namespace desktopapplication.ViewModel
             {
                 //ClothesClassification = ClassificationRepository.getAllClassifications();
                 ClothesClassification = ClassificationRepository.getAllClassificationsLang(Properties.Settings.Default.selectedLang);
-                
+
 
             }
             else
@@ -539,13 +547,13 @@ namespace desktopapplication.ViewModel
         }
         private void createCloth()
         {
-            if (ClothesSizeSelected != null && ClothesClassificationSelected != null  && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothnesDonorSelected != null)
+            if (ClothesSizeSelected != null && ClothesClassificationSelected != null && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothnesDonorSelected != null)
             {
                 Cloth c = new Cloth();
                 c.Size_Id = ClothesSizeSelected.Id;
-               
+
                 c.Classification_Id = ClothesClassificationSelected.Id;
-              
+
                 c.Color_Id = getColorByCode().Id;
 
                 if (c.Color_Id != null)
@@ -623,7 +631,7 @@ namespace desktopapplication.ViewModel
                 MessageBox.Show("Please, fill up all the fields.");
             }
 
-            
+
 
         }
 
@@ -736,7 +744,7 @@ namespace desktopapplication.ViewModel
                 {
                     populateAdministratorsWarehouse();
                 }
-                
+
             }
         }
 
@@ -1035,11 +1043,12 @@ namespace desktopapplication.ViewModel
             List<string> l = new List<string>();
             if (Properties.Settings.Default.selectedLang.Equals("en"))
             {
-               
+
                 l.Add("Everyone");
-                    l.Add("Donors");
-                    l.Add("Requestors");
-            } else if (Properties.Settings.Default.selectedLang.Equals("ca"))
+                l.Add("Donors");
+                l.Add("Requestors");
+            }
+            else if (Properties.Settings.Default.selectedLang.Equals("ca"))
             {
 
                 l.Add("Tothom");
@@ -1073,13 +1082,16 @@ namespace desktopapplication.ViewModel
 
 
 
+
                 if (SelectedRecipient.ToLower().Equals("Everyone".ToLower()) ||
-                    SelectedRecipient.ToLower().Equals("Tothom".ToLower()))
+                    SelectedRecipient.ToLower().Equals("Tothom".ToLower()) ||
+                SelectedRecipient.ToLower().Equals("Todos".ToLower()))
                 {
                     a.recipient = "Everyone";
                 }
                 else if (SelectedRecipient.ToLower().Equals("Donors".ToLower()) ||
-                         SelectedRecipient.ToLower().Equals("Donants".ToLower()))
+                         SelectedRecipient.ToLower().Equals("Donants".ToLower()) ||
+                         SelectedRecipient.ToLower().Equals("Donantes".ToLower()))
                 {
                     a.recipient = "Donors";
                 }
