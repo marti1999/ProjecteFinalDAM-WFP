@@ -156,4 +156,55 @@
   <data name="ReasonDenyRequestor" xml:space="preserve">
     <value>Reason has to be especified</value>
   </data>
+  <data name="announcementMessage" xml:space="preserve">
+    <value>Announcement description</value>
+  </data>
+  <data name="announcementTitle" xml:space="preserve">
+    <value>Announcement title</value>
+  </data>
+  <data name="Assign" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="isSuperAdmin" xml:space="preserve">
+    <value>Is super administrator?</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="selectAdmin" xml:space="preserve">
+    <value>Select administrator</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="StreetNumber" xml:space="preserve">
+    <value>Street number</value>
+  </data>
+  <data name="WorkerCode" xml:space="preserve">
+    <value>Worker code</value>
+  </data>
 </root>

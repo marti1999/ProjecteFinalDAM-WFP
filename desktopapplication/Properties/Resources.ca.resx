@@ -156,4 +156,34 @@
   <data name="ReasonDenyRequestor" xml:space="preserve">
     <value>S'ha despecificar el motiu</value>
   </data>
+  <data name="Assign" xml:space="preserve">
+    <value>Assignar</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Localitat</value>
+  </data>
+  <data name="isSuperAdmin" xml:space="preserve">
+    <value>Es administrador súper?</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contrassenya</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Codi postal</value>
+  </data>
+  <data name="selectAdmin" xml:space="preserve">
+    <value>seleccioni administrador</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Carrer</value>
+  </data>
+  <data name="StreetNumber" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="WorkerCode" xml:space="preserve">
+    <value>Codi del treballador</value>
+  </data>
 </root>

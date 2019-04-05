@@ -77,6 +77,9 @@ namespace desktopapplication.ViewModel
         }
 
         public Vista1ViewModel()
+            //todo fer que nomes super admin pugui accedir a warehouses tab
+
+
         {
             setUserLanguageCulture();
 
@@ -118,7 +121,7 @@ namespace desktopapplication.ViewModel
 
             if (Properties.Settings.Default.selectedLang != Thread.CurrentThread.CurrentCulture.IetfLanguageTag)
             {
-                AdministratorRepository.changeLang(userId, Properties.Settings.Default.selectedLang);
+                //AdministratorRepository.changeLang(userId, Properties.Settings.Default.selectedLang);
             }
 
             if (Properties.Settings.Default.currentTab != (-1))

@@ -232,25 +232,25 @@
   materialDesign:DataGridAssist.ColumnHeaderPadding="8" IsReadOnly="True">
                             <DataGrid.Columns>
 
-                                <DataGridTextColumn Binding="{Binding title}"  Header="Title" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding message}" Header="Message" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding dateCreated.Date.Date}"  Header="Date" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding title}"  Header="{x:Static p:Resources.Title}" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding message}" Header="{x:Static p:Resources.Message}" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding dateCreated.Date.Date}"  Header="{x:Static p:Resources.Date}" Width="*"/>
 
                             </DataGrid.Columns>
                         </DataGrid>
 
                         <TextBox
-                            materialDesign:HintAssist.Hint="Announcement title" Text="{Binding AnnouncementTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.announcementTitle}" Text="{Binding AnnouncementTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="528,50,348,392" />
 
 
                         <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AnnouncementType}" SelectedItem="{Binding SelectedRecipient}"
-                            materialDesign:HintAssist.Hint="Recipient" >
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Recipient}" >
                            
                         </ComboBox>
                         <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="Button" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
                         <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedValue="{Binding AnnouncementLanguage}" 
-                                  materialDesign:HintAssist.Hint="Language" >
+                                  materialDesign:HintAssist.Hint="{x:Static p:Resources.Language}" >
                             <ComboBoxItem Content="English" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Català" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Castellano"/>
@@ -264,7 +264,7 @@
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto"
-                            materialDesign:HintAssist.Hint="Announcement description"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.announcementMessage}"
                             />
 
                     </Grid>
@@ -317,43 +317,43 @@
                         <DataGrid Margin="52,18,593,255" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
                         <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}"  />
                         <TextBox
-                            materialDesign:HintAssist.Hint="City"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.City}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,300,751,139" Text="{Binding WarehouseEditing.city}" />
                         <TextBox
-                            materialDesign:HintAssist.Hint="Postal Code"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.PostalCode}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,300,611,139" Text="{Binding WarehouseEditing.postalCode}" />
                         <TextBox
-                            materialDesign:HintAssist.Hint="Street"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Street}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,364,751,75" Text="{Binding WarehouseEditing.street}" />
                         <TextBox
-                            materialDesign:HintAssist.Hint="Street Number"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.StreetNumber}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,364,611,75" Text="{Binding WarehouseEditing.number}" />
-                        <TextBox
-                            materialDesign:HintAssist.Hint="Name"
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Name}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,254,611,185" Text="{Binding WarehouseEditing.name}" />
-                        <Button Content="Edit" HorizontalAlignment="Left" Margin="66,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
-                        <Button Content="Add" HorizontalAlignment="Left" Margin="297,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
+                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="66,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
+                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="297,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
                         <TextBox
                             materialDesign:HintAssist.Hint="Email"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="526,254,291,185" Text="{Binding AdministratorEditing.email}" />
                         <TextBox
-                            materialDesign:HintAssist.Hint="Name"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Name}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,254,151,185" Text="{Binding AdministratorEditing.name}" />
                         <TextBox
-                            materialDesign:HintAssist.Hint="Password"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.Password}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="526,301,291,138" Text="{Binding AdministratorEditing.password}" />
                         <TextBox
-                            materialDesign:HintAssist.Hint="Worker code"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.WorkerCode}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,301,151,138" Text="{Binding AdministratorEditing.workerCode}" />
-                        <Label Content="Is super administrator?" HorizontalAlignment="Left" Margin="525,380,0,0" VerticalAlignment="Top"/>
+                        <Label Content="{x:Static p:Resources.isSuperAdmin}" HorizontalAlignment="Left" Margin="525,380,0,0" VerticalAlignment="Top"/>
 
                         <ToggleButton
                             Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="{Binding AdministratorEditing.isSuper}" Background="#FF596673" Foreground="White" Height="39" Width="73" Margin="660,377,276,65"/>
-                        <Button Content="Add" HorizontalAlignment="Left" Margin="757,380,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorAddCommand}"/>
+                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="757,380,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorAddCommand}"/>
                         <Button Content="Assign" HorizontalAlignment="Left" Margin="889,105,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorReassignCommand}"/>
 
                         <ComboBox HorizontalAlignment="Left" Margin="889,165,0,0" VerticalAlignment="Top" Width="101"
-                                  materialDesign:HintAssist.Hint="Classification"
+                                  materialDesign:HintAssist.Hint=""
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding Administrators}" SelectedItem="{Binding AdministratorComboBoxSelected}" />
 
                     </Grid>
