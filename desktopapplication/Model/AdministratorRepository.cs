@@ -25,10 +25,10 @@ namespace desktopapplication.Model
             lu = (List<Administrator>)MakeRequest(string.Concat(Utils.ws, "administratorsTot"), null, "GET", "application/json", typeof(List<Administrator>));
             return lu;
         }
-        
+
         public static Administrator getAdministratorById(int id)
         {
-            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administrator/"+id), null, "GET", "application/json", typeof(Administrator));
+            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administrator/" + id), null, "GET", "application/json", typeof(Administrator));
             return r;
         }
         public static Administrator getAdministratorByEmail(string email)
@@ -39,7 +39,7 @@ namespace desktopapplication.Model
 
         public static Administrator add(Administrator a)
         {
-            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administrator" ), a, "POST", "application/json", typeof(Administrator));
+            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administrator"), a, "POST", "application/json", typeof(Administrator));
             return r;
         }
 
@@ -48,8 +48,15 @@ namespace desktopapplication.Model
             Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administrator/", a.Id), a, "PUT", "application/json", typeof(Administrator));
             return r;
         }
-        
-        
+        public static void changeLang(int id, String lang)
+        {
+            List<object> ar = new List<object>();
+            ar.Add(id);
+            ar.Add(lang);
+            MakeRequest(string.Concat(Utils.ws, "api/administrator/updlang", null), ar, "PUT", "application/json", typeof(void));
+        }
+
+
 
 
 

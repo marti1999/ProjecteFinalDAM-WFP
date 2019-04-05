@@ -106,10 +106,19 @@ namespace desktopapplication.ViewModel
         private void setUserLanguageCulture()
         {
             int userId = Properties.Settings.Default.remindUser;
-            if (userId != 0 && Properties.Settings.Default.selectedLang.Equals("default"))
+            if (userId != 0)
             {
-                Administrator currentAdministrator = AdministratorRepository.getAdministratorById(userId);
-                LangChangerSelector(currentAdministrator.Language.code);
+                if (Properties.Settings.Default.selectedLang.Equals("default"))
+                {
+                    Administrator currentAdministrator = AdministratorRepository.getAdministratorById(userId);
+                    LangChangerSelector(currentAdministrator.Language.code);
+                }
+            }
+
+
+            if (Properties.Settings.Default.selectedLang != Thread.CurrentThread.CurrentCulture.IetfLanguageTag)
+            {
+                AdministratorRepository.changeLang(userId, Properties.Settings.Default.selectedLang);
             }
 
             if (Properties.Settings.Default.currentTab != (-1))
