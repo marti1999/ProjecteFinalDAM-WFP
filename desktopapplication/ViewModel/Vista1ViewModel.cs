@@ -55,6 +55,7 @@ namespace desktopapplication.ViewModel
         public ICommand warehouseAddCommand { get; set; }
         public ICommand administratorAddCommand { get; set; }
         public ICommand administratorReassignCommand { get; set; }
+        public ICommand warehouseClickCommand { get; set; }
 
         private void restartApp()
         {
@@ -168,6 +169,7 @@ namespace desktopapplication.ViewModel
             usersClickCommand = new RelayCommand(x => selectUsers());
             rewardsClickCommand = new RelayCommand(x => selectRewards());
             clothesClickCommand = new RelayCommand(x => selectClothes());
+            warehouseClickCommand = new RelayCommand(x => selectWarehouse());
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
@@ -1201,6 +1203,23 @@ namespace desktopapplication.ViewModel
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
             Console.WriteLine("ANNOUNCEMENTS SELECTED");
+        }
+
+        private void selectWarehouse()
+        {
+            int userId = Properties.Settings.Default.remindUser;
+            Administrator a = AdministratorRepository.getAdministratorById(userId);
+            if (a.isSuper)
+            {
+                PopulateWarehouses();
+                populateAdministrators();
+                SelectedTab = 5;
+                Console.WriteLine("WAREHOUSES SELECTED");
+            } else
+            {
+                MessageBox.Show("Tab only enabled for super adminstrators, please log in as such")
+            }
+           
         }
 
         #endregion

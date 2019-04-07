@@ -392,7 +392,7 @@
                         <TextBox 
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Name}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="43,267,634,172" Text="{Binding WarehouseEditing.name}" />
-                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="43,439,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
+                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="43,434,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
                         <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="274,434,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
                         <TextBox
                             materialDesign:HintAssist.Hint="Email"
