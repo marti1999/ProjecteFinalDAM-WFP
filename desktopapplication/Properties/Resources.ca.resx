@@ -207,4 +207,52 @@
   <data name="send" xml:space="preserve">
     <value>Enviar</value>
   </data>
+  <data name="active" xml:space="preserve">
+    <value>Actiu:</value>
+  </data>
+  <data name="amountGiven" xml:space="preserve">
+    <value>Quantitat donada</value>
+  </data>
+  <data name="Announcements" xml:space="preserve">
+    <value>Notificacions</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Naixement</value>
+  </data>
+  <data name="Classification" xml:space="preserve">
+    <value>Tipus</value>
+  </data>
+  <data name="clothes" xml:space="preserve">
+    <value>Roba</value>
+  </data>
+  <data name="DonateCloth" xml:space="preserve">
+    <value>Donar roba</value>
+  </data>
+  <data name="donor" xml:space="preserve">
+    <value>Donant</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Gènere</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Cognom</value>
+  </data>
+  <data name="registerCloth" xml:space="preserve">
+    <value>Registrar roba</value>
+  </data>
+  <data name="requestor" xml:space="preserve">
+    <value>Demanant</value>
+  </data>
+  <data name="rewards" xml:space="preserve">
+    <value>Recompenses</value>
+  </data>
+  <data name="saveChanges" xml:space="preserve">
+    <value>Guardar canvis</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Mida</value>
+  </data>
+  <data name="Warehouses" xml:space="preserve">
+    <value>Magatzems</value>
+  </data>
 </root>

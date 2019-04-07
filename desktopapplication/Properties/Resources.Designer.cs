@@ -61,11 +61,38 @@ namespace desktopapplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active: .
+        /// </summary>
+        public static string active {
+            get {
+                return ResourceManager.GetString("active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount given.
+        /// </summary>
+        public static string amountGiven {
+            get {
+                return ResourceManager.GetString("amountGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Announcement description.
         /// </summary>
         public static string announcementMessage {
             get {
                 return ResourceManager.GetString("announcementMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Announcements.
+        /// </summary>
+        public static string Announcements {
+            get {
+                return ResourceManager.GetString("Announcements", resourceCulture);
             }
         }
         
@@ -88,6 +115,15 @@ namespace desktopapplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Birth Date.
+        /// </summary>
+        public static string BirthDate {
+            get {
+                return ResourceManager.GetString("BirthDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Catalan.
         /// </summary>
         public static string Catalan {
@@ -102,6 +138,24 @@ namespace desktopapplication.Properties {
         public static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Classification {
+            get {
+                return ResourceManager.GetString("Classification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clothes.
+        /// </summary>
+        public static string clothes {
+            get {
+                return ResourceManager.GetString("clothes", resourceCulture);
             }
         }
         
@@ -133,11 +187,38 @@ namespace desktopapplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order Cloth.
+        /// </summary>
+        public static string DonateCloth {
+            get {
+                return ResourceManager.GetString("DonateCloth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donor.
+        /// </summary>
+        public static string donor {
+            get {
+                return ResourceManager.GetString("donor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string gender {
+            get {
+                return ResourceManager.GetString("gender", resourceCulture);
             }
         }
         
@@ -165,6 +246,15 @@ namespace desktopapplication.Properties {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        public static string lastName {
+            get {
+                return ResourceManager.GetString("lastName", resourceCulture);
             }
         }
         
@@ -241,11 +331,47 @@ namespace desktopapplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register Cloth.
+        /// </summary>
+        public static string registerCloth {
+            get {
+                return ResourceManager.GetString("registerCloth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requestor.
+        /// </summary>
+        public static string requestor {
+            get {
+                return ResourceManager.GetString("requestor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rewards.
+        /// </summary>
+        public static string rewards {
+            get {
+                return ResourceManager.GetString("rewards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Second hand clothes.
         /// </summary>
         public static string RobaSegonaMa {
             get {
                 return ResourceManager.GetString("RobaSegonaMa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes.
+        /// </summary>
+        public static string saveChanges {
+            get {
+                return ResourceManager.GetString("saveChanges", resourceCulture);
             }
         }
         
@@ -264,6 +390,15 @@ namespace desktopapplication.Properties {
         public static string send {
             get {
                 return ResourceManager.GetString("send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string Size {
+            get {
+                return ResourceManager.GetString("Size", resourceCulture);
             }
         }
         
@@ -309,6 +444,15 @@ namespace desktopapplication.Properties {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warehouses.
+        /// </summary>
+        public static string Warehouses {
+            get {
+                return ResourceManager.GetString("Warehouses", resourceCulture);
             }
         }
         

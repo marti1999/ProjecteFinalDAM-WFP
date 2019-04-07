@@ -207,4 +207,52 @@
   <data name="WorkerCode" xml:space="preserve">
     <value>Worker code</value>
   </data>
+  <data name="active" xml:space="preserve">
+    <value>Active: </value>
+  </data>
+  <data name="amountGiven" xml:space="preserve">
+    <value>Amount given</value>
+  </data>
+  <data name="Announcements" xml:space="preserve">
+    <value>Announcements</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Classification" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="clothes" xml:space="preserve">
+    <value>Clothes</value>
+  </data>
+  <data name="DonateCloth" xml:space="preserve">
+    <value>Order Cloth</value>
+  </data>
+  <data name="donor" xml:space="preserve">
+    <value>Donor</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="registerCloth" xml:space="preserve">
+    <value>Register Cloth</value>
+  </data>
+  <data name="requestor" xml:space="preserve">
+    <value>Requestor</value>
+  </data>
+  <data name="rewards" xml:space="preserve">
+    <value>Rewards</value>
+  </data>
+  <data name="saveChanges" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Warehouses" xml:space="preserve">
+    <value>Warehouses</value>
+  </data>
 </root>

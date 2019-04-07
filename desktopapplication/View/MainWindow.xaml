@@ -59,28 +59,28 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
                                     <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
-                                    <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="Name" Width="*"/>
-                                    <DataGridTextColumn Binding="{Binding lastName}" ClipboardContentBinding="{x:Null}" Header="Last Name" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Name}" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding lastName}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.lastName}" Width="*"/>
                                     <DataGridTextColumn Binding="{Binding email}" ClipboardContentBinding="{x:Null}" Header="Email" Width="*"/>
-                                    <DataGridTextColumn Binding="{Binding ammountGiven}" ClipboardContentBinding="{x:Null}" Header="Amount given" Width="*"/>
-                                    <DataGridCheckBoxColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="Active" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding ammountGiven}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.amountGiven}" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.active}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content="Delete" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
+                            <Button Content="{x:Static p:Resources.Delete}" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
                         </Grid>
                         <Grid Grid.Column="1" >
                             <TextBox
-                                materialDesign:HintAssist.Hint="Name"
+                                materialDesign:HintAssist.Hint="{x:Static p:Resources.Name}"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="212,52,178,412" Text="{Binding DonorName}" />
                             <TextBox
-                                materialDesign:HintAssist.Hint="Last Name"
+                                materialDesign:HintAssist.Hint="{x:Static p:Resources.lastName}"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="343,52,47,412" Text="{Binding DonorLastName}" />
                             <TextBox
                                 materialDesign:HintAssist.Hint="Email"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="212,113,47,351" Text="{Binding DonorEmail}" />
 
                             <DatePicker
-                                materialDesign:HintAssist.Hint="Birth date"
+                                materialDesign:HintAssist.Hint="{x:Static p:Resources.BirthDate}"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="212,179,188,295" Text="{Binding DonorBirthDate , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                             <ToggleButton
@@ -88,10 +88,10 @@
                                 ToolTip="MaterialDesignSwitchToggleButton"
                                 IsChecked="{Binding DonorActive}" Margin="382,179,47,298" 
                                 />
-                            <Label Content="Active: " HorizontalAlignment="Left" Margin="328,178,0,0" VerticalAlignment="Top"/>
+                            <Label Content="{x:Static p:Resources.active}" HorizontalAlignment="Left" Margin="328,178,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
-                        <Button Content="Save changes" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding DonorUpdateCommand}" HorizontalAlignment="Left" Margin="212,246,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
+                        <Button Content="{x:Static p:Resources.saveChanges}" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding DonorUpdateCommand}" HorizontalAlignment="Left" Margin="212,246,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
 
                     </Grid>
                 </TabItem>
@@ -160,9 +160,9 @@
                             </StackPanel>
                         </materialDesign:Card>
                         <ComboBox Name="classification" HorizontalAlignment="Left" Margin="553,119,0,0" VerticalAlignment="Top" Width="120"
-                                  materialDesign:HintAssist.Hint="Classification"
+                                  materialDesign:HintAssist.Hint="{x:Static p:Resources.Classification}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
-                        <ComboBox Name="size" HorizontalAlignment="Left" Margin="709,119,0,0" VerticalAlignment="Top" Width="94" materialDesign:HintAssist.Hint="Size"
+                        <ComboBox Name="size" HorizontalAlignment="Left" Margin="709,119,0,0" VerticalAlignment="Top" Width="94" materialDesign:HintAssist.Hint="{x:Static p:Resources.Size}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesSizes}" SelectedItem="{Binding ClothesSizeSelected}"/>
                         <Button  HorizontalAlignment="Left" Margin="553,191,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray"  BorderBrush="#FF596673" Command="{Binding clothesSetFemaleCommand}">
                             <StackPanel Orientation="Horizontal"  >
@@ -183,32 +183,32 @@
 
                         <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="553,255,206,195"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
                         <ComboBox HorizontalAlignment="Left" Margin="558,296,0,0" VerticalAlignment="Top" Width="245"
-                                  materialDesign:HintAssist.Hint="Donor:" IsEnabled="{Binding IsClothesDonate}"
+                                  materialDesign:HintAssist.Hint="{x:Static p:Resources.donor}" IsEnabled="{Binding IsClothesDonate}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedItem="{Binding ClothnesDonorSelected}" ItemsSource="{Binding ClothesDonors}">
 
                         </ComboBox>
                         <Button HorizontalAlignment="Left" Margin="542,399,0,0" VerticalAlignment="Top" Width="131" Command="{Binding createClothCommand}" Height="39"
-                                Content="Register cloth"
+                                Content="{x:Static p:Resources.registerCloth}"
                                 Background="#596673" BorderBrush="#596673" IsEnabled="{Binding IsClothesDonate}">
 
                         </Button>
                         <materialDesign:Card Margin="10,0,0,10" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="418" >
                             <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}" IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Gender.gender1}" ClipboardContentBinding="{x:Null}" Width="*" Header="Gender"/>
-                                    <DataGridTextColumn Binding="{Binding Classification.classificationType}" ClipboardContentBinding="{x:Null}" Width="*" Header="Type"/>
+                                    <DataGridTextColumn Binding="{Binding Gender.gender1}" ClipboardContentBinding="{x:Null}" Width="*" Header="{x:Static p:Resources.gender}"/>
+                                    <DataGridTextColumn Binding="{Binding Classification.classificationType}" ClipboardContentBinding="{x:Null}" Width="*" Header="{x:Static p:Resources.Classification}"/>
                                     <DataGridTextColumn Binding="{Binding Color.name}" ClipboardContentBinding="{x:Null}" Width="*"  Header="Color"/>
-                                    <DataGridTextColumn Binding="{Binding Size.size1}" ClipboardContentBinding="{x:Null}" Width="*" Header="Size"/>
+                                    <DataGridTextColumn Binding="{Binding Size.size1}" ClipboardContentBinding="{x:Null}" Width="*" Header="{x:Static p:Resources.Size}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </materialDesign:Card>
-                        <Label Content="Donor" HorizontalAlignment="Left" Margin="591,66,0,0" VerticalAlignment="Top" FontSize="18"/>
-                        <Label Content="Requestor" HorizontalAlignment="Left" Margin="733,66,0,0" VerticalAlignment="Top" FontSize="18"/>
+                        <Label Content="{x:Static p:Resources.donor}" HorizontalAlignment="Left" Margin="591,66,0,0" VerticalAlignment="Top" FontSize="18"/>
+                        <Label Content="{x:Static p:Resources.requestor}" HorizontalAlignment="Left" Margin="733,66,0,0" VerticalAlignment="Top" FontSize="18"/>
                         <Button HorizontalAlignment="Left" Margin="691,399,0,0" VerticalAlignment="Top" Width="132" Command="{Binding ClothToRequestor}" Height="39"
-                            Content="Donate cloth"
+                            Content="{x:Static p:Resources.DonateCloth}"
                             Background="#596673" BorderBrush="#596673" IsEnabled="{Binding IsClothClaim}"/>
                         <ComboBox HorizontalAlignment="Left" Margin="558,336,0,0" VerticalAlignment="Top" Width="245"
-                            materialDesign:HintAssist.Hint="Requestor:"
+                            materialDesign:HintAssist.Hint="{x:Static p:Resources.requestor}"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEnabled="{Binding IsClothClaim}" SelectedItem="{Binding ClothesSelectedRequestor}" ItemsSource="{Binding ClothesRequestors}"/>
 
                         <ToggleButton
@@ -217,11 +217,12 @@
 
                         </ToggleButton>
                         <Button HorizontalAlignment="Left" Margin="294,399,0,0" VerticalAlignment="Top" Width="131" Command="{Binding deleteClothCommand}" Height="39"
-                            Content="Remove"
+                            Content="{x:Static p:Resources.Delete}"
                             Background="#596673" BorderBrush="#596673"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Announcements" Visibility="Visible" >
+                <TabItem Header="Announcements" Visibility="Visible" 
+                         >
                     <Grid Background="#FFE5E5E5"  >
 
 
@@ -246,7 +247,7 @@
 
                         <ComboBox HorizontalAlignment="Left" Margin="528,108,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding AnnouncementType}" SelectedItem="{Binding SelectedRecipient}"
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Recipient}" >
-                           
+
                         </ComboBox>
                         <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.send}" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
                         <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedValue="{Binding AnnouncementLanguage}" 
@@ -424,9 +425,9 @@
                             Height="60"
                              BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Width="170">
                                 <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
+                                <TextBlock Text="{x:Static p:Resources.requestor}" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
 
                         </Button>
@@ -441,9 +442,9 @@
                             Height="60"
                              BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="AccessPoint" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
+                            <StackPanel Orientation="Horizontal" Width="170" >
+                                <materialDesign:PackIcon Kind="Plus" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="{x:Static p:Resources.donor}" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
 
                         </Button>
@@ -459,9 +460,9 @@
                             Height="60"
                              BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Width="170">
                                 <materialDesign:PackIcon Kind="TshirtCrew"  Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
+                                <TextBlock Text="{x:Static p:Resources.clothes}" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
 
                         </Button>
@@ -477,7 +478,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
+                                <TextBlock Text="{x:Static p:Resources.Announcements}" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
 
                         </Button>
@@ -491,9 +492,27 @@
                            Height="60"
                              BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Notifications" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
+                            <StackPanel Orientation="Horizontal" Width="170">
+                                <materialDesign:PackIcon Kind="Gift" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="{x:Static p:Resources.rewards}" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+
+                        </Button>
+
+
+
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <Button
+                            Command="{Binding warehouseClickCommand}"
+                           HorizontalAlignment="Left"
+                            Width="170"
+                           Height="60"
+                             BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
+
+                            <StackPanel Orientation="Horizontal" Width="170">
+                                <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="{x:Static p:Resources.Warehouses}" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
 
                         </Button>
