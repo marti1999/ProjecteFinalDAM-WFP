@@ -57,7 +57,7 @@
                         <Grid>
                             <materialDesign:Card
                            
-                            Height="298"  Background="White" HorizontalAlignment="Right" Width="571" Margin="-9,10,-86,0" >
+                                 Height="298"  Background="White" HorizontalAlignment="Right" Width="571" Margin="-9,10,-86,0" >
                                 <StackPanel Margin="0,0,0,-14">
 
                                 </StackPanel>
@@ -112,6 +112,13 @@
                 <TabItem Header="Requestor" Visibility="Visible">
 
                     <Grid Background="#FFE5E5E5">
+                        <materialDesign:Card
+                           
+                                 Height="340"  Background="White" HorizontalAlignment="Right" Width="819" Margin="0,10,161,0" >
+                            <StackPanel Margin="0,0,0,0">
+
+                            </StackPanel>
+                        </materialDesign:Card>
 
                         <DataGrid HorizontalAlignment="Left" Margin="29,21,0,131" Width="654" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}">
                             <DataGrid.Columns>
@@ -168,46 +175,46 @@
 
                         <materialDesign:Card
                            
-                            Height="436"  Background="White" HorizontalAlignment="Right" Width="415" Margin="0,26,75,0" >
+                            Height="421"  Background="White" HorizontalAlignment="Right" Width="415" Margin="0,10,69,0" >
                             <StackPanel Margin="0,0,0,-14">
 
                             </StackPanel>
                         </materialDesign:Card>
-                        <ComboBox Name="classification" HorizontalAlignment="Left" Margin="553,119,0,0" VerticalAlignment="Top" Width="120"
+                        <ComboBox Name="classification" HorizontalAlignment="Left" Margin="553,90,0,0" VerticalAlignment="Top" Width="120"
                                   materialDesign:HintAssist.Hint="{x:Static p:Resources.Classification}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
-                        <ComboBox Name="size" HorizontalAlignment="Left" Margin="709,119,0,0" VerticalAlignment="Top" Width="94" materialDesign:HintAssist.Hint="{x:Static p:Resources.Size}"
+                        <ComboBox Name="size" HorizontalAlignment="Left" Margin="709,90,0,0" VerticalAlignment="Top" Width="94" materialDesign:HintAssist.Hint="{x:Static p:Resources.Size}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesSizes}" SelectedItem="{Binding ClothesSizeSelected}"/>
-                        <Button  HorizontalAlignment="Left" Margin="553,191,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray"  BorderBrush="#FF596673" Command="{Binding clothesSetFemaleCommand}">
+                        <Button  HorizontalAlignment="Left" Margin="571,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray"  BorderBrush="#FF596673" Command="{Binding clothesSetFemaleCommand}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
                         </Button>
-                        <Button  HorizontalAlignment="Left" Margin="651,191,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673" Command="{Binding clothesSetMaleCommand}">
+                        <Button  HorizontalAlignment="Left" Margin="669,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673" Command="{Binding clothesSetMaleCommand}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderMale" Height="25" Width="25" Margin="0"></materialDesign:PackIcon>
                             </StackPanel>
                         </Button>
-                        <Button  HorizontalAlignment="Left" Margin="746,191,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673"  Command="{Binding clothesSetOtherCommand}">
+                        <Button  HorizontalAlignment="Left" Margin="764,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673"  Command="{Binding clothesSetOtherCommand}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderMaleFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
                         </Button>
 
 
-                        <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="553,255,206,195"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="558,296,0,0" VerticalAlignment="Top" Width="245"
+                        <wpfx:ColorPicker Name="ColorPicker1" DisplayColorAndName="false" Margin="571,226,188,224"   StandardColors="{Binding ColorList}" AvailableColors="{Binding ColorList}" ShowStandardColors="False" AdvancedButtonHeader="" ShowAdvancedButton="False" SelectedColor="{Binding SelectedColorRaw}"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="576,267,0,0" VerticalAlignment="Top" Width="245"
                                   materialDesign:HintAssist.Hint="{x:Static p:Resources.donor}" IsEnabled="{Binding IsClothesDonate}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedItem="{Binding ClothnesDonorSelected}" ItemsSource="{Binding ClothesDonors}">
 
                         </ComboBox>
-                        <Button HorizontalAlignment="Left" Margin="542,399,0,0" VerticalAlignment="Top" Width="131" Command="{Binding createClothCommand}" Height="39"
+                        <Button HorizontalAlignment="Left" Margin="560,370,0,0" VerticalAlignment="Top" Width="131" Command="{Binding createClothCommand}" Height="39"
                                 Content="{x:Static p:Resources.registerCloth}"
                                 Background="#596673" BorderBrush="#596673" IsEnabled="{Binding IsClothesDonate}">
 
                         </Button>
-                        <materialDesign:Card Margin="15,0,0,43" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="418" >
-                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}" IsReadOnly="True">
+                        <materialDesign:Card Margin="15,0,0,28" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="433" >
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="347" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}" IsReadOnly="True" Margin="0,0,-5,0">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Gender.gender1}" ClipboardContentBinding="{x:Null}" Width="*" Header="{x:Static p:Resources.gender}"/>
                                     <DataGridTextColumn Binding="{Binding Classification.classificationType}" ClipboardContentBinding="{x:Null}" Width="*" Header="{x:Static p:Resources.Classification}"/>
@@ -216,21 +223,21 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </materialDesign:Card>
-                        <Label Content="{x:Static p:Resources.donor}" HorizontalAlignment="Left" Margin="591,66,0,0" VerticalAlignment="Top" FontSize="18"/>
-                        <Label Content="{x:Static p:Resources.requestor}" HorizontalAlignment="Left" Margin="733,66,0,0" VerticalAlignment="Top" FontSize="18"/>
-                        <Button HorizontalAlignment="Left" Margin="691,399,0,0" VerticalAlignment="Top" Width="132" Command="{Binding ClothToRequestor}" Height="39"
+                        <Label Content="{x:Static p:Resources.donor}" HorizontalAlignment="Left" Margin="591,37,0,0" VerticalAlignment="Top" FontSize="18"/>
+                        <Label Content="{x:Static p:Resources.requestor}" HorizontalAlignment="Left" Margin="733,37,0,0" VerticalAlignment="Top" FontSize="18"/>
+                        <Button HorizontalAlignment="Left" Margin="709,370,0,0" VerticalAlignment="Top" Width="132" Command="{Binding ClothToRequestor}" Height="39"
                             Content="{x:Static p:Resources.DonateCloth}"
                             Background="#596673" BorderBrush="#596673" IsEnabled="{Binding IsClothClaim}"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="558,336,0,0" VerticalAlignment="Top" Width="245"
+                        <ComboBox HorizontalAlignment="Left" Margin="576,307,0,0" VerticalAlignment="Top" Width="245"
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.requestor}"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEnabled="{Binding IsClothClaim}" SelectedItem="{Binding ClothesSelectedRequestor}" ItemsSource="{Binding ClothesRequestors}"/>
 
                         <ToggleButton
-                            Style="{StaticResource MaterialDesignSwitchToggleButton}" Margin="651,62,285,380" IsChecked="{Binding IsClothClaim}" Background="#FF596673" Foreground="White">
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}" Margin="651,33,285,409" IsChecked="{Binding IsClothClaim}" Background="#FF596673" Foreground="White">
 
 
                         </ToggleButton>
-                        <Button HorizontalAlignment="Left" Margin="294,399,0,0" VerticalAlignment="Top" Width="131" Command="{Binding deleteClothCommand}" Height="39"
+                        <Button HorizontalAlignment="Left" Margin="313,382,0,0" VerticalAlignment="Top" Width="131" Command="{Binding deleteClothCommand}" Height="39"
                             Content="{x:Static p:Resources.Delete}"
                             Background="#596673" BorderBrush="#596673"/>
                     </Grid>
@@ -239,9 +246,24 @@
                          >
                     <Grid Background="#FFE5E5E5"  >
 
+                        <materialDesign:Card
+                           
+                            Height="385"  Background="White" HorizontalAlignment="Right" Width="425" Margin="0,10,77,0" >
+                            <StackPanel Margin="0,0,0,-14">
 
+                            </StackPanel>
 
-                        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="28,21,0,0"
+                        </materialDesign:Card>
+
+                        <materialDesign:Card
+                           
+                            Height="385"  Background="White" HorizontalAlignment="Right" Width="694" Margin="0,10,287,0" >
+                            <StackPanel Margin="0,0,0,-14">
+
+                            </StackPanel>
+                        </materialDesign:Card>
+
+                        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="374" Margin="28,21,0,0"
                                   VerticalAlignment="Top" Width="404" ItemsSource="{Binding Announcements}"
                                     materialDesign:DataGridAssist.CellPadding="13 8 8 8"
   materialDesign:DataGridAssist.ColumnHeaderPadding="8" IsReadOnly="True">
@@ -263,7 +285,7 @@
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Recipient}" >
 
                         </ComboBox>
-                        <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.send}" HorizontalAlignment="Left" Margin="528,272,0,0" VerticalAlignment="Top" Width="75" Command="{Binding createAnnouncementCommand}" />
+                        <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.send}" HorizontalAlignment="Left" Margin="541,293,0,0" VerticalAlignment="Top" Width="277" Command="{Binding createAnnouncementCommand}" Height="48" FontSize="20" />
                         <ComboBox HorizontalAlignment="Left" Margin="707,108,0,0" VerticalAlignment="Top" Width="120" SelectedValue="{Binding AnnouncementLanguage}" 
                                   materialDesign:HintAssist.Hint="{x:Static p:Resources.Language}" >
                             <ComboBoxItem Content="English" HorizontalAlignment="Left" Width="118"/>
@@ -286,6 +308,13 @@
                 </TabItem>
                 <TabItem Header="Rewards" Visibility="Visible">
                     <Grid Background="#FFE5E5E5">
+                        <materialDesign:Card
+                           
+                            Height="421"  Background="White" HorizontalAlignment="Right" Width="687" Margin="0,10,293,0" >
+                            <StackPanel Margin="0,0,0,-14">
+
+                            </StackPanel>
+                        </materialDesign:Card>
                         <DataGrid HorizontalAlignment="Left" Height="354" Margin="29,21,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
@@ -324,50 +353,67 @@
                 </TabItem>
                 <TabItem Header="Warehouses" Visibility="Visible">
                     <Grid>
+
+                        <materialDesign:Card
+                           
+                            Height="461"  Background="White" HorizontalAlignment="Right" Width="690" Margin="0,10,291,0" >
+                            <StackPanel Margin="0,0,0,-14">
+
+                            </StackPanel>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card
+                           
+                            Height="456"  Background="White" HorizontalAlignment="Right" Width="474" Margin="0,10,10,0" >
+                            <StackPanel Margin="0,0,0,-14">
+
+                            </StackPanel>
+                        </materialDesign:Card>
+
                         <!--<StackPanel  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,50,0"/>
                             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0"/>
 
                         </StackPanel>-->
-                        <DataGrid Margin="28,21,579,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
+                        <DataGrid Margin="28,21,583,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
                         <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}"  />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.City}"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,300,751,139" Text="{Binding WarehouseEditing.city}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="43,313,774,126" Text="{Binding WarehouseEditing.city}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.PostalCode}"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,300,611,139" Text="{Binding WarehouseEditing.postalCode}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="277,313,634,126" Text="{Binding WarehouseEditing.postalCode}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Street}"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,364,751,75" Text="{Binding WarehouseEditing.street}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="43,377,774,62" Text="{Binding WarehouseEditing.street}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.StreetNumber}"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="300,364,611,75" Text="{Binding WarehouseEditing.number}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="277,377,634,62" Text="{Binding WarehouseEditing.number}" />
                         <TextBox 
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Name}"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="66,254,611,185" Text="{Binding WarehouseEditing.name}" />
-                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="66,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
-                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="297,426,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="43,267,634,172" Text="{Binding WarehouseEditing.name}" />
+                        <Button Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="43,439,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseEditCommand}"/>
+                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="274,434,0,0" VerticalAlignment="Top" Width="101" Command="{Binding warehouseAddCommand}"/>
                         <TextBox
                             materialDesign:HintAssist.Hint="Email"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="526,254,291,185" Text="{Binding AdministratorEditing.email}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="539,251,278,188" Text="{Binding AdministratorEditing.email}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Name}"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,254,151,185" Text="{Binding AdministratorEditing.name}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,251,151,188" Text="{Binding AdministratorEditing.name}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Password}"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="526,301,291,138" Text="{Binding AdministratorEditing.password}" />
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="539,298,278,141" Text="{Binding AdministratorEditing.password}" />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.WorkerCode}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="760,301,151,138" Text="{Binding AdministratorEditing.workerCode}" />
-                        <Label Content="{x:Static p:Resources.isSuperAdmin}" HorizontalAlignment="Left" Margin="525,380,0,0" VerticalAlignment="Top"/>
+                        <Label Content="{x:Static p:Resources.isSuperAdmin}" HorizontalAlignment="Left" Margin="538,377,0,0" VerticalAlignment="Top"/>
 
                         <ToggleButton
-                            Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="{Binding AdministratorEditing.isSuper}" Background="#FF596673" Foreground="White" Height="39" Width="73" Margin="660,377,276,65"/>
-                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="757,380,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorAddCommand}"/>
-                        <Button Content="Assign" HorizontalAlignment="Left" Margin="889,105,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorReassignCommand}"/>
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="{Binding AdministratorEditing.isSuper}" Background="#FF596673" Foreground="White" Height="39" Width="73" Margin="673,374,263,68"/>
+                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="770,377,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorAddCommand}"/>
+                        <Button Content="Assign" HorizontalAlignment="Left" Margin="875,151,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorReassignCommand}"/>
 
-                        <ComboBox HorizontalAlignment="Left" Margin="889,165,0,0" VerticalAlignment="Top" Width="101"
+                        <ComboBox HorizontalAlignment="Left" Margin="875,86,0,0" VerticalAlignment="Top" Width="101"
                                   materialDesign:HintAssist.Hint=""
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding Administrators}" SelectedItem="{Binding AdministratorComboBoxSelected}" />
 
