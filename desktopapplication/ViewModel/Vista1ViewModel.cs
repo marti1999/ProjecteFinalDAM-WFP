@@ -375,6 +375,8 @@ namespace desktopapplication.ViewModel
         private void populateRecipient()
         {
             Recipients = new ObservableCollection<string>();
+
+            //EN PRINCIPI NO ES FA SERVIR, PERO NO ESBORRAR PER SI DE CAS 
             // TODO: en el webservice falta fer el repository i controller de recipient
             // Recipients = announcementRepository.getRecipients();
 
