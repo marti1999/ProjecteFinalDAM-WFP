@@ -55,7 +55,14 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid>
-                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="10,62,-176,0" VerticalAlignment="Top" Width="642" ItemsSource="{Binding Donors}" SelectedItem="{Binding DonorSelected}" IsReadOnly="True">
+                            <materialDesign:Card
+                           
+                            Height="298"  Background="White" HorizontalAlignment="Right" Width="571" Margin="-9,10,-86,0" >
+                                <StackPanel Margin="0,0,0,-14">
+
+                                </StackPanel>
+                            </materialDesign:Card>
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="0,24,-166,0" VerticalAlignment="Top" Width="642" ItemsSource="{Binding Donors}" SelectedItem="{Binding DonorSelected}" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
                                     <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
@@ -69,29 +76,36 @@
                             <Button Content="{x:Static p:Resources.Delete}" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
                         </Grid>
                         <Grid Grid.Column="1" >
+                            <materialDesign:Card
+                           
+                            Height="349"  Background="White" HorizontalAlignment="Right" Width="269" Margin="0,10,10,0" >
+                                <StackPanel Margin="0,0,0,-14">
+
+                                </StackPanel>
+                            </materialDesign:Card>
                             <TextBox
                                 materialDesign:HintAssist.Hint="{x:Static p:Resources.Name}"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="212,52,178,412" Text="{Binding DonorName}" />
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="218,83,172,381" Text="{Binding DonorName}" />
                             <TextBox
                                 materialDesign:HintAssist.Hint="{x:Static p:Resources.lastName}"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="343,52,47,412" Text="{Binding DonorLastName}" />
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="349,83,41,381" Text="{Binding DonorLastName}" />
                             <TextBox
                                 materialDesign:HintAssist.Hint="Email"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="212,113,47,351" Text="{Binding DonorEmail}" />
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="218,144,41,320" Text="{Binding DonorEmail}" />
 
                             <DatePicker
                                 materialDesign:HintAssist.Hint="{x:Static p:Resources.BirthDate}"
-                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="212,179,188,295" Text="{Binding DonorBirthDate , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="218,210,182,264" Text="{Binding DonorBirthDate , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                             <ToggleButton
                                 Style="{StaticResource MaterialDesignSwitchToggleButton}"
                                 ToolTip="MaterialDesignSwitchToggleButton"
-                                IsChecked="{Binding DonorActive}" Margin="382,179,47,298" 
+                                IsChecked="{Binding DonorActive}" Margin="388,210,41,267" 
                                 />
-                            <Label Content="{x:Static p:Resources.active}" HorizontalAlignment="Left" Margin="328,178,0,0" VerticalAlignment="Top"/>
+                            <Label Content="{x:Static p:Resources.active}" HorizontalAlignment="Left" Margin="334,209,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
-                        <Button Content="{x:Static p:Resources.saveChanges}" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding DonorUpdateCommand}" HorizontalAlignment="Left" Margin="212,246,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
+                        <Button Content="{x:Static p:Resources.saveChanges}" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding DonorUpdateCommand}" HorizontalAlignment="Left" Margin="214,316,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
 
                     </Grid>
                 </TabItem>
@@ -99,7 +113,7 @@
 
                     <Grid Background="#FFE5E5E5">
 
-                        <DataGrid HorizontalAlignment="Left" Margin="60,62,0,90" Width="654" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}">
+                        <DataGrid HorizontalAlignment="Left" Margin="29,21,0,131" Width="654" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id"/>
                                 <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
@@ -192,7 +206,7 @@
                                 Background="#596673" BorderBrush="#596673" IsEnabled="{Binding IsClothesDonate}">
 
                         </Button>
-                        <materialDesign:Card Margin="10,0,0,10" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="418" >
+                        <materialDesign:Card Margin="15,0,0,43" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="418" >
                             <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="326" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Gender.gender1}" ClipboardContentBinding="{x:Null}" Width="*" Header="{x:Static p:Resources.gender}"/>
@@ -227,7 +241,7 @@
 
 
 
-                        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="59,60,0,0"
+                        <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="28,21,0,0"
                                   VerticalAlignment="Top" Width="404" ItemsSource="{Binding Announcements}"
                                     materialDesign:DataGridAssist.CellPadding="13 8 8 8"
   materialDesign:DataGridAssist.ColumnHeaderPadding="8" IsReadOnly="True">
@@ -272,7 +286,7 @@
                 </TabItem>
                 <TabItem Header="Rewards" Visibility="Visible">
                     <Grid Background="#FFE5E5E5">
-                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="80,60,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}" AutoGenerateColumns="False">
+                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="29,21,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
                                 <DataGridTextColumn Binding="{Binding neededPoints}" ClipboardContentBinding="{x:Null}" Header="Needed points" Width="*"/>
@@ -315,7 +329,7 @@
                             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0"/>
 
                         </StackPanel>-->
-                        <DataGrid Margin="52,18,593,255" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
+                        <DataGrid Margin="28,21,579,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
                         <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}"  />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.City}"
