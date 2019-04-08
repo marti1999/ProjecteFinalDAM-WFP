@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using desktopapplication.Properties;
 using desktopapplication.View;
 
 using MaterialDesignThemes.Wpf;
@@ -28,14 +29,36 @@ namespace desktopapplication.ViewModel
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
+            setCertOk();
+
+            Properties.Settings.Default.selectedLang = "default";
+
             loginCommand = new RelayCommand(o => logIn(o));
             Progress = "HIDDEN";
             _dialogOpen = false;
             Opacity = 1;
             _panelEnabled = true;
+            }
 
 
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
+
+        private void setCertOk()
+        {
+            System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+                (se, cert, chain, sslerror) =>
+                {
+                    return true;
+                };
+        }
+
+        #region Vars
 
         private string _adminUsername;
 
@@ -92,40 +115,29 @@ namespace desktopapplication.ViewModel
             }
         }
 
+        #endregion
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
-        private  void loginAnimation()
+        #region Login
+
+        private void loginAnimation()
         {
 
             Opacity = 0.3;
             Progress = "VISIBLE";
             PanelEnabled = false;
-
-
-            
             //CommandManager.InvalidateRequerySuggested();
         }
-
-        private  void logIn(object parameter)
+        private void logIn(object parameter)
         {
             loginAnimation();
             bool isLogin;
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                
+
                 logInActions(parameter);
             }).Start();
-            
-            
-           
 
         }
 
@@ -138,8 +150,6 @@ namespace desktopapplication.ViewModel
             string passwordRaw = passwordVar.Password;
 
 
-
-
             var data = Encoding.UTF8.GetBytes(passwordRaw);
 
 
@@ -150,10 +160,10 @@ namespace desktopapplication.ViewModel
                 hash = sha.ComputeHash(data);
             }
 
-            string hashString = System.Text.Encoding.Default.GetString(hash);
+            string hashString = Encoding.Default.GetString(hash);
 
             //hashString = hashString.Substring(0, 32);
-            Console.WriteLine(hashString);
+            //Console.WriteLine(hashString);
 
             AdminPassword = passwordVar.Password;
             a.password = hashString;
@@ -162,34 +172,34 @@ namespace desktopapplication.ViewModel
             {
                 Thread.Sleep(1500);
                 Administrator currenAdministrator = AdministratorRepository.getAdministratorByEmail(a.email);
-                Properties.Settings.Default.remindUser = currenAdministrator.Id;
-                Properties.Settings.Default.currentTab = -1;
-                Properties.Settings.Default.Save();
+                Settings.Default.remindUser = currenAdministrator.Id;
+                Settings.Default.currentTab = -1;
+                Settings.Default.Save();
 
                 Console.WriteLine("Login OK");
-                Application.Current.Dispatcher.Invoke((Action)delegate {
-                    
-                    MainWindow main = new MainWindow();
-                    Application.Current.Windows[0].Close();
 
-                    main.ShowDialog();
+
+                Application.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    MainWindow main = new MainWindow();
+                    main.Show();
+
+                    Application.Current.Windows[0]?.Close();
+
                 });
-             
+
             }
             else
             {
 
-                Console.WriteLine("Incorrect email/password");
                 MessageBox.Show("Incorrect email/password");
 
-
                 //DialogOpen = true;
-
 
                 Progress = "HIDDEN";
                 Opacity = 1;
                 PanelEnabled = true;
-               
+
             }
         }
 
@@ -234,6 +244,8 @@ namespace desktopapplication.ViewModel
             return encrypted;
 
         }
+
+        #endregion
 
 
 

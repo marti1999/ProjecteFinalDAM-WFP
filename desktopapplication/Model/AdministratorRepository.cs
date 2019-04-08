@@ -50,10 +50,9 @@ namespace desktopapplication.Model
         }
         public static void changeLang(int id, String lang)
         {
-            List<object> ar = new List<object>();
-            ar.Add(id);
-            ar.Add(lang);
-            MakeRequest(string.Concat(Utils.ws, "api/administrator/updlang", null), ar, "PUT", "application/json", typeof(void));
+
+            String idAndLang = id + "-" + lang;
+            MakeRequest(string.Concat(Utils.ws, "administrator/updlang"), idAndLang, "PUT", "application/json", typeof(bool));
         }
 
 

@@ -33,6 +33,15 @@ namespace desktopapplication.ViewModel
     class Vista1ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #region ICommandGeneral
 
         public ICommand requestorReqClickCommand { get; set; }
         public ICommand usersClickCommand { get; set; }
@@ -55,26 +64,57 @@ namespace desktopapplication.ViewModel
         public ICommand administratorAddCommand { get; set; }
         public ICommand administratorReassignCommand { get; set; }
 
+        #endregion
+
+        #region WindowManagement
+
         private void restartApp()
         {
             MainWindow main = new MainWindow();
-            Application.Current.Windows[0].Close();
+            Application.Current.Windows[0]?.Close();
 
-            main.ShowDialog();
+            main.Show();
         }
 
         private void closeApp()
         {
-            Application.Current.Windows[0].Close();
+            Application.Current.Windows[0]?.Close();
         }
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        #endregion
+
+        #region ChangeLanguages
+
+        public ICommand ChangeLangCmd { get; set; }
+
+        private void initLangChanger()
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            ChangeLangCmd = new RelayCommand(x => LangChangerSelector(x));
+
         }
+
+        private void LangChangerSelector(object o)
+        {
+            String lang = o as String;
+            if (!Thread.CurrentThread.CurrentCulture.IetfLanguageTag.Equals(lang))
+            {
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(lang);
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
+                Properties.Settings.Default.selectedLang = lang;
+                Properties.Settings.Default.currentTab = SelectedTab;
+                Properties.Settings.Default.Save();
+
+                restartApp();
+            }
+
+        }
+
+
+
+
+        #endregion
+
+
 
         public Vista1ViewModel()
         {
@@ -106,20 +146,20 @@ namespace desktopapplication.ViewModel
         private void setUserLanguageCulture()
         {
             int userId = Properties.Settings.Default.remindUser;
-            if (userId != 0)
+            Administrator currentAdministrator = AdministratorRepository.getAdministratorById(userId);
+
+
+            if (userId != 0 && Properties.Settings.Default.selectedLang.Equals("default"))
             {
-                if (Properties.Settings.Default.selectedLang.Equals("default"))
-                {
-                    Administrator currentAdministrator = AdministratorRepository.getAdministratorById(userId);
-                    LangChangerSelector(currentAdministrator.Language.code);
-                }
+                LangChangerSelector(currentAdministrator.Language.code);
             }
 
 
-            if (Properties.Settings.Default.selectedLang != Thread.CurrentThread.CurrentCulture.IetfLanguageTag)
-            {
+
+            //if (Properties.Settings.Default.selectedLang != Thread.CurrentThread.CurrentCulture.IetfLanguageTag)
+            //{
                 AdministratorRepository.changeLang(userId, Properties.Settings.Default.selectedLang);
-            }
+            //}
 
             if (Properties.Settings.Default.currentTab != (-1))
             {
@@ -203,7 +243,7 @@ namespace desktopapplication.ViewModel
         private void DonorDelete()
         {
             Donor d = DonorSelected;
-            if (d!= null)
+            if (d != null)
             {
                 donorRepository.DeleteDonor(d);
                 populateDonors();
@@ -212,7 +252,7 @@ namespace desktopapplication.ViewModel
             {
                 MessageBox.Show("Please, select a donor");
             }
-            
+
 
         }
 
@@ -1650,32 +1690,6 @@ namespace desktopapplication.ViewModel
 
         #endregion
 
-        #region ChangeLanguages
 
-        public ICommand ChangeLangCmd { get; set; }
-
-        private void initLangChanger()
-        {
-            ChangeLangCmd = new RelayCommand(x => LangChangerSelector(x));
-
-        }
-
-        private void LangChangerSelector(object o)
-        {
-            String btn = o as String;
-            if (!Thread.CurrentThread.CurrentCulture.IetfLanguageTag.Equals(btn))
-            {
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(btn);
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(btn);
-                Properties.Settings.Default.selectedLang = btn;
-                Properties.Settings.Default.currentTab = SelectedTab;
-                Properties.Settings.Default.Save();
-
-                restartApp();
-            }
-
-        }
-
-        #endregion
     }
 }
