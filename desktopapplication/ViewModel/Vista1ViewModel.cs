@@ -119,7 +119,7 @@ namespace desktopapplication.ViewModel
 
 
         public Vista1ViewModel()
-            //todo fer que nomes super admin pugui accedir a warehouses tab
+        //TODO: fer que nomes super admin pugui accedir a warehouses tab
 
         {
             setUserLanguageCulture();
@@ -157,13 +157,9 @@ namespace desktopapplication.ViewModel
             {
                 LangChangerSelector(currentAdministrator.Language.code);
             }
+            
+            AdministratorRepository.changeLang(userId, Properties.Settings.Default.selectedLang);
 
-
-
-            //if (Properties.Settings.Default.selectedLang != Thread.CurrentThread.CurrentCulture.IetfLanguageTag)
-            //{
-                AdministratorRepository.changeLang(userId, Properties.Settings.Default.selectedLang);
-            //}
 
             if (Properties.Settings.Default.currentTab != (-1))
             {
@@ -242,7 +238,7 @@ namespace desktopapplication.ViewModel
             {
                 _donors = value;
                 NotifyPropertyChanged();
-            }   
+            }
         }
 
         private void DonorDelete()
@@ -562,9 +558,9 @@ namespace desktopapplication.ViewModel
 
         private void populateClassification()
         {
-           
-                //ClothesClassification = ClassificationRepository.getAllClassifications();
-                ClothesClassification = ClassificationRepository.getAllClassificationsLang(Properties.Settings.Default.selectedLang);
+
+            //ClothesClassification = ClassificationRepository.getAllClassifications();
+            ClothesClassification = ClassificationRepository.getAllClassificationsLang(Properties.Settings.Default.selectedLang);
 
 
         }
@@ -757,7 +753,7 @@ namespace desktopapplication.ViewModel
         {
             ClothesWarehouseList = warehouseRepository.getAllWarehouses();
 
-            
+
             ClothesWarehouseSelected = ClothesWarehouseList.FirstOrDefault();
         }
         #endregion
@@ -843,10 +839,10 @@ namespace desktopapplication.ViewModel
                 MessageBox.Show("Please, select a warehouse before editing");
             }
 
-           
 
-          
-          
+
+
+
 
         }
 
@@ -901,7 +897,7 @@ namespace desktopapplication.ViewModel
         {
             if (WarehouseSelected != null)
             {
-                
+
                 //todo check if text boxes are not empty;
 
                 Administrator a = new Administrator();
@@ -1257,11 +1253,12 @@ namespace desktopapplication.ViewModel
                 populateAdministrators();
                 SelectedTab = 5;
                 Console.WriteLine("WAREHOUSES SELECTED");
-            } else
-            {
-                MessageBox.Show("Tab only enabled for super adminstrators, please log in as such")
             }
-           
+            else
+            {
+                MessageBox.Show("Tab only enabled for super adminstrators, please log in as such");
+            }
+
         }
 
         #endregion
@@ -1736,7 +1733,6 @@ namespace desktopapplication.ViewModel
         }
 
         #endregion
-
 
     }
 }
