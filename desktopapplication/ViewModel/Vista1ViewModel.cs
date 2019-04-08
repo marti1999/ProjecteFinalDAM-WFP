@@ -12,9 +12,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using MaterialDesignColors;
@@ -22,6 +22,7 @@ using MaterialDesignThemes.Wpf;
 using WSRobaSegonaMa.Models;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.Toolkit;
+using Application = System.Windows.Application;
 using ClassificationRepository = desktopapplication.Model.ClassificationRepository;
 using Color = System.Drawing.Color;
 using ColorConverter = System.Drawing.ColorConverter;
@@ -63,6 +64,7 @@ namespace desktopapplication.ViewModel
         public ICommand warehouseAddCommand { get; set; }
         public ICommand administratorAddCommand { get; set; }
         public ICommand administratorReassignCommand { get; set; }
+        public ICommand warehouseClickCommand { get; set; }
 
         #endregion
 
@@ -117,6 +119,8 @@ namespace desktopapplication.ViewModel
 
 
         public Vista1ViewModel()
+            //todo fer que nomes super admin pugui accedir a warehouses tab
+
         {
             setUserLanguageCulture();
 
@@ -205,6 +209,7 @@ namespace desktopapplication.ViewModel
             usersClickCommand = new RelayCommand(x => selectUsers());
             rewardsClickCommand = new RelayCommand(x => selectRewards());
             clothesClickCommand = new RelayCommand(x => selectClothes());
+            warehouseClickCommand = new RelayCommand(x => selectWarehouse());
             announcementsClickCommand = new RelayCommand(x => selectAnnouncements());
             createAnnouncementCommand = new RelayCommand(x => createAnnouncement());
             createClothCommand = new RelayCommand(x => createCloth());
@@ -237,7 +242,7 @@ namespace desktopapplication.ViewModel
             {
                 _donors = value;
                 NotifyPropertyChanged();
-            }
+            }   
         }
 
         private void DonorDelete()
@@ -410,6 +415,8 @@ namespace desktopapplication.ViewModel
         private void populateRecipient()
         {
             Recipients = new ObservableCollection<string>();
+
+            //EN PRINCIPI NO ES FA SERVIR, PERO NO ESBORRAR PER SI DE CAS 
             // TODO: en el webservice falta fer el repository i controller de recipient
             // Recipients = announcementRepository.getRecipients();
 
@@ -555,19 +562,10 @@ namespace desktopapplication.ViewModel
 
         private void populateClassification()
         {
-            //TODO: canviar el if un cop estigui implementat el multi idioma
-            if (true)
-            {
+           
                 //ClothesClassification = ClassificationRepository.getAllClassifications();
                 ClothesClassification = ClassificationRepository.getAllClassificationsLang(Properties.Settings.Default.selectedLang);
 
-
-            }
-            else
-            {
-                ClothesClassification = ClassificationRepository.getAllClassificationsLang("ca");
-
-            }
 
         }
 
@@ -759,7 +757,7 @@ namespace desktopapplication.ViewModel
         {
             ClothesWarehouseList = warehouseRepository.getAllWarehouses();
 
-            //TODO: asignar esto donde convenga
+            
             ClothesWarehouseSelected = ClothesWarehouseList.FirstOrDefault();
         }
         #endregion
@@ -819,9 +817,36 @@ namespace desktopapplication.ViewModel
 
         private void warehouseEdit()
         {
-            //todo posar=ho b'e al web service
-            Warehouse w = warehouseRepository.updateWarehouse(WarehouseEditing);
-            PopulateWarehouses();
+            try
+            {
+                if (WarehouseEditing == null)
+                {
+                    MessageBox.Show("Please, select a warehouse before editing");
+                }
+                else
+                {
+                    if (!WarehouseEditing.city.Equals("") && !WarehouseEditing.name.Equals("") && !WarehouseEditing.number.Equals("") && !WarehouseEditing.postalCode.Equals("") && !WarehouseEditing.street.Equals(""))
+                    {
+                        Warehouse w = warehouseRepository.updateWarehouse(WarehouseEditing);
+                        PopulateWarehouses();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please, fill up all fields");
+
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Please, select a warehouse before editing");
+            }
+
+           
+
+          
+          
 
         }
 
@@ -876,9 +901,14 @@ namespace desktopapplication.ViewModel
         {
             if (WarehouseSelected != null)
             {
+                
+                //todo check if text boxes are not empty;
+
                 Administrator a = new Administrator();
 
                 a = AdministratorEditing;
+
+
 
                 a.Warehouse_Id = WarehouseSelected.Id;
                 a.lastName = WarehouseSelected.name;
@@ -1215,6 +1245,23 @@ namespace desktopapplication.ViewModel
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
             Console.WriteLine("ANNOUNCEMENTS SELECTED");
+        }
+
+        private void selectWarehouse()
+        {
+            int userId = Properties.Settings.Default.remindUser;
+            Administrator a = AdministratorRepository.getAdministratorById(userId);
+            if (a.isSuper)
+            {
+                PopulateWarehouses();
+                populateAdministrators();
+                SelectedTab = 5;
+                Console.WriteLine("WAREHOUSES SELECTED");
+            } else
+            {
+                MessageBox.Show("Tab only enabled for super adminstrators, please log in as such")
+            }
+           
         }
 
         #endregion

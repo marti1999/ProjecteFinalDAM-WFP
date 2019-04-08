@@ -156,4 +156,103 @@
   <data name="ReasonDenyRequestor" xml:space="preserve">
     <value>Se ha de especificar el motivo</value>
   </data>
+  <data name="Assign" xml:space="preserve">
+    <value>Assignar</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Localidad</value>
+  </data>
+  <data name="isSuperAdmin" xml:space="preserve">
+    <value>Es administrador super?</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="selectAdmin" xml:space="preserve">
+    <value>Seleccione administrador</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Calle</value>
+  </data>
+  <data name="StreetNumber" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="WorkerCode" xml:space="preserve">
+    <value>Codigo de trabajador</value>
+  </data>
+  <data name="announcementMessage" xml:space="preserve">
+    <value>Descripción de la notificación</value>
+  </data>
+  <data name="announcementTitle" xml:space="preserve">
+    <value>Título de la notificación</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Destinatario</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="active" xml:space="preserve">
+    <value>Activo:</value>
+  </data>
+  <data name="amountGiven" xml:space="preserve">
+    <value>Cantidad donada</value>
+  </data>
+  <data name="Announcements" xml:space="preserve">
+    <value>Notificaciones</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Nacimiento</value>
+  </data>
+  <data name="Classification" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="clothes" xml:space="preserve">
+    <value>Ropa</value>
+  </data>
+  <data name="DonateCloth" xml:space="preserve">
+    <value>Donar ropa</value>
+  </data>
+  <data name="donor" xml:space="preserve">
+    <value>Donante</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="registerCloth" xml:space="preserve">
+    <value>Registrar ropa</value>
+  </data>
+  <data name="requestor" xml:space="preserve">
+    <value>Pedidor</value>
+  </data>
+  <data name="rewards" xml:space="preserve">
+    <value>Recompensas</value>
+  </data>
+  <data name="saveChanges" xml:space="preserve">
+    <value>Guardar cambios</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Medida</value>
+  </data>
+  <data name="Warehouses" xml:space="preserve">
+    <value>Almacenes</value>
+  </data>
 </root>
