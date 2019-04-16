@@ -162,8 +162,12 @@ namespace desktopapplication.ViewModel
 
             string hashString = Encoding.Default.GetString(hash);
 
-            //hashString = hashString.Substring(0, 32);
-            //Console.WriteLine(hashString);
+            hashString = stringToHex(hashString);
+            hashString = hashString.ToLower();
+
+            Console.WriteLine(hashString);
+
+
 
             AdminPassword = passwordVar.Password;
             a.password = hashString;
@@ -201,6 +205,18 @@ namespace desktopapplication.ViewModel
                 PanelEnabled = true;
 
             }
+        }
+
+        public string stringToHex(String text)
+        {
+
+
+            byte[] ba = Encoding.Default.GetBytes(text);
+            var hexString = BitConverter.ToString(ba);
+            hexString = hexString.Replace("-", "");
+
+
+            return hexString;
         }
 
         static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
