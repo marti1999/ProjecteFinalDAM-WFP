@@ -9,6 +9,6 @@ namespace desktopapplication.Model
     public static class Utils
     {
         //public static string ws = "http://localhost:51057/api/";
-        public static string ws = "https://localhost:44362/api/";
+        public static string ws = "https://172.16.12.3:45457//api/";
     }
 }

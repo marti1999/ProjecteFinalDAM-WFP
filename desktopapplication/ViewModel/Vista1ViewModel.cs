@@ -157,7 +157,7 @@ namespace desktopapplication.ViewModel
             {
                 LangChangerSelector(currentAdministrator.Language.code);
             }
-            
+
             AdministratorRepository.changeLang(userId, Properties.Settings.Default.selectedLang);
 
 
@@ -586,7 +586,6 @@ namespace desktopapplication.ViewModel
             Cloth c = ClothSelected;
             ClothesRepository.deleteCloth(c);
             ClothesPopulate();
-
         }
         private void createCloth()
         {
@@ -602,8 +601,12 @@ namespace desktopapplication.ViewModel
                 if (c.Color_Id != null)
                 {
                     c.Gender_Id = ClothesGenderSelected.Id;
-                    c.Warehouse_Id = ClothesWarehouseSelected.Id;
 
+                    int userId = Properties.Settings.Default.remindUser;
+                    Administrator actualAdmin = AdministratorRepository.getAdministratorById(userId);
+                    c.Warehouse_Id = actualAdmin.Warehouse_Id;
+                    //c.Warehouse_Id = ClothesWarehouseSelected.Id;
+                    
                     c.active = true;
                     c.dateCreated = DateTime.Now;
 
@@ -616,16 +619,12 @@ namespace desktopapplication.ViewModel
 
                     donorRepository.updateDonor(d);
 
-                    //TODO: comprovar que sumar els punts al donor funciona; 
-
                     ClothesPopulate();
                 }
                 else
                 {
                     MessageBox.Show("Please, fill up all the fields.");
                 }
-
-
             }
             else
             {
@@ -648,8 +647,6 @@ namespace desktopapplication.ViewModel
                 if (c != null)
                 {
                     if (ClothesSelectedRequestor.MaxClaim.value - ClothesSelectedRequestor.points >= c.Classification.value)
-
-
                     {
                         Order o = new Order();
                         o.Clothes_Id = c.Id;
@@ -661,8 +658,6 @@ namespace desktopapplication.ViewModel
                     {
                         MessageBox.Show("Not enough points available");
                     }
-
-
                 }
                 else
                 {
@@ -673,9 +668,6 @@ namespace desktopapplication.ViewModel
             {
                 MessageBox.Show("Please, fill up all the fields.");
             }
-
-
-
         }
 
 
@@ -702,7 +694,9 @@ namespace desktopapplication.ViewModel
         private void ClothesPopulate()
         {
             ClothList = ClothesRepository.getClothes().Where(x => x.active == true).ToList();
-
+            clothesSetFemaleEnabled = true;
+            clothesSetMaleEnabled = true;
+            clothesSetOtherEnabled = true;
         }
 
         private Cloth _clothSelected;
@@ -752,8 +746,6 @@ namespace desktopapplication.ViewModel
         private void PopulateClothesWarehouses()
         {
             ClothesWarehouseList = warehouseRepository.getAllWarehouses();
-
-
             ClothesWarehouseSelected = ClothesWarehouseList.FirstOrDefault();
         }
         #endregion
@@ -987,6 +979,26 @@ namespace desktopapplication.ViewModel
 
         #region TabGender
 
+        private bool _clothesSetFemaleEnabled { get; set; }
+        public bool clothesSetFemaleEnabled
+        {
+            get { return _clothesSetFemaleEnabled; }
+            set { _clothesSetFemaleEnabled = value; NotifyPropertyChanged(); }
+        }
+        private bool _clothesSetMaleEnabled { get; set; }
+        public bool clothesSetMaleEnabled
+        {
+            get { return _clothesSetMaleEnabled; }
+            set { _clothesSetMaleEnabled = value; NotifyPropertyChanged(); }
+        }
+
+        private bool _clothesSetOtherEnabled { get; set; }
+        public bool clothesSetOtherEnabled
+        {
+            get { return _clothesSetOtherEnabled; }
+            set { _clothesSetOtherEnabled = value; NotifyPropertyChanged(); }
+        }
+
         private Gender _clothesGenderSelected;
 
         public Gender ClothesGenderSelected
@@ -1001,6 +1013,7 @@ namespace desktopapplication.ViewModel
             List<Gender> lg = genderRepository.getAllGenders();
             Gender g = lg.Where(x => x.gender1.ToLower().Equals("male")).FirstOrDefault();
             ClothesGenderSelected = g;
+            disableMaleClothes();
         }
 
         private void ClothesSetFemale()
@@ -1009,6 +1022,7 @@ namespace desktopapplication.ViewModel
             List<Gender> lg = genderRepository.getAllGenders();
             Gender g = lg.Where(x => x.gender1.ToLower().Equals("female")).FirstOrDefault();
             ClothesGenderSelected = g;
+            disableFemaleClothes();
         }
 
         private void ClothesSetOther()
@@ -1017,8 +1031,27 @@ namespace desktopapplication.ViewModel
             List<Gender> lg = genderRepository.getAllGenders();
             Gender g = lg.Where(x => x.gender1.ToLower().Equals("other")).FirstOrDefault();
             ClothesGenderSelected = g;
+            disableOtherClothes();
         }
 
+        private void disableOtherClothes()
+        {
+            clothesSetFemaleEnabled = true;
+            clothesSetMaleEnabled = true;
+            clothesSetOtherEnabled = false;
+        }
+        private void disableMaleClothes()
+        {
+            clothesSetFemaleEnabled = true;
+            clothesSetMaleEnabled = false;
+            clothesSetOtherEnabled = true;
+        }
+        private void disableFemaleClothes()
+        {
+            clothesSetFemaleEnabled = false;
+            clothesSetMaleEnabled = true;
+            clothesSetOtherEnabled = true;
+        }
 
 
         #endregion
@@ -1102,7 +1135,7 @@ namespace desktopapplication.ViewModel
         private void populateAnnouncements()
         {
             Announcements = new List<Announcement>();
-            Announcements = announcementRepository.getAllAnnouncements();
+            Announcements = announcementRepository.getAllAnnouncements().OrderByDescending(x => x.dateCreated).ToList();
             populateAnnouncementType();
         }
 
@@ -1207,14 +1240,14 @@ namespace desktopapplication.ViewModel
             SelectedTab = 1;
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
-            Console.WriteLine("HOME SELECTED");
+            Console.WriteLine("REQUESTOR SELECTED");
             requestorThings();
         }
 
         private void selectRewards()
         {
             SelectedTab = 4;
-            Console.WriteLine("Rewards Selected");
+            Console.WriteLine("REWARDS SELECTED");
         }
         private void selectUsers()
         {
@@ -1222,7 +1255,7 @@ namespace desktopapplication.ViewModel
             SelectedTab = 0;
             // UsersSelected = Visibility.Visible;
             // HomeSelected = Visibility.Hidden;
-            Console.WriteLine("users selected");
+            Console.WriteLine("USERS SELECTED");
         }
 
         private void selectClothes()
@@ -1270,8 +1303,10 @@ namespace desktopapplication.ViewModel
 
         public void initRequestorActions()
         {
-            DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
-            AcceptRequestorChecked = new RelayCommand(x => denyRequestor(false));
+            DenyRequestorChecked = new RelayCommand(x => updateReward());
+
+            //DenyRequestorChecked = new RelayCommand(x => updateReward());
+            AcceptRequestorChecked = new RelayCommand(x => denyRequestor());
 
             populateStatus();
         }
@@ -1290,7 +1325,6 @@ namespace desktopapplication.ViewModel
                 }
             }
 
-
         }
 
         private void disableActionsRequestor()
@@ -1298,9 +1332,10 @@ namespace desktopapplication.ViewModel
             ActionsRequestor = false;
         }
 
-        private void denyRequestor(bool denied)
+        private void denyRequestor()
         {
-            if (SelectedStatus != null && denied)
+            bool denied = false;
+            if (SelectedStatus != null)
             {
                 EnableHasErrorRequestor = "HIDDEN";
                 Requestor r = SelectedRequestor;

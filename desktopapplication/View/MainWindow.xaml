@@ -145,11 +145,9 @@
                             </StackPanel>
 
                         </Button>
+
                         <Button
-                            Command="{Binding AcceptRequestorChecked}"
-                            HorizontalAlignment="Left"
-                            Width="170"
-                            Height="Auto"
+                            Command="{Binding AcceptRequestorChecked}" HorizontalAlignment="Left" Width="170" Height="Auto"
                             BorderThickness="0,1,1,1" Padding="0" Background="#596673" BorderBrush="#00673AB7" Margin="732,348,0,90" IsEnabled="{Binding ActionsRequestor}">
 
                             <StackPanel Orientation="Horizontal">
@@ -185,17 +183,17 @@
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesClassification}" SelectedItem="{Binding ClothesClassificationSelected}" />
                         <ComboBox Name="size" HorizontalAlignment="Left" Margin="709,90,0,0" VerticalAlignment="Top" Width="94" materialDesign:HintAssist.Hint="{x:Static p:Resources.Size}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ClothesSizes}" SelectedItem="{Binding ClothesSizeSelected}"/>
-                        <Button  HorizontalAlignment="Left" Margin="571,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray"  BorderBrush="#FF596673" Command="{Binding clothesSetFemaleCommand}">
+                        <Button HorizontalAlignment="Left" Margin="571,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray"  BorderBrush="#FF596673" Command="{Binding clothesSetFemaleCommand}" IsEnabled="{Binding clothesSetFemaleEnabled}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
                         </Button>
-                        <Button  HorizontalAlignment="Left" Margin="669,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673" Command="{Binding clothesSetMaleCommand}">
+                        <Button HorizontalAlignment="Left" Margin="669,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673" Command="{Binding clothesSetMaleCommand}" IsEnabled="{Binding clothesSetMaleEnabled}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderMale" Height="25" Width="25" Margin="0"></materialDesign:PackIcon>
                             </StackPanel>
                         </Button>
-                        <Button  HorizontalAlignment="Left" Margin="764,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673"  Command="{Binding clothesSetOtherCommand}">
+                        <Button HorizontalAlignment="Left" Margin="764,162,0,0" VerticalAlignment="Top" Height="34" Background="SlateGray" BorderBrush="#FF596673"  Command="{Binding clothesSetOtherCommand}" IsEnabled="{Binding clothesSetOtherEnabled}">
                             <StackPanel Orientation="Horizontal"  >
                                 <materialDesign:PackIcon Kind="GenderMaleFemale" Height="25" Width="25" Margin="0"/>
                             </StackPanel>
@@ -349,6 +347,7 @@
                         <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.Update}" HorizontalAlignment="Left" Margin="684,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding ActualitarRewardBtnCmd}"/>
                         <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="525,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding InsertRewardBtnCmd}"/>
                         <Button BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7" Content="{x:Static p:Resources.Delete}" HorizontalAlignment="Left" Margin="841,375,0,0" VerticalAlignment="Top" Width="140" Height="39" Command="{Binding DeleteRewardBtnCmd}"/>
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="Warehouses" Visibility="Visible">

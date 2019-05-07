@@ -33,7 +33,7 @@ namespace desktopapplication.Model
         }
         public static Administrator getAdministratorByEmail(string email)
         {
-            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administratorEmail/" + email), null, "GET", "application/json", typeof(Administrator));
+            Administrator r = (Administrator)MakeRequest(string.Concat(Utils.ws, "administratorEmail/"), email, "POST", "application/json", typeof(Administrator));
             return r;
         }
 
