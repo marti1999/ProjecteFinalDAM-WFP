@@ -374,8 +374,8 @@
                             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0"/>
 
                         </StackPanel>-->
-                        <DataGrid Margin="28,21,583,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" />
-                        <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}"  />
+                        <DataGrid Margin="28,21,583,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" IsReadOnly="True" />
+                        <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}" IsReadOnly="True"  />
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.City}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="43,313,774,126" Text="{Binding WarehouseEditing.city}" />

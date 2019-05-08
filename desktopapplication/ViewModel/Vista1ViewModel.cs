@@ -222,7 +222,8 @@ namespace desktopapplication.ViewModel
             administratorAddCommand = new RelayCommand(x => addAdministrator());
             administratorReassignCommand = new RelayCommand(x => assignAdministrator());
             closeApplication = new RelayCommand(x => closeApp());
-
+            DenyRequestorChecked = new RelayCommand(x => denyRequestor());
+            AcceptRequestorChecked = new RelayCommand(x => denyRequestor());
         }
 
 
@@ -618,7 +619,6 @@ namespace desktopapplication.ViewModel
                     d.ammountGiven += 1;
 
                     donorRepository.updateDonor(d);
-
                     ClothesPopulate();
                 }
                 else
@@ -1303,11 +1303,6 @@ namespace desktopapplication.ViewModel
 
         public void initRequestorActions()
         {
-            DenyRequestorChecked = new RelayCommand(x => updateReward());
-
-            //DenyRequestorChecked = new RelayCommand(x => updateReward());
-            AcceptRequestorChecked = new RelayCommand(x => denyRequestor());
-
             populateStatus();
         }
 
