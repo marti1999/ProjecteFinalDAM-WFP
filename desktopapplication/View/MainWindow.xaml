@@ -166,11 +166,6 @@
                 </TabItem>
                 <TabItem Header="Clothes" Visibility="Visible" >
                     <Grid Background="#FFE5E5E5"  >
-
-
-
-
-
                         <materialDesign:Card
                            
                             Height="421"  Background="White" HorizontalAlignment="Right" Width="415" Margin="0,10,69,0" >

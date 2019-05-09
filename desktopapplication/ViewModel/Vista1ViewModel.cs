@@ -1354,8 +1354,20 @@ namespace desktopapplication.ViewModel
                         r.Status_Id = r.Status.Id;
                     }
                 }
+                List<Requestor> requestorList = requestorRepository.getAllRequestors()
+                    .Where(x => x.Status.status1.Equals("Pending"))
+                    .Take(10)
+                    .OrderByDescending(x => x.dateCreated).ToList();
+                if (requestorList.Any())
+                {
+                    requestorRepository.setRequestors(r.Id, r);
+                }
+                else
+                {
+                    ActionsRequestor = false;
+                    NotifyPropertyChanged();
+                }
 
-                requestorRepository.setRequestors(r.Id, r);
                 populateRequestors();
             }
             else
@@ -1378,7 +1390,7 @@ namespace desktopapplication.ViewModel
                 .Where(x => x.Status.status1.Equals("Pending"))
                 .Take(10)
                 .OrderByDescending(x => x.dateCreated).ToList();
-            if (requestorList != null && requestorList.Any())
+            if (requestorList != null)
             {
                 Requestors = requestorList;
             }
@@ -1710,7 +1722,18 @@ namespace desktopapplication.ViewModel
         private void insertReward()
         {
             Reward reward = new Reward();
-            if (TbPriceRewards != "")
+            var preuReward = 0;
+            try
+            {
+
+                preuReward = int.Parse(TbPriceRewards);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            if (TbPriceRewards != "" && preuReward >= 0)
             {
                 reward.neededPoints = int.Parse(TbPriceRewards);
                 reward.active = true;
