@@ -607,7 +607,7 @@ namespace desktopapplication.ViewModel
                     Administrator actualAdmin = AdministratorRepository.getAdministratorById(userId);
                     c.Warehouse_Id = actualAdmin.Warehouse_Id;
                     //c.Warehouse_Id = ClothesWarehouseSelected.Id;
-                    
+
                     c.active = true;
                     c.dateCreated = DateTime.Now;
 
@@ -938,9 +938,7 @@ namespace desktopapplication.ViewModel
 
         public void assignAdministrator()
         {
-            if (AdministratorComboBoxSelected != null)
-
-
+            if (AdministratorComboBoxSelected != null && _warehouseselected != null)
             {
                 Administrator a = AdministratorComboBoxSelected;
                 a.Warehouse_Id = WarehouseSelected.Id;
@@ -951,7 +949,7 @@ namespace desktopapplication.ViewModel
             }
             else
             {
-                MessageBox.Show("Please, select an administrator from the combo box first");
+                MessageBox.Show("Please, select an administrator from the combo box and a warehouse first");
             }
 
         }
@@ -1262,6 +1260,7 @@ namespace desktopapplication.ViewModel
         {
             ClothesPopulate();
             SelectedTab = 2;
+            populateClothesRequestors();
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
             Console.WriteLine("CLOTHES SELECTED");
