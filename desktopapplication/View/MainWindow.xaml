@@ -12,8 +12,11 @@
         xmlns:properties="clr-namespace:Xceed.Wpf.AvalonDock.Properties;assembly=Xceed.Wpf.AvalonDock"
         x:Class="desktopapplication.MainWindow"
         mc:Ignorable="d"
+    Icon="/desktopapplication;component/CustomResources/tie.png"
+    Title="Clothes"
+    ResizeMode="CanMinimize"
 
-        Title="MainWindow" Height="600" Width="1080" Foreground="White" WindowStartupLocation="CenterScreen">
+         Height="600" Width="1080" Foreground="White" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="panelLeft">
