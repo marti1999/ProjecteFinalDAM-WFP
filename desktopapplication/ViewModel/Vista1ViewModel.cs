@@ -220,8 +220,8 @@ namespace desktopapplication.ViewModel
             administratorAddCommand = new RelayCommand(x => addAdministrator());
             administratorReassignCommand = new RelayCommand(x => assignAdministrator());
             closeApplication = new RelayCommand(x => closeApp());
-            DenyRequestorChecked = new RelayCommand(x => denyRequestor());
-            AcceptRequestorChecked = new RelayCommand(x => denyRequestor());
+            DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
+            AcceptRequestorChecked = new RelayCommand(x => denyRequestor(false));
         }
 
 
@@ -1341,14 +1341,12 @@ namespace desktopapplication.ViewModel
             ActionsRequestor = false;
         }
 
-        private void denyRequestor()
+        private void denyRequestor(bool denied)
         {
-            bool denied = false;
-            if (SelectedStatus != null)
-            {
+
                 EnableHasErrorRequestor = "HIDDEN";
                 Requestor r = SelectedRequestor;
-                if (denied)
+                if (denied && SelectedStatus != null)
                 {
                     Status s = searchByReason(SelectedStatus.reason);
                     if (s != null)
@@ -1369,7 +1367,7 @@ namespace desktopapplication.ViewModel
                     }
                 }
                 List<Requestor> requestorList = requestorRepository.getAllRequestors()
-                    .Where(x => x.Status.status1.Equals("Pending"))
+                    .Where(x => x.Status_Id == 3)
                     .Take(10)
                     .OrderByDescending(x => x.dateCreated).ToList();
                 if (requestorList.Any())
@@ -1381,13 +1379,13 @@ namespace desktopapplication.ViewModel
                     ActionsRequestor = false;
                     NotifyPropertyChanged();
                 }
-
+                NotifyPropertyChanged();
                 populateRequestors();
-            }
-            else
+            if (SelectedStatus == null && denied)
             {
                 EnableHasErrorRequestor = "VISIBLE";
             }
+
         }
 
         private Status searchByReason(string statusText)
