@@ -605,7 +605,7 @@ namespace desktopapplication.ViewModel
                     Administrator actualAdmin = AdministratorRepository.getAdministratorById(userId);
                     c.Warehouse_Id = actualAdmin.Warehouse_Id;
                     //c.Warehouse_Id = ClothesWarehouseSelected.Id;
-                    
+
                     c.active = true;
                     c.dateCreated = DateTime.Now;
 
@@ -915,6 +915,9 @@ namespace desktopapplication.ViewModel
 
                 string hashString = System.Text.Encoding.Default.GetString(hash);
 
+                hashString = stringToHex(hashString);
+                hashString = hashString.ToLower();
+
                 a.password = hashString;
 
                 //todo check if all fields are filled up;
@@ -934,11 +937,21 @@ namespace desktopapplication.ViewModel
 
         }
 
+        public string stringToHex(String text)
+        {
+
+
+            byte[] ba = Encoding.Default.GetBytes(text);
+            var hexString = BitConverter.ToString(ba);
+            hexString = hexString.Replace("-", "");
+
+
+            return hexString;
+        }
+
         public void assignAdministrator()
         {
-            if (AdministratorComboBoxSelected != null)
-
-
+            if (AdministratorComboBoxSelected != null && _warehouseselected != null)
             {
                 Administrator a = AdministratorComboBoxSelected;
                 a.Warehouse_Id = WarehouseSelected.Id;
@@ -949,7 +962,7 @@ namespace desktopapplication.ViewModel
             }
             else
             {
-                MessageBox.Show("Please, select an administrator from the combo box first");
+                MessageBox.Show("Please, select an administrator from the combo box and a warehouse first");
             }
 
         }
@@ -1262,6 +1275,7 @@ namespace desktopapplication.ViewModel
         {
             ClothesPopulate();
             SelectedTab = 2;
+            populateClothesRequestors();
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
             Console.WriteLine("CLOTHES SELECTED");
@@ -1386,8 +1400,9 @@ namespace desktopapplication.ViewModel
         public void populateRequestors()
         {
             EnableHasErrorRequestor = "HIDDEN";
-            List<Requestor> requestorList = requestorRepository.getAllRequestors()
-                .Where(x => x.Status.status1.Equals("Pending"))
+            List<Requestor> requestorList = requestorRepository.getAllRequestors();
+            requestorList = requestorList
+                .Where(x => x.Status_Id == 3)
                 .Take(10)
                 .OrderByDescending(x => x.dateCreated).ToList();
             if (requestorList != null)
@@ -1686,6 +1701,12 @@ namespace desktopapplication.ViewModel
         private void updateReward()
         {
             Reward reward = SelectedReward;
+
+            if (reward == null)
+            {
+                MessageBox.Show("Select a reward first, please.");
+                return;
+            }
 
             if (TbPriceRewards != "")
             {
