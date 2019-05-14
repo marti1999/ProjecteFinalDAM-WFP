@@ -119,9 +119,9 @@ namespace desktopapplication.ViewModel
 
 
         public Vista1ViewModel()
-        //TODO: fer que nomes super admin pugui accedir a warehouses tab
-
         {
+            //TODO: fer que nomes super admin pugui accedir a warehouses tab
+
             setUserLanguageCulture();
 
             //setColors();
@@ -165,8 +165,6 @@ namespace desktopapplication.ViewModel
             {
                 SelectedTab = Properties.Settings.Default.currentTab;
             }
-
-
         }
 
         private void rewardsThings()
@@ -222,8 +220,8 @@ namespace desktopapplication.ViewModel
             administratorAddCommand = new RelayCommand(x => addAdministrator());
             administratorReassignCommand = new RelayCommand(x => assignAdministrator());
             closeApplication = new RelayCommand(x => closeApp());
-            DenyRequestorChecked = new RelayCommand(x => denyRequestor());
-            AcceptRequestorChecked = new RelayCommand(x => denyRequestor());
+            DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
+            AcceptRequestorChecked = new RelayCommand(x => denyRequestor(false));
         }
 
 
@@ -319,7 +317,7 @@ namespace desktopapplication.ViewModel
                 d.lastName = DonorLastName;
                 d.email = DonorEmail;
                 d.active = DonorActive;
-                d.birthDate = Convert.ToDateTime(DonorBirthDate); //todo mirar si funciona o no
+                d.birthDate = Convert.ToDateTime(DonorBirthDate);
 
 
                 Donor d2 = donorRepository.updateDonor(d);
@@ -607,7 +605,7 @@ namespace desktopapplication.ViewModel
                     Administrator actualAdmin = AdministratorRepository.getAdministratorById(userId);
                     c.Warehouse_Id = actualAdmin.Warehouse_Id;
                     //c.Warehouse_Id = ClothesWarehouseSelected.Id;
-                    
+
                     c.active = true;
                     c.dateCreated = DateTime.Now;
 
@@ -917,6 +915,9 @@ namespace desktopapplication.ViewModel
 
                 string hashString = System.Text.Encoding.Default.GetString(hash);
 
+                hashString = stringToHex(hashString);
+                hashString = hashString.ToLower();
+
                 a.password = hashString;
 
                 //todo check if all fields are filled up;
@@ -936,11 +937,21 @@ namespace desktopapplication.ViewModel
 
         }
 
+        public string stringToHex(String text)
+        {
+
+
+            byte[] ba = Encoding.Default.GetBytes(text);
+            var hexString = BitConverter.ToString(ba);
+            hexString = hexString.Replace("-", "");
+
+
+            return hexString;
+        }
+
         public void assignAdministrator()
         {
-            if (AdministratorComboBoxSelected != null)
-
-
+            if (AdministratorComboBoxSelected != null && _warehouseselected != null)
             {
                 Administrator a = AdministratorComboBoxSelected;
                 a.Warehouse_Id = WarehouseSelected.Id;
@@ -951,7 +962,7 @@ namespace desktopapplication.ViewModel
             }
             else
             {
-                MessageBox.Show("Please, select an administrator from the combo box first");
+                MessageBox.Show("Please, select an administrator from the combo box and a warehouse first");
             }
 
         }
@@ -1248,6 +1259,8 @@ namespace desktopapplication.ViewModel
         {
             SelectedTab = 4;
             Console.WriteLine("REWARDS SELECTED");
+            populateRewards();
+
         }
         private void selectUsers()
         {
@@ -1262,6 +1275,7 @@ namespace desktopapplication.ViewModel
         {
             ClothesPopulate();
             SelectedTab = 2;
+            populateClothesRequestors();
             //HomeSelected = Visibility.Visible;
             //  UsersSelected = Visibility.Hidden;
             Console.WriteLine("CLOTHES SELECTED");
@@ -1327,14 +1341,12 @@ namespace desktopapplication.ViewModel
             ActionsRequestor = false;
         }
 
-        private void denyRequestor()
+        private void denyRequestor(bool denied)
         {
-            bool denied = false;
-            if (SelectedStatus != null)
-            {
+
                 EnableHasErrorRequestor = "HIDDEN";
                 Requestor r = SelectedRequestor;
-                if (denied)
+                if (denied && SelectedStatus != null)
                 {
                     Status s = searchByReason(SelectedStatus.reason);
                     if (s != null)
@@ -1355,7 +1367,7 @@ namespace desktopapplication.ViewModel
                     }
                 }
                 List<Requestor> requestorList = requestorRepository.getAllRequestors()
-                    .Where(x => x.Status.status1.Equals("Pending"))
+                    .Where(x => x.Status_Id == 3)
                     .Take(10)
                     .OrderByDescending(x => x.dateCreated).ToList();
                 if (requestorList.Any())
@@ -1367,13 +1379,13 @@ namespace desktopapplication.ViewModel
                     ActionsRequestor = false;
                     NotifyPropertyChanged();
                 }
-
+                NotifyPropertyChanged();
                 populateRequestors();
-            }
-            else
+            if (SelectedStatus == null && denied)
             {
                 EnableHasErrorRequestor = "VISIBLE";
             }
+
         }
 
         private Status searchByReason(string statusText)
@@ -1386,8 +1398,9 @@ namespace desktopapplication.ViewModel
         public void populateRequestors()
         {
             EnableHasErrorRequestor = "HIDDEN";
-            List<Requestor> requestorList = requestorRepository.getAllRequestors()
-                .Where(x => x.Status.status1.Equals("Pending"))
+            List<Requestor> requestorList = requestorRepository.getAllRequestors();
+            requestorList = requestorList
+                .Where(x => x.Status_Id == 3)
                 .Take(10)
                 .OrderByDescending(x => x.dateCreated).ToList();
             if (requestorList != null)
@@ -1686,6 +1699,12 @@ namespace desktopapplication.ViewModel
         private void updateReward()
         {
             Reward reward = SelectedReward;
+
+            if (reward == null)
+            {
+                MessageBox.Show("Select a reward first, please.");
+                return;
+            }
 
             if (TbPriceRewards != "")
             {
