@@ -119,9 +119,9 @@ namespace desktopapplication.ViewModel
 
 
         public Vista1ViewModel()
-        //TODO: fer que nomes super admin pugui accedir a warehouses tab
-
         {
+            //TODO: fer que nomes super admin pugui accedir a warehouses tab
+
             setUserLanguageCulture();
 
             //setColors();
@@ -165,8 +165,6 @@ namespace desktopapplication.ViewModel
             {
                 SelectedTab = Properties.Settings.Default.currentTab;
             }
-
-
         }
 
         private void rewardsThings()
@@ -319,7 +317,7 @@ namespace desktopapplication.ViewModel
                 d.lastName = DonorLastName;
                 d.email = DonorEmail;
                 d.active = DonorActive;
-                d.birthDate = Convert.ToDateTime(DonorBirthDate); //todo mirar si funciona o no
+                d.birthDate = Convert.ToDateTime(DonorBirthDate);
 
 
                 Donor d2 = donorRepository.updateDonor(d);
@@ -1248,6 +1246,8 @@ namespace desktopapplication.ViewModel
         {
             SelectedTab = 4;
             Console.WriteLine("REWARDS SELECTED");
+            populateRewards();
+
         }
         private void selectUsers()
         {
