@@ -400,7 +400,7 @@
                         <!--<TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.Password}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="539,298,278,141" Text="{Binding AdministratorEditing.password}" />-->
-                        <PasswordBox PasswordChar="{Binding PasswordCommand}" materialDesign:HintAssist.Hint="{x:Static p:Resources.Password}"
+                        <PasswordBox PasswordChar="{Binding PasswordCommandAdmin}"  Name="PasswordTextAdmin" materialDesign:HintAssist.Hint="{x:Static p:Resources.Password}"
                                       Margin="539,298,278,141"  ></PasswordBox>
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.WorkerCode}"
@@ -409,7 +409,7 @@
 
                         <ToggleButton
                             Style="{StaticResource MaterialDesignSwitchToggleButton}" IsChecked="{Binding AdministratorEditing.isSuper}" Background="#FF596673" Foreground="White" Height="39" Width="73" Margin="673,374,263,68"/>
-                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="770,377,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorAddCommand}"/>
+                        <Button Content="{x:Static p:Resources.Insert}" HorizontalAlignment="Left" Margin="770,377,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorAddCommand}" CommandParameter="{Binding ElementName=PasswordTextAdmin}"/>
                         <Button Content="Assign" HorizontalAlignment="Left" Margin="875,151,0,0" VerticalAlignment="Top" Width="101" Command="{Binding administratorReassignCommand}"/>
 
                         <ComboBox HorizontalAlignment="Left" Margin="875,86,0,0" VerticalAlignment="Top" Width="101"

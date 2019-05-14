@@ -882,7 +882,7 @@ namespace desktopapplication.ViewModel
             get { return _administratorEditing; }
             set { _administratorEditing = value; NotifyPropertyChanged(); }
         }
-
+        public ICommand PasswordCommandAdmin { get; set; }
         public void addAdministrator(object parameter)
         {
             if (WarehouseSelected != null)
@@ -934,8 +934,6 @@ namespace desktopapplication.ViewModel
                 MessageBox.Show("Please, select a warehouse first");
 
             }
-
-
         }
 
         public string stringToHex(String text)
