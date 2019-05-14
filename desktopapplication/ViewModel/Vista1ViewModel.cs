@@ -217,7 +217,7 @@ namespace desktopapplication.ViewModel
             exportDataCommand = new RelayCommand(x => restartApp());
             warehouseAddCommand = new RelayCommand(x => warehouseAdd());
             warehouseEditCommand = new RelayCommand(x => warehouseEdit());
-            administratorAddCommand = new RelayCommand(x => addAdministrator());
+            administratorAddCommand = new RelayCommand(x => addAdministrator(x));
             administratorReassignCommand = new RelayCommand(x => assignAdministrator());
             closeApplication = new RelayCommand(x => closeApp());
             DenyRequestorChecked = new RelayCommand(x => denyRequestor(true));
@@ -883,7 +883,7 @@ namespace desktopapplication.ViewModel
             set { _administratorEditing = value; NotifyPropertyChanged(); }
         }
 
-        public void addAdministrator()
+        public void addAdministrator(object parameter)
         {
             if (WarehouseSelected != null)
             {
@@ -894,7 +894,7 @@ namespace desktopapplication.ViewModel
 
                 a = AdministratorEditing;
 
-
+                var passwordVar = parameter as PasswordBox;
 
                 a.Warehouse_Id = WarehouseSelected.Id;
                 a.lastName = WarehouseSelected.name;
@@ -903,7 +903,8 @@ namespace desktopapplication.ViewModel
                 a.Language_Id = 1;
 
 
-                var data = Encoding.UTF8.GetBytes(a.password);
+                //var data = Encoding.UTF8.GetBytes(a.password);
+                var data = Encoding.UTF8.GetBytes(passwordVar.Password);
 
 
                 byte[] hash;
