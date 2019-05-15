@@ -635,7 +635,8 @@ namespace desktopapplication.ViewModel
 
         private void claimCloth()
         {
-            if (ClothesSizeSelected != null && ClothesClassificationSelected != null && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothnesDonorSelected != null && getColorByCode() != null)
+            //if (ClothesSizeSelected != null && ClothesClassificationSelected != null && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothnesDonorSelected != null && getColorByCode() != null)
+            if (ClothesSizeSelected != null && ClothesClassificationSelected != null && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothesSelectedRequestor != null && getColorByCode() != null)
             {
                 List<Cloth> lc = ClothesRepository.getClothes();
 
@@ -691,7 +692,21 @@ namespace desktopapplication.ViewModel
 
         private void ClothesPopulate()
         {
-            ClothList = ClothesRepository.getClothes().Where(x => x.active == true).ToList();
+            List<Cloth> list2 = ClothesRepository.getClothes();
+            if (ClothList == null)
+            {
+                ClothList = new List<Cloth>();
+            }
+
+            foreach (Cloth cloth in list2)
+            {
+                if (cloth != null)
+                {
+                    ClothList.Add(cloth);
+                }
+            }
+
+                ClothList = ClothList.Where(x => x.active).ToList();
             clothesSetFemaleEnabled = true;
             clothesSetMaleEnabled = true;
             clothesSetOtherEnabled = true;
@@ -1145,7 +1160,9 @@ namespace desktopapplication.ViewModel
         private void populateAnnouncements()
         {
             Announcements = new List<Announcement>();
-            Announcements = announcementRepository.getAllAnnouncements().OrderByDescending(x => x.dateCreated).ToList();
+
+            Announcements = announcementRepository.getAllAnnouncements();
+             //   Announcements = Announcements.OrderByDescending(x => x.dateCreated).ToList();
             populateAnnouncementType();
         }
 
@@ -1745,40 +1762,42 @@ namespace desktopapplication.ViewModel
             {
 
                 preuReward = int.Parse(TbPriceRewards);
+
+
+                if (TbPriceRewards != "" && preuReward >= 0)
+                {
+                    reward.neededPoints = int.Parse(TbPriceRewards);
+                    reward.active = true;
+                    reward.dateCreated = DateTime.Now;
+
+                    RewardInfoLang rwInfo = new RewardInfoLang();
+
+                    rwInfo.title = TbRewardsES;
+                    rwInfo.description = TbDescRewardsES;
+                    rwInfo.Language_Id = getLanguageId("es");
+                    reward.RewardInfoLangs.Add(rwInfo);
+
+                    rwInfo = new RewardInfoLang();
+                    rwInfo.title = TbRewardsCA;
+                    rwInfo.description = TbDescRewardsCA;
+                    rwInfo.Language_Id = getLanguageId("ca");
+                    reward.RewardInfoLangs.Add(rwInfo);
+
+                    rwInfo = new RewardInfoLang();
+                    rwInfo.title = TbRewardsEN;
+                    rwInfo.description = TbDescRewardsEN;
+                    rwInfo.Language_Id = getLanguageId("en");
+                    reward.RewardInfoLangs.Add(rwInfo);
+
+
+                    RewardRepository.insertRewardWithLang(reward);
+                    populateRewards();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
-            }
-            if (TbPriceRewards != "" && preuReward >= 0)
-            {
-                reward.neededPoints = int.Parse(TbPriceRewards);
-                reward.active = true;
-                reward.dateCreated = DateTime.Now;
-
-                RewardInfoLang rwInfo = new RewardInfoLang();
-
-                rwInfo.title = TbRewardsES;
-                rwInfo.description = TbDescRewardsES;
-                rwInfo.Language_Id = getLanguageId("es");
-                reward.RewardInfoLangs.Add(rwInfo);
-
-                rwInfo = new RewardInfoLang();
-                rwInfo.title = TbRewardsCA;
-                rwInfo.description = TbDescRewardsCA;
-                rwInfo.Language_Id = getLanguageId("ca");
-                reward.RewardInfoLangs.Add(rwInfo);
-
-                rwInfo = new RewardInfoLang();
-                rwInfo.title = TbRewardsEN;
-                rwInfo.description = TbDescRewardsEN;
-                rwInfo.Language_Id = getLanguageId("en");
-                reward.RewardInfoLangs.Add(rwInfo);
-
-
-                RewardRepository.insertRewardWithLang(reward);
-                populateRewards();
+                MessageBox.Show("Please, input correct values");
+                // throw;
             }
         }
         private void deleteReward()
