@@ -76,7 +76,7 @@
                                     <DataGridCheckBoxColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.active}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content="{x:Static p:Resources.Delete}" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="75"/>
+                            <Button Content="{x:Static p:Resources.Delete}" BorderThickness="0,1,1,1" Background="#596673" BorderBrush="#00673AB7"  Command="{Binding deleteDonorCommand}" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="125" Height="45"/>
                         </Grid>
                         <Grid Grid.Column="1" >
                             <materialDesign:Card
@@ -127,12 +127,12 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id"/>
                                 <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="Name" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding lastName}" ClipboardContentBinding="{x:Null}" Header="LastName" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="Active" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Name}" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding lastName}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.lastName}" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding active}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.active}" Width="*"/>
                                 <DataGridTextColumn Binding="{Binding email}" ClipboardContentBinding="{x:Null}" Header="Email" Width="*"/>
                                 <DataGridTextColumn Binding="{Binding MaxClaim.value}" ClipboardContentBinding="{x:Null}" Header="MaxClaims"/>
-                                <DataGridTextColumn Binding="{Binding dateCreated}" ClipboardContentBinding="{x:Null}" Header="DateCreated" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding dateCreated}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Date}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <Button
@@ -144,7 +144,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Close" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Deny" Visibility="Visible" VerticalAlignment="Center"  Margin="10 10"/>
+                                <TextBlock Text="{x:Static p:Resources.Delete}" Visibility="Visible" VerticalAlignment="Center"  Margin="10 10"/>
                             </StackPanel>
 
                         </Button>
@@ -155,7 +155,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Check" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Accept" Visibility="Visible" VerticalAlignment="Center"  Margin="10 10"/>
+                                <TextBlock Text="OK" Visibility="Visible" VerticalAlignment="Center"  Margin="10 10"/>
                             </StackPanel>
 
                         </Button>
@@ -373,7 +373,13 @@
 
                         </StackPanel>-->
                         <DataGrid Margin="28,21,583,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" IsReadOnly="True" />
-                        <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}" IsReadOnly="True"  />
+                        <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}" IsReadOnly="True" AutoGenerateColumns="False"  >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding workerCode}" ClipboardContentBinding="{x:Null}" Header="Code"/>
+                                <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="Name"/>
+                                <DataGridTextColumn Binding="{Binding email}" ClipboardContentBinding="{x:Null}" Header="Email"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <TextBox
                             materialDesign:HintAssist.Hint="{x:Static p:Resources.City}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="43,313,774,126" Text="{Binding WarehouseEditing.city}" />

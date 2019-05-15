@@ -1179,11 +1179,20 @@ namespace desktopapplication.ViewModel
 
         private void populateAnnouncements()
         {
-            Announcements = new List<Announcement>();
+            try
+            {
+                Announcements = new List<Announcement>();
 
-            Announcements = announcementRepository.getAllAnnouncements();
-             //   Announcements = Announcements.OrderByDescending(x => x.dateCreated).ToList();
-            populateAnnouncementType();
+                Announcements = announcementRepository.getAllAnnouncements();
+                //   Announcements = Announcements.OrderByDescending(x => x.dateCreated).ToList();
+                populateAnnouncementType();
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+          
         }
 
         private string _announcementDestination;
