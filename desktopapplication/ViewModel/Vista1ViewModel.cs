@@ -583,8 +583,13 @@ namespace desktopapplication.ViewModel
         private void deleteCloth()
         {
             Cloth c = ClothSelected;
-            ClothesRepository.deleteCloth(c);
-            ClothesPopulate();
+
+            if (c != null)
+            {
+                ClothesRepository.deleteCloth(c);
+                ClothesPopulate();
+            }
+      
         }
         private void createCloth()
         {
@@ -638,7 +643,19 @@ namespace desktopapplication.ViewModel
             //if (ClothesSizeSelected != null && ClothesClassificationSelected != null && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothnesDonorSelected != null && getColorByCode() != null)
             if (ClothesSizeSelected != null && ClothesClassificationSelected != null && ClothesGenderSelected != null && ClothesWarehouseSelected != null && ClothesSelectedRequestor != null && getColorByCode() != null)
             {
-                List<Cloth> lc = ClothesRepository.getClothes();
+                List<Cloth> lc = new List<Cloth>();
+                List<Cloth> list2 = ClothesRepository.getClothes();
+                lc.Clear();
+
+                foreach (Cloth cloth in list2)
+                {
+                    if (cloth != null)
+                    {
+                        lc.Add(cloth);
+                    }
+                }
+
+             //   List<Cloth> lc = ClothesRepository.getClothes();
 
                 Cloth c = lc.Where(x =>
                     x.Gender_Id == ClothesGenderSelected.Id && x.Size_Id == ClothesSizeSelected.Id &&
@@ -652,6 +669,8 @@ namespace desktopapplication.ViewModel
                         o.Requestor_Id = ClothesSelectedRequestor.Id;
                         o.dateCreated = DateTime.Now;
                         OrderRepository.newOrder(o);
+
+                        ClothesPopulate();
                     }
                     else
                     {
@@ -697,6 +716,7 @@ namespace desktopapplication.ViewModel
             {
                 ClothList = new List<Cloth>();
             }
+            ClothList.Clear();
 
             foreach (Cloth cloth in list2)
             {

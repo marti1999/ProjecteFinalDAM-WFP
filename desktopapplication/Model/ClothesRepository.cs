@@ -33,7 +33,12 @@ namespace desktopapplication.Model.objects
         }
 
         public static void deleteCloth(Cloth c)
+
         {
+
+
+           
+
         Cloth c2 = (Cloth) MakeRequest(string.Concat(ws1, "cloth/", c.Id), null, "DELETE", "application/json", typeof(Cloth));
         }
 
