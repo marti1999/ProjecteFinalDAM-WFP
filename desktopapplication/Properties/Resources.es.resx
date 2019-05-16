@@ -255,4 +255,13 @@
   <data name="Warehouses" xml:space="preserve">
     <value>Almacenes</value>
   </data>
+  <data name="DateCreated" xml:space="preserve">
+    <value>Fecha Creacion</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="NeededPoints" xml:space="preserve">
+    <value>Puntos Necessarios</value>
+  </data>
 </root>

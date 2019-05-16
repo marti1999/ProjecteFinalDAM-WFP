@@ -313,15 +313,25 @@ namespace desktopapplication.ViewModel
             {
 
                 Donor d = DonorSelected;
-                d.name = DonorName;
-                d.lastName = DonorLastName;
-                d.email = DonorEmail;
-                d.active = DonorActive;
-                d.birthDate = Convert.ToDateTime(DonorBirthDate);
+
+                if (d != null)
+                {
+                    d.name = DonorName;
+                    d.lastName = DonorLastName;
+                    d.email = DonorEmail;
+                    d.active = DonorActive;
+                    d.birthDate = Convert.ToDateTime(DonorBirthDate);
+                    Donor d2 = donorRepository.updateDonor(d);
+                    populateDonors();
+                }
+                else
+                {
+                    MessageBox.Show("Please, select a donor first.");
+                }
+              
 
 
-                Donor d2 = donorRepository.updateDonor(d);
-                populateDonors();
+               
             }
             else
             {

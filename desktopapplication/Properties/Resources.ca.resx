@@ -255,4 +255,13 @@
   <data name="Warehouses" xml:space="preserve">
     <value>Magatzems</value>
   </data>
+  <data name="DateCreated" xml:space="preserve">
+    <value>Data Creació</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Correu</value>
+  </data>
+  <data name="NeededPoints" xml:space="preserve">
+    <value>Punts Necessaris</value>
+  </data>
 </root>

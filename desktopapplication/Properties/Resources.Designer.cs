@@ -169,6 +169,15 @@ namespace desktopapplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date Created.
+        /// </summary>
+        public static string DateCreated {
+            get {
+                return ResourceManager.GetString("DateCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -201,6 +210,15 @@ namespace desktopapplication.Properties {
         public static string donor {
             get {
                 return ResourceManager.GetString("donor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
@@ -282,6 +300,15 @@ namespace desktopapplication.Properties {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Needed Points.
+        /// </summary>
+        public static string NeededPoints {
+            get {
+                return ResourceManager.GetString("NeededPoints", resourceCulture);
             }
         }
         

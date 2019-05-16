@@ -65,7 +65,7 @@
 
                                 </StackPanel>
                             </materialDesign:Card>
-                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="0,24,-166,0" VerticalAlignment="Top" Width="642" ItemsSource="{Binding Donors}" SelectedItem="{Binding DonorSelected}" IsReadOnly="True">
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="272" Margin="0,24,-166,0" VerticalAlignment="Top" Width="642" ItemsSource="{Binding Donors}" SelectedItem="{Binding DonorSelected}" IsReadOnly="True" SelectionMode="Single">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
                                     <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
@@ -238,9 +238,8 @@
                             Background="#596673" BorderBrush="#596673"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Announcements" Visibility="Visible" 
-                         >
-                    <Grid Background="#FFE5E5E5"  >
+                <TabItem Header="Announcements" Visibility="Visible">
+                    <Grid Background="#FFE5E5E5">
 
                         <materialDesign:Card
                            
@@ -314,8 +313,8 @@
                         <DataGrid HorizontalAlignment="Left" Height="354" Margin="29,21,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
-                                <DataGridTextColumn Binding="{Binding neededPoints}" ClipboardContentBinding="{x:Null}" Header="Needed points" Width="*"/>
-                                <DataGridTextColumn Binding="{Binding dateCreated}" ClipboardContentBinding="{x:Null}" Header="Date created" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding neededPoints}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.NeededPoints}" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding dateCreated}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.DateCreated}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox
@@ -372,12 +371,20 @@
                             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0"/>
 
                         </StackPanel>-->
-                        <DataGrid Margin="28,21,583,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" IsReadOnly="True" />
+                        <DataGrid Margin="28,21,583,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" IsReadOnly="True" AutoGenerateColumns="False" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.Name}"/>
+                                <DataGridTextColumn Binding="{Binding street}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Street}"/>
+                                <DataGridTextColumn Binding="{Binding number}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.StreetNumber}"/>
+                                <DataGridTextColumn Binding="{Binding city}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.City}"/>
+                                <DataGridTextColumn Binding="{Binding postalCode}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.PostalCode}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}" IsReadOnly="True" AutoGenerateColumns="False"  >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding workerCode}" ClipboardContentBinding="{x:Null}" Header="Code"/>
-                                <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="Name"/>
-                                <DataGridTextColumn Binding="{Binding email}" ClipboardContentBinding="{x:Null}" Header="Email"/>
+                                <DataGridTextColumn Binding="{Binding workerCode}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.WorkerCode}"/>
+                                <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.Name}"/>
+                                <DataGridTextColumn Binding="{Binding email}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.Email}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox
@@ -508,7 +515,7 @@
                              BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal" Width="170" >
-                                <materialDesign:PackIcon Kind="Plus" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon Kind="TableEdit" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="{x:Static p:Resources.donor}" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
 
@@ -576,7 +583,7 @@
                              BorderThickness="0,1,1,1" Padding="0" Background="#00673AB7" BorderBrush="#00673AB7" >
 
                             <StackPanel Orientation="Horizontal" Width="170">
-                                <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon Kind="HomeMapMarker" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="{x:Static p:Resources.Warehouses}" Visibility="Visible" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
 
