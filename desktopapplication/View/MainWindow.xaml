@@ -123,7 +123,7 @@
                             </StackPanel>
                         </materialDesign:Card>
 
-                        <DataGrid HorizontalAlignment="Left" Margin="29,21,0,131" Width="654" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}">
+                        <DataGrid HorizontalAlignment="Left" Margin="29,21,0,131" Width="654" ItemsSource="{Binding Requestors}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRequestor}" SelectedIndex="{Binding SelectedRequestorIndex}" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id"/>
                                 <DataGridTextColumn Binding="{Binding dni}" ClipboardContentBinding="{x:Null}" Header="DNI" Width="*"/>
@@ -210,7 +210,7 @@
 
                         </Button>
                         <materialDesign:Card Margin="15,0,0,28" Background="White" HorizontalAlignment="Left" Width="455" VerticalAlignment="Bottom" Height="433" >
-                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="347" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}" IsReadOnly="True" Margin="0,0,-5,0">
+                            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="347" VerticalAlignment="Top" Width="445"  ItemsSource="{Binding ClothList}" SelectedItem="{Binding ClothSelected}" IsReadOnly="True" Margin="0,0,-5,0" SelectionMode="Single">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Gender.gender1}" ClipboardContentBinding="{x:Null}" Width="*" Header="{x:Static p:Resources.gender}"/>
                                     <DataGridTextColumn Binding="{Binding Classification.classificationType}" ClipboardContentBinding="{x:Null}" Width="*" Header="{x:Static p:Resources.Classification}"/>
@@ -261,7 +261,7 @@
                         <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="374" Margin="28,21,0,0"
                                   VerticalAlignment="Top" Width="404" ItemsSource="{Binding Announcements}"
                                     materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-  materialDesign:DataGridAssist.ColumnHeaderPadding="8" IsReadOnly="True">
+  materialDesign:DataGridAssist.ColumnHeaderPadding="8" IsReadOnly="True" SelectionMode="Single">
                             <DataGrid.Columns>
 
                                 <DataGridTextColumn Binding="{Binding title}"  Header="{x:Static p:Resources.Title}" Width="*"/>
@@ -310,7 +310,7 @@
 
                             </StackPanel>
                         </materialDesign:Card>
-                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="29,21,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}" AutoGenerateColumns="False">
+                        <DataGrid HorizontalAlignment="Left" Height="354" Margin="29,21,0,0" VerticalAlignment="Top" Width="390" ItemsSource="{Binding ListRewards}" IsReadOnly="True" SelectedItem="{Binding SelectedReward}" SelectedIndex="{Binding SelectedIndexReward}" AutoGenerateColumns="False" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="Id" Width="50"/>
                                 <DataGridTextColumn Binding="{Binding neededPoints}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.NeededPoints}" Width="*"/>
@@ -371,7 +371,7 @@
                             <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0,0,0"/>
 
                         </StackPanel>-->
-                        <DataGrid Margin="28,21,583,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" IsReadOnly="True" AutoGenerateColumns="False" >
+                        <DataGrid Margin="28,21,583,232" ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding WarehouseSelected}" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.Name}"/>
                                 <DataGridTextColumn Binding="{Binding street}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Street}"/>
@@ -380,7 +380,7 @@
                                 <DataGridTextColumn Binding="{Binding postalCode}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.PostalCode}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}" IsReadOnly="True" AutoGenerateColumns="False"  >
+                        <DataGrid Margin="526,18,152,255" ItemsSource="{Binding AdministratorsWarehouse}" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"  >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding workerCode}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.WorkerCode}"/>
                                 <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}"  Header="{x:Static p:Resources.Name}"/>
